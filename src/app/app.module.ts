@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ExperiencesComponent } from './experiences/experiences.component';
+import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
+import { ListeExperiencesComponent } from './experiencesComponent/liste-experiences/liste-experiences.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExperiencesComponent
+    AjoutExperiencesComponent,
+    ListeExperiencesComponent
   ],
   imports: [
     BrowserModule,
