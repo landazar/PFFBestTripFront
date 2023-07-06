@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
 import { ListeExperiencesComponent } from './experiencesComponent/liste-experiences/liste-experiences.component';
+import { GuideVoyageComponent } from './guide-voyage/guide-voyage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AjoutExperiencesComponent,
-    ListeExperiencesComponent
+    ListeExperiencesComponent,
+    GuideVoyageComponent
   ],
   imports: [
     BrowserModule,
