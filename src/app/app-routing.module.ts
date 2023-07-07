@@ -8,6 +8,12 @@ import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
 import { VilleComponent } from './ville/ville.component';
 import { CreerVilleComponent } from './ville/creer-ville/creer-ville.component';
 import { UpdateVilleComponent } from './ville/update-ville/update-ville.component';
+import { AfficherGuideVoyageComponent } from './guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
+import { UpdateExperiencesComponent } from './experiencesComponent/update-experiences/update-experiences.component';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { FormulaireUtilisateurComponent } from './formulaire-utilisateur/formulaire-utilisateur.component';
+import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
@@ -17,7 +23,14 @@ const routes: Routes = [
   {path: "modifierPays", component: UpdatePaysComponent},
   {path: "listeVille", component: VilleComponent},
   {path: "ajoutVille", component: CreerVilleComponent},
-  {path: "modifierVille", component: UpdateVilleComponent}
+  {path: "modifierVille", component: UpdateVilleComponent},
+  { path: 'afficher-guide-voyage', component: AfficherGuideVoyageComponent },
+  {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
+  {path:"utilisateur", component:UtilisateurComponent},
+  {path:"ajoutUtilisateur", component:FormulaireUtilisateurComponent},
+  { path: 'ajouter-guide-voyage', component: AjoutGuideVoyageComponent },
+  {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
+  {path: "", component: AcceuilComponent}
 ];
 
 @NgModule({

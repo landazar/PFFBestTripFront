@@ -1,0 +1,16 @@
+<form [formGroup]="guideForm">
+    <label for="nom">Nom</label>
+    <input type="text" formControlName="nom">
+  
+    <label for="dateCreation">Date de création</label>
+    <input type="date" formControlName="dateCreation">
+  
+    <label for="description">Description</label>
+    <input type="text" formControlName="description">
+  
+    <button type="submit" (click)="saveGuideVoyage()">Ajouter guide de voyage</button>
+  </form>
+  
+  <router-outlet></router-outlet>
+  
+  

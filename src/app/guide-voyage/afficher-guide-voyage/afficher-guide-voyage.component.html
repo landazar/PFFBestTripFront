@@ -1,1 +1,29 @@
-<p>afficher-guide-voyage works!</p>
+<div>
+  <h3>Liste des guides de voyage</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Numéro</th>
+        <th>Nom</th>
+        <th>Date de création</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guide of guides">
+        <td>{{ guide.idGuide }}</td>
+        <td>{{ guide.nom }}</td>
+        <td>{{ guide.dateCreation | date }}</td>
+        <td>{{ guide.description }}</td>
+        <td>
+          <button (click)="supprimerGuide(guide.idGuide)">Supprimer</button>
+          <button (click)="modifierGuide(guide.idGuide)">Modifier</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  

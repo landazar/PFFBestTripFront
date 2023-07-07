@@ -3,21 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { FormulaireUtilisateurComponent } from './formulaire-utilisateur/formulaire-utilisateur.component';
 
 import { ListeExperiencesComponent } from './experiencesComponent/liste-experiences/liste-experiences.component';
 import { GuideVoyageComponent } from './guide-voyage/guide-voyage.component';
+import { UpdateExperiencesComponent } from './experiencesComponent/update-experiences/update-experiences.component';
 import { AfficherGuideVoyageComponent } from './guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
 import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
 import { PaysComponent } from './pays/pays.component';
 import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
 import { CreerPaysComponent } from './pays/creer-pays/creer-pays.component';
+import { MenuComponent } from './menu/menu.component';
+import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
+    UtilisateurComponent,
+    FormulaireUtilisateurComponent,
     GuideVoyageComponent,
     AfficherGuideVoyageComponent,
     AjoutExperiencesComponent,
@@ -25,13 +32,18 @@ import { CreerPaysComponent } from './pays/creer-pays/creer-pays.component';
     GuideVoyageComponent,
     PaysComponent,
     UpdatePaysComponent,
-    CreerPaysComponent
+    CreerPaysComponent,
+    UpdateExperiencesComponent,
+    MenuComponent,
+    AjoutGuideVoyageComponent,
+    AcceuilComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
