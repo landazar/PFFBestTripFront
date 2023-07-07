@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'afficher-guide-voyage', component: AfficherGuideVoyageComponent },
   { path: 'ajouter-guide-voyage', component: AjoutGuideVoyageComponent },
 
+
   {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
   {path: "", component: AcceuilComponent}
 ];
