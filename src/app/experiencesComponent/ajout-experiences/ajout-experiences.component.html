@@ -1,17 +1,63 @@
-<form [formGroup]="experiencesForm">
+<h2 style="text-align: center; margin-top: 1%">Ajouter une expérience</h2>
+<div style="margin-top: 2%; margin-left: 10%; margin-right: 10%">
+    <form [formGroup]="experiencesForm" class="formGroup">
+        <!-- infos générales de l'expérience -->
+        <label for="nom">Nom</label>
+        <input type="text" formControlName="nom" class="form-control">
 
-    <label for="nom">Nom</label>
-    <input type="text" formControlName="nom">
+        <label for="dateDebut">Date du début</label>
+        <input type="date" formControlName="dateDebut" class="form-control">
 
-    <label for="dateDebut">Date du début</label>
-    <input type="date" formControlName="dateDebut">
+        <label for="dateFin">Date de fin</label>
+        <input type="date" formControlName="dateFin" class="form-control">
 
-    <label for="dateFin">Date de fin</label>
-    <input type="date" formControlName="dateFin">
+        <label for="type">Type d'expérience</label>
+        <input type="text" formControlName="type" class="form-control">
 
-    <label for="type">Type d'expérience</label>
-    <input type="text" formControlName="type">
+        <!-- affichage des activités -->
+        <h3>Activités :</h3>
 
-    <button type="submit" (click)="saveExperiences()">Ajouter expérience</button>
+        <div *ngFor="let a of experiencesForm.value.activites; let i = index">
+            <div>
+                <label for="activiteNom{{i}}">Nom : </label>
+                <input type="text" name=activiteNom{{i}} [value]="a.nom" class="form-control">
+                <label for="activiteCommentaire{{i}}">Commentaire : </label>
+                <input type="text" name=activiteCommentaire{{i}} [value]="a.commentaire" class="form-control">
+                <label for="activitePhotos{{i}}">Photos : </label>
+                <input type="text" name=activitePhotos{{i}} [value]="a.photos" class="form-control">
+                <label for="activiteVideos{{i}}">Videos : </label>
+                <input type="text" name=activiteVideos{{i}} [value]="a.videos" class="form-control">
+                <label for="activiteDepense{{i}}">Dépense : </label>
+                <input type="text" name=activiteDepense{{i}} [value]="a.depense" class="form-control">
+                <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
+            </div>
+        </div>
 
-</form>
+    </form>
+    
+    <form>
+        <div *ngIf="showActiviteForm">
+            <form class="formGroup">
+                <label for="activiteNom">Nom : </label>
+                <input type="text" name=activiteNom [(ngModel)]="activite.nom" class="form-control">
+                <label for="activiteCommentaire">Commentaire : </label>
+                <input type="text" name=activiteCommentaire [(ngModel)]="activite.commentaire" class="form-control">
+                <label for="activitePhotos">Photos : </label>
+                <input type="text" name=activitePhotos [(ngModel)]="activite.photos" class="form-control">
+                <label for="activiteVideos">Videos : </label>
+                <input type="text" name=activiteVideos [(ngModel)]="activite.videos" class="form-control">
+                <label for="activiteDepense">Dépense : </label>
+                <input type="text" name=activiteDepense [(ngModel)]="activite.depense" class="form-control">
+                <button type="submit" (click)="ajouterActivite()">Ajouter</button>
+                <button *ngIf="showActiviteForm" (click)="toggleActiviteForm()">Annuler</button>
+            </form>
+        </div>
+
+        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm()">Ajouter une activité</button>
+        
+        <div style="margin-top: 2%; display: flex; justify-content: center;">
+            <button type="submit" (click)="saveExperiences()">Ajouter expérience</button>
+        </div>
+        
+    </form>
+</div>
