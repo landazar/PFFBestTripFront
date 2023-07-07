@@ -6,20 +6,11 @@ import { Router } from '@angular/router';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
-  constructor(private router: Router) { }
+  
 
-  ngOnInit(): void {
-  }
-
-  loadFormComponent() {
-    this.router.navigate(['/saveExperiences']);
-  }
-
-  loadTableComponent() {
-    this.router.navigate(['/listeExperiences']);
-  }
+  
 
 
 }
