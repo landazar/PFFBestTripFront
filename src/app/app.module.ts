@@ -16,6 +16,7 @@ import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experien
 import { MenuComponent } from './menu/menu.component';
 import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
+import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisateur.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
     UpdateExperiencesComponent,
     MenuComponent,
     AjoutGuideVoyageComponent,
-    AcceuilComponent
+    AcceuilComponent,
+    UpdateUtilisateurComponent
   ],
   imports: [
     BrowserModule,
