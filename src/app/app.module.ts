@@ -11,6 +11,7 @@ import { GuideVoyageComponent } from './guide-voyage/guide-voyage.component';
 import { UpdateExperiencesComponent } from './experiencesComponent/update-experiences/update-experiences.component';
 import { AfficherGuideVoyageComponent } from './guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
 import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experien
     AjoutExperiencesComponent,
     ListeExperiencesComponent,
     GuideVoyageComponent,
-    UpdateExperiencesComponent
+    UpdateExperiencesComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
