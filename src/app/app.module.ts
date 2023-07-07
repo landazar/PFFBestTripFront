@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { FormulaireUtilisateurComponent } from './formulaire-utilisateur/formulaire-utilisateur.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UtilisateurComponent,
+    FormulaireUtilisateurComponent
   ],
   imports: [
     BrowserModule,
