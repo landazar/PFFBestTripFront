@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./guide-voyage.component.css']
 })
 export class GuideVoyageComponent {
-
+  constructor() { }
 }
