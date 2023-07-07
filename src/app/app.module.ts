@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ListeExperiencesComponent } from './experiencesComponent/liste-experiences/liste-experiences.component';
 import { GuideVoyageComponent } from './guide-voyage/guide-voyage.component';
+import { UpdateExperiencesComponent } from './experiencesComponent/update-experiences/update-experiences.component';
 import { AfficherGuideVoyageComponent } from './guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
 import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
 import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
@@ -21,7 +22,8 @@ import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajo
     AjoutExperiencesComponent,
     ListeExperiencesComponent,
     GuideVoyageComponent,
-    AjoutGuideVoyageComponent
+    AjoutGuideVoyageComponent,
+    UpdateExperiencesComponent
   ],
   imports: [
     BrowserModule,

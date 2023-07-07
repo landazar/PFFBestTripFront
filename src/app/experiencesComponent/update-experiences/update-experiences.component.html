@@ -1,0 +1,24 @@
+<div *ngIf="experiencesForm">
+
+    <form [formGroup]="experiencesForm">
+
+        <input type="hidden" formControlName="idExperience">
+
+        <label for="nom">Nom</label>
+        <input type="text" formControlName="nom">
+    
+        <label for="dateDebut">Date de début de séjour</label>
+        <input type="date" formControlName="dateDebut">
+    
+        <label for="dateFin">Date de fin de séjour</label>
+        <input type="date" formControlName="dateFin">
+    
+        <label for="type">Type de séjour</label>
+        <input type="text" formControlName="type">
+
+        <input type="submit" (click)="updateExperiences()" value="Envoyer">
+    
+    </form>
+
+</div>
+
