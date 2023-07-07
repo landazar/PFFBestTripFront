@@ -1,0 +1,18 @@
+<form [formGroup]="experiencesForm">
+
+    <label for="nom">Nom</label>
+    <input type="text" formControlName="nom">
+
+    <label for="dateDebut">Date du début</label>
+    <input type="date" formControlName="dateDebut">
+
+    <label for="dateFin">Date de fin</label>
+    <input type="date" formControlName="dateFin">
+
+    <label for="type">Type d'expérience</label>
+    <input type="text" formControlName="type">
+
+    <button type="submit" (click)="saveExperiences()">Ajouter expérience</button>
+
+</form>
+<router-outlet></router-outlet>

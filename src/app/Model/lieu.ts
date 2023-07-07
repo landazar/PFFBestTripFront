@@ -1,9 +1,7 @@
-export class Restaurant {
+export class Lieu {
     type: string;
-	adresse: string;
 
-    constructor(type: string, adresse: string) {
+    constructor(type: string) {
         this.type = type;
-        this.adresse = adresse;
     }
 }

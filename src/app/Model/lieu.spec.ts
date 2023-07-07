@@ -1,7 +1,7 @@
-import { Restaurant } from './restaurant';
+import { Lieu } from './lieu';
 
-describe('Restaurant', () => {
+describe('Lieu', () => {
   it('should create an instance', () => {
-    expect(new Restaurant()).toBeTruthy();
+    expect(new Lieu()).toBeTruthy();
   });
 });
