@@ -5,6 +5,7 @@ import { ListeExperiencesComponent } from './experiencesComponent/liste-experien
 import { AfficherGuideVoyageComponent } from './guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
 import { UpdateExperiencesComponent } from './experiencesComponent/update-experiences/update-experiences.component';
 import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'afficher-guide-voyage', component: AfficherGuideVoyageComponent },
   { path: 'ajouter-guide-voyage', component: AjoutGuideVoyageComponent },
 
-  {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent}
+  {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
+  {path: "", component: AcceuilComponent}
 ];
 
 @NgModule({
