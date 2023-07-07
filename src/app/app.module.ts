@@ -11,27 +11,21 @@ import { GuideVoyageComponent } from './guide-voyage/guide-voyage.component';
 import { AfficherGuideVoyageComponent } from './guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
 import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
 import { PaysComponent } from './pays/pays.component';
-import { UpdatePaysComponent } from './update-pays/update-pays.component';
-import { CreerPaysComponent } from './creer-pays/creer-pays.component';
-import { VilleComponent } from './ville/ville.component';
-import { UpdateVilleComponent } from './update-ville/update-ville.component';
-import { CreerVilleComponent } from './creer-ville/creer-ville.component';
+import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
+import { CreerPaysComponent } from './pays/creer-pays/creer-pays.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
     GuideVoyageComponent,
-    AfficherGuideVoyageComponent
+    AfficherGuideVoyageComponent,
     AjoutExperiencesComponent,
     ListeExperiencesComponent,
     GuideVoyageComponent,
     PaysComponent,
     UpdatePaysComponent,
-    CreerPaysComponent,
-    VilleComponent,
-    UpdateVilleComponent,
-    CreerVilleComponent
+    CreerPaysComponent
   ],
   imports: [
     BrowserModule,
