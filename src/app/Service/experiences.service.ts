@@ -19,8 +19,8 @@ export class ExperiencesService {
     return this.http.get<Experiences[]>("http://localhost:8080/listeExperiences");
   }
 
-  updateExperiencest(experiences:Experiences):Observable<boolean> {
-    return this.http.put<boolean>("http://localhost:4200/updateExperiences", experiences);
+  updateExperiences(experiences:Experiences):Observable<boolean> {
+    return this.http.put<boolean>("http://localhost:8080/updateExperiences", experiences);
   }
 
   deleteExperiences(idExperience:number):Observable<boolean>
@@ -28,5 +28,7 @@ export class ExperiencesService {
     return this.http.delete<boolean>("http://localhost:8080/deleteExperiences/" + idExperience);
   }
 
-  
+  getExperiencesById(idExperience:number):Observable<Experiences> {
+    return this.http.get<Experiences>("http://localhost:8080/getExperiencesById/" + idExperience);
+  }
 }

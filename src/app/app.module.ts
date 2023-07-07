@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
 import { ListeExperiencesComponent } from './experiencesComponent/liste-experiences/liste-experiences.component';
 import { GuideVoyageComponent } from './guide-voyage/guide-voyage.component';
+import { UpdateExperiencesComponent } from './experiencesComponent/update-experiences/update-experiences.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AjoutExperiencesComponent,
     ListeExperiencesComponent,
-    GuideVoyageComponent
+    GuideVoyageComponent,
+    UpdateExperiencesComponent
   ],
   imports: [
     BrowserModule,
