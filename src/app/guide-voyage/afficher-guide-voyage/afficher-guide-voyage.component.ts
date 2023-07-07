@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { GuideVoyage } from 'src/app/Model/guide-voyage';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +13,8 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 export class AfficherGuideVoyageComponent implements OnInit {
   guides: GuideVoyage[] = [];
 
-  constructor(private guideVoyageService: GuideVoyageService) {}
+  constructor(private guideVoyageService: GuideVoyageService, private router: Router) {}
+
 
   ngOnInit(): void {
     this.getGuidesVoyage();
@@ -22,4 +25,16 @@ export class AfficherGuideVoyageComponent implements OnInit {
       this.guides = guides;
     });
   }
+
+  supprimerGuide(idGuide: number): void {
+    this.guideVoyageService.deleteGuideVoyage(idGuide).subscribe(() => {
+      this.getGuidesVoyage();
+    });
+  }
+
+  modifierGuide(idGuide: number): void {
+
+    this.router.navigateByUrl(`/modifier-guide-voyage/${idGuide}`);
+  }
+  
 }
