@@ -11,18 +11,18 @@ import { Ville } from '../Model/ville.model';
 })
 export class VilleComponent implements OnInit {
 
-  constructor(private vs:VilleService, private route:Router) {}
+  constructor(private ps:VilleService, private route:Router) {}
 
   listeVille!:Observable<Ville[]>;
 
   ngOnInit(): void {
-    this.listeVille = this.vs.findAllVille();
+    this.listeVille = this.ps.findAllVille();
   }
 
   supprimer(id:number)
   {
-    this.vs.supprimerVille(id).subscribe();
-    this.route.navigateByUrl("ville");
+    this.ps.supprimerVille(id).subscribe();
+    this.route.navigateByUrl("listeVille");
   }
 
   getVilleById(id:number)

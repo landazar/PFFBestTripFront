@@ -11,26 +11,25 @@ import { VilleService } from 'src/app/Service/ville.service';
 })
 export class UpdateVilleComponent implements OnInit {
   villeForm!: FormGroup;
-  idVille: number;
+  id!: number;
   ville!: Ville;
 
   constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private villeService: VilleService, private route:Router) {
-    this.idVille = ar.snapshot.params["idVille"];
+    this.id = ar.snapshot.params["id"];
   }
 
   ngOnInit(): void {
-    this.villeService.getVilleById (this.idVille).subscribe(ville => {
-      this.ville = ville;
+    this.villeService.getVilleById (this.id).subscribe(ville => {
       this.villeForm = this.formBuilder.group({
-        idVille: [ville.id],
-        nom: [ville.nom],
+        id: [ville.id],
+        nom: [ville.nom]
       });
     })
   }
 
-  updateVille(ville: Ville) {
-    this.villeService.updateVille(ville).subscribe(() => {
-      this.route.navigateByUrl("afficherVille");
-    });
+  updateVille() {
+    this.villeService.updateVille(this.villeForm.value).subscribe();
+    this.route.navigateByUrl("afficherVille");
   }
 }
+
