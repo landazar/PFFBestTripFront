@@ -14,7 +14,6 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { FormulaireUtilisateurComponent } from './formulaire-utilisateur/formulaire-utilisateur.component';
 import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
-import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
@@ -29,6 +28,7 @@ const routes: Routes = [
   {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
   {path:"utilisateur", component:UtilisateurComponent},
   {path:"ajoutUtilisateur", component:FormulaireUtilisateurComponent},
+  {path: "updateUtilisateur/:id", component: UpdateUtilisateurComponent},
   { path: 'ajouter-guide-voyage', component: AjoutGuideVoyageComponent },
   {path: 'modifier-guide-voyage/:idGuide',component: ModifierGuideVoyageComponent},
 

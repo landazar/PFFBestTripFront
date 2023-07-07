@@ -19,6 +19,7 @@ import { CreerPaysComponent } from './pays/creer-pays/creer-pays.component';
 import { MenuComponent } from './menu/menu.component';
 import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
+import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisateur.component';
 import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voya
     MenuComponent,
     AjoutGuideVoyageComponent,
     AcceuilComponent,
+    UpdateUtilisateurComponent,
     ModifierGuideVoyageComponent
   ],
   imports: [
