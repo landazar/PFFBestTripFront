@@ -13,10 +13,14 @@ import { GuideVoyageComponent } from './guide-voyage/guide-voyage.component';
 import { UpdateExperiencesComponent } from './experiencesComponent/update-experiences/update-experiences.component';
 import { AfficherGuideVoyageComponent } from './guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
 import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
+import { PaysComponent } from './pays/pays.component';
+import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
+import { CreerPaysComponent } from './pays/creer-pays/creer-pays.component';
 import { MenuComponent } from './menu/menu.component';
 import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisateur.component';
+import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +32,15 @@ import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisat
     AjoutExperiencesComponent,
     ListeExperiencesComponent,
     GuideVoyageComponent,
+    PaysComponent,
+    UpdatePaysComponent,
+    CreerPaysComponent,
     UpdateExperiencesComponent,
     MenuComponent,
     AjoutGuideVoyageComponent,
     AcceuilComponent,
-    UpdateUtilisateurComponent
+    UpdateUtilisateurComponent,
+    ModifierGuideVoyageComponent
   ],
   imports: [
     BrowserModule,

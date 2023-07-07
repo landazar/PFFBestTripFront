@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GuideVoyage } from '../Model/guide-voyage';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -30,5 +29,10 @@ export class GuideVoyageService {
   deleteGuideVoyage(id: number): Observable<boolean> {
     const url = `${this.apiURLDeleteGuideVoyage}/${id}`;
     return this.http.delete<boolean>(url);
+  }
+
+  getGuideVoyageById(id: number): Observable<GuideVoyage> {
+    const url = `${this.apiURLListeGuideVoyage}/${id}`;
+    return this.http.get<GuideVoyage>(url);
   }
 }
