@@ -1,0 +1,23 @@
+<div>
+    <h3>Liste des guides de voyage</h3>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Numéro</th>
+          <th>Nom</th>
+          <th>Date de création</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let guide of guides">
+          <td>{{ guide.idGuide }}</td>
+          <td>{{ guide.nom }}</td>
+          <td>{{ guide.dateCreation | date }}</td>
+          <td>{{ guide.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

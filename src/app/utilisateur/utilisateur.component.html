@@ -9,10 +9,11 @@
         <th scope="col">email</th>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ut of listeUtlisateur | async">
+      <tr *ngFor="let ut of listeUtilisateur | async">
         <th scope="row">{{ut.id}}</th>
         <td>{{ut.username}}</td>
         <td>{{ut.mdp}}</td>

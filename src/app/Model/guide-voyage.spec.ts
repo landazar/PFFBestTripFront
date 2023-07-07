@@ -5,3 +5,7 @@ describe('GuideVoyage', () => {
     expect(new GuideVoyage()).toBeTruthy();
   });
 });
+function expect(arg0: GuideVoyage) {
+  throw new Error('Function not implemented.');
+}
+
