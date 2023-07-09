@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GuideVoyage } from '../Model/guide-voyage';
+import { Activite } from '../Model/activite';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class GuideVoyageService {
   private apiURLModifierGuideVoyage = 'http://localhost:8080/modifierGuideVoyage';
   private apiURLDeleteGuideVoyage = 'http://localhost:8080/deleteGuideVoyage';
   private apiURLgetGuideVoyageById = 'http://localhost:8080/getGuideVoyageById';
+  private apiURLsaveActivite = 'http://localhost:8080/activite/add';
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +22,12 @@ export class GuideVoyageService {
   }
 
   saveGuideVoyage(guideVoyage: GuideVoyage): Observable<GuideVoyage> {
+    console.log("SAVE GUIDE WITH ACTIVITIES = " + guideVoyage.activites.length);
     return this.http.post<GuideVoyage>(this.apiURLSaveGuideVoyage, guideVoyage);
+  }
+
+  saveActivite(activite: Activite): Observable<Activite> {
+    return this.http.post<Activite>(this.apiURLsaveActivite, activite);
   }
 
   modifierGuideVoyage(guideVoyage: GuideVoyage): Observable<boolean> {

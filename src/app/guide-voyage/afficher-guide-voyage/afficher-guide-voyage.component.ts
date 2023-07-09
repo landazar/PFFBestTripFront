@@ -36,5 +36,12 @@ export class AfficherGuideVoyageComponent implements OnInit {
 
     this.router.navigateByUrl("modifier-guide-voyage/"+idGuide);
   }
+
+  detailsGuide(idGuide: number): void {
+
+    this.router.navigateByUrl("details-guide-voyage/"+idGuide);
+  }
+
+  
   
 }
