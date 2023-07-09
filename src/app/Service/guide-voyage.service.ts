@@ -11,6 +11,7 @@ export class GuideVoyageService {
   private apiURLSaveGuideVoyage = 'http://localhost:8080/saveGuideVoyage';
   private apiURLModifierGuideVoyage = 'http://localhost:8080/modifierGuideVoyage';
   private apiURLDeleteGuideVoyage = 'http://localhost:8080/deleteGuideVoyage';
+  private apiURLgetGuideVoyageById = 'http://localhost:8080/getGuideVoyageById';
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +33,7 @@ export class GuideVoyageService {
   }
 
   getGuideVoyageById(id: number): Observable<GuideVoyage> {
-    const url = `${this.apiURLListeGuideVoyage}/${id}`;
+    const url = `${this.apiURLgetGuideVoyageById}/${id}`;
     return this.http.get<GuideVoyage>(url);
   }
 }
