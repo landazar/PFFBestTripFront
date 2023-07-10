@@ -12,6 +12,8 @@ export class ExperiencesService {
 
   saveExperiences(experiences:Experiences):Observable<Experiences>
   {
+    console.log('a')
+    console.log(experiences);
     return this.http.post<Experiences>("http://localhost:8080/saveExperiences", experiences);
   }
 
