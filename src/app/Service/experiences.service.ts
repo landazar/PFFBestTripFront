@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Experiences } from '../Model/experiences';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,9 +10,10 @@ export class ExperiencesService {
 
   constructor(private http:HttpClient) { }
 
-  saveExperiences(experiences:Experiences):Observable<Experiences>
+  saveExperiences(experiences:Experiences, username:string):Observable<Experiences>
   {
-    return this.http.post<Experiences>("http://localhost:8080/saveExperiences", experiences);
+    const params = new HttpParams().set('username', username);
+    return this.http.post<Experiences>("http://localhost:8080/saveExperiences", experiences, {params});
   }
 
   listeExperiences():Observable<Experiences[]> {
