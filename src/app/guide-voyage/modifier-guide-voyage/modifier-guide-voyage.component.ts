@@ -12,7 +12,7 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 })
 export class ModifierGuideVoyageComponent implements OnInit {
 
-  guideForm?: FormGroup;
+  guideForm?: FormGroup; 
   idGuide: number;
 
   constructor(
