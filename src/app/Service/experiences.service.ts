@@ -22,6 +22,8 @@ export class ExperiencesService {
 
   updateExperiences(experiences:Experiences, username:string):Observable<boolean> {
     const params = new HttpParams().set('username', username);
+    console.log('update');
+    console.log(experiences);
     return this.http.put<boolean>("http://localhost:8080/updateExperiences", experiences, {params});
   }
 

@@ -20,6 +20,8 @@
           <li class="list-group-item" *ngFor="let activite of guide?.activites">
             <div class="activity-details">
               <h6>{{ activite.nom }}</h6>
+              <p><strong>Commentaire :</strong> {{ activite.commentaire }}</p>
+              <p><strong>Prix :</strong> {{ activite.depense }}</p>
               <img *ngFor="let photo of activite.photos" [src]="photo" alt="Activité Image" class="activity-image">
             </div>
           </li>
