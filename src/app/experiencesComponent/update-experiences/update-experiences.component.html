@@ -2,6 +2,9 @@
 <div style="margin-top: 2%; margin-left: 10%; margin-right: 10%">
     <div *ngIf="experiencesForm">
 
+        <label for="username">username</label>
+        <input type="text" [(ngModel)]="username" class="form-control">
+
         <form [formGroup]="experiencesForm" class="formGroup">
             <input type="hidden" formControlName="idExperience" class="form-control">
 

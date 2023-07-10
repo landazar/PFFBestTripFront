@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from 'src/app/Model/activite';
 import { Experiences } from 'src/app/Model/experiences';
 import { ExperiencesService } from 'src/app/Service/experiences.service';
+import { AjoutExperiencesComponent } from '../ajout-experiences/ajout-experiences.component';
+import { UtilisateurService } from 'src/app/Service/utilisateur.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-update-experiences',
@@ -14,13 +17,15 @@ export class UpdateExperiencesComponent implements OnInit {
 
   experiencesForm!:FormGroup;
   idExperience!:number;
-
+  username!:string;
   /*
   activite: Activite = new Activite(0, '', '', [], '', 0);
   showActiviteForm: boolean = false;
   */
-  constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private es:ExperiencesService, private router:Router) {
+  constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private es:ExperiencesService, private router:Router, private us:UtilisateurService) {
     this.idExperience = ar.snapshot.params["idExperience"];
+    
+    
     this.es.getExperiencesById(this.idExperience).subscribe(experiences => {
       console.log(experiences.activites);
       this.experiencesForm = this.formBuilder.group({
@@ -34,13 +39,22 @@ export class UpdateExperiencesComponent implements OnInit {
     });
   }
 
+  
 
   ngOnInit(): void {
-    
+    this.es.getUsernameById(this.idExperience).subscribe(username => {
+      var u = JSON.stringify(username); 
+      this.username = JSON.parse(u);
+      console.log("affichage : " + u);
+    });
+    // this.username = this.es.getUsernameById(this.idExperience);
   }
 
+  
+
+
   updateExperiences() {
-    this.es.updateExperiences(this.experiencesForm?.value).subscribe();
+    this.es.updateExperiences(this.experiencesForm?.value, this.username).subscribe();
     this.router.navigateByUrl("listeExperiences");
   }
 
