@@ -35,20 +35,12 @@ export class AjoutExperiencesComponent implements OnInit {
     )
   }
 
-<<<<<<< HEAD
   username:string = "";
 
   saveExperiences()
   {
-
-    this.es.saveExperiences(this.experiencesForm.value, this.username).subscribe();
-=======
-  saveExperiences()
-  {
-
     console.log(this.experiencesForm.value);
-    this.es.saveExperiences(this.experiencesForm.value).subscribe();
->>>>>>> 57a15e8cc479d635785e3c07c12de67451674527
+    this.es.saveExperiences(this.experiencesForm.value, this.username).subscribe();
     this.router.navigateByUrl("listeExperiences");
   }
 
