@@ -12,7 +12,7 @@ export class ExperiencesService {
 
   saveExperiences(experiences:Experiences):Observable<Experiences>
   {
-    console.log('a')
+    console.log('save')
     console.log(experiences);
     return this.http.post<Experiences>("http://localhost:8080/saveExperiences", experiences);
   }
@@ -22,6 +22,8 @@ export class ExperiencesService {
   }
 
   updateExperiences(experiences:Experiences):Observable<boolean> {
+    console.log('update');
+    console.log(experiences);
     return this.http.put<boolean>("http://localhost:8080/updateExperiences", experiences);
   }
 
