@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card mt-4">
     <div class="card-header">
-      <h4>Détails du guide de voyage</h4>
+      <h4>Détails du guide de voyage :</h4>
     </div>
     <div class="card-body">
       <div class="row">
@@ -20,6 +20,8 @@
           <li class="list-group-item" *ngFor="let activite of guide?.activites">
             <div class="activity-details">
               <h6>{{ activite.nom }}</h6>
+              <p><strong>Commentaire :</strong> {{ activite.commentaire }}</p>
+              <p><strong>Prix :</strong> {{ activite.depense }}</p>
               <img *ngFor="let photo of activite.photos" [src]="photo" alt="Activité Image" class="activity-image">
             </div>
           </li>

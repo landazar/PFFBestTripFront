@@ -1,7 +1,10 @@
 <h2 style="text-align: center; margin-top: 1%">Ajouter une expérience</h2>
 <div style="margin-top: 2%; margin-left: 10%; margin-right: 10%">
-    <form [formGroup]="experiencesForm" class="formGroup">
 
+    <label for="username">username</label>
+    <input type="text" [(ngModel)]="username" class="form-control">
+
+    <form [formGroup]="experiencesForm" class="formGroup">
 
         <label for="nom">Nom</label>
         <input type="text" formControlName="nom" class="form-control">

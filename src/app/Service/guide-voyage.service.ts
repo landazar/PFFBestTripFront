@@ -22,7 +22,6 @@ export class GuideVoyageService {
   }
 
   saveGuideVoyage(guideVoyage: GuideVoyage): Observable<GuideVoyage> {
-    console.log("SAVE GUIDE WITH ACTIVITIES = " + guideVoyage.activites.length);
     return this.http.post<GuideVoyage>(this.apiURLSaveGuideVoyage, guideVoyage);
   }
 
