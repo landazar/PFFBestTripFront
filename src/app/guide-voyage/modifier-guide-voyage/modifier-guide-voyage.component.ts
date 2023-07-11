@@ -1,20 +1,20 @@
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-// import { ActivatedRoute, Router } from '@angular/router';
-// import { Activite } from 'src/app/Model/activite';
-// import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Activite } from 'src/app/Model/activite';
+import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 
-// @Component({
-//   selector: 'app-modifier-guide-voyage',
-//   templateUrl: './modifier-guide-voyage.component.html',
-//   styleUrls: ['./modifier-guide-voyage.component.css']
-// })
-// export class ModifierGuideVoyageComponent implements OnInit {
+@Component({
+  selector: 'app-modifier-guide-voyage',
+  templateUrl: './modifier-guide-voyage.component.html',
+  styleUrls: ['./modifier-guide-voyage.component.css']
+})
+export class ModifierGuideVoyageComponent implements OnInit {
 
-//   guideForm!: FormGroup;
-//   //activite: Activite = new Activite(0, '', '', [], '', 0);
-//   showActiviteForm: boolean = false;
-//   guideId: number;
+  guideForm!: FormGroup;
+  activite: Activite = new Activite(0, '', '', [], '', 0);
+  showActiviteForm: boolean = false;
+  guideId!: number;
 
 //   constructor(
 //     private guideVoyageService: GuideVoyageService,
@@ -25,13 +25,13 @@
 //     this.guideId = activatedRoute.snapshot.params['id'];
 //   }
 
-//   ngOnInit(): void {
-//     this.guideForm = new FormGroup({
-//       nom: new FormControl(''),
-//       dateCreation: new FormControl(''),
-//       description: new FormControl(''),
-//       activites: new FormControl([])
-//     });
+  ngOnInit(): void {
+    this.guideForm = new FormGroup({
+      nom: new FormControl(''),
+      dateCreation: new FormControl(''),
+      description: new FormControl(''),
+      activites: new FormControl([])
+    });
 
 //     this.guideVoyageService.getGuideVoyageById(this.guideId).subscribe(guideVoyage => {
 //       this.guideForm.patchValue({
@@ -94,4 +94,5 @@
 //     activites[activiteIndex].photos.splice(photoIndex, 1);
 //     this.guideForm.get('activites')?.setValue(activites);
 //   }
-// }
+ }
+}
