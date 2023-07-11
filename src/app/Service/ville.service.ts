@@ -12,7 +12,7 @@ export class VilleService {
 
   ajoutVille(ville:Ville):Observable<Ville>
   {
-    return this.http.post<Ville>("http://localhost:8080/saveVille", ville);
+    return this.http.post<Ville>("http://localhost:8080/creerVille", ville);
   }
 
   supprimerVille(id:number):Observable<boolean>

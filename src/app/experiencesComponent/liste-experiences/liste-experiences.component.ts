@@ -11,20 +11,27 @@ import { ExperiencesService } from 'src/app/Service/experiences.service';
 })
 export class ListeExperiencesComponent implements OnInit {
 
-  listeExperiences!:Observable<Experiences[]>;
+  listeExperiences!:Experiences[];
 
   constructor(private es:ExperiencesService, private ar:ActivatedRoute, private router:Router) {
     console.log("url : " + ar.snapshot.url)
   }
 
   ngOnInit(): void {
-    this.listeExperiences = this.es.listeExperiences();
+    this.getAllExperiences();
+  }
+
+  getAllExperiences() {
+    this.es.listeExperiences().subscribe((listeExperiences: Experiences[]) => {
+      this.listeExperiences = listeExperiences;
+    });
   }
 
   deleteExperiences(idExperience:number)
   {
-    this.es.deleteExperiences(idExperience).subscribe();
-    this.router.navigateByUrl("listeExperiences");
+    this.es.deleteExperiences(idExperience).subscribe(() => {
+      this.getAllExperiences();
+    });
   }
 
   updateExperiences(idExperience:number)
