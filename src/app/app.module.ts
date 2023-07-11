@@ -19,6 +19,10 @@ import { CreerPaysComponent } from './pays/creer-pays/creer-pays.component';
 import { MenuComponent } from './menu/menu.component';
 import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
+import { CreerVilleComponent } from './ville/creer-ville/creer-ville.component';
+import { VilleComponent } from './ville/ville.component';
+import { UpdateVilleComponent } from './ville/update-ville/update-ville.component';
+import { DetailPaysComponent } from './pays/detail-pays/detail-pays.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
     UpdateExperiencesComponent,
     MenuComponent,
     AjoutGuideVoyageComponent,
-    AcceuilComponent
+    AcceuilComponent,
+    VilleComponent,
+    CreerVilleComponent,
+    UpdateVilleComponent,
+    DetailPaysComponent
   ],
   imports: [
     BrowserModule,

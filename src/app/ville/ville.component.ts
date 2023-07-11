@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { VilleService } from '../Service/ville.service';
 import { Ville } from '../Model/ville.model';
+import { PaysService } from '../Service/pays.service';
 
 @Component({
   selector: 'app-ville',
@@ -11,23 +12,23 @@ import { Ville } from '../Model/ville.model';
 })
 export class VilleComponent implements OnInit {
 
-  constructor(private ps:VilleService, private route:Router) {}
+  constructor(private vs:VilleService, private ps:PaysService, private route:Router) {}
 
   listeVille!:Observable<Ville[]>;
 
   ngOnInit(): void {
-    this.listeVille = this.ps.findAllVille();
+    this.listeVille = this.vs.findAllVille();
   }
 
   supprimer(id:number)
   {
-    this.ps.supprimerVille(id).subscribe();
+    this.vs.supprimerVille(id).subscribe();
     this.route.navigateByUrl("listeVille");
   }
 
   getVilleById(id:number)
   {
-    this.route.navigateByUrl("updateVille/" + id);
+    this.route.navigateByUrl("modifierVille/" + id);
   }
 
 }
