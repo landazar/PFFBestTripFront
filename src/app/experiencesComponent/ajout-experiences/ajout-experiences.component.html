@@ -1,74 +1,137 @@
 <h2 style="text-align: center; margin-top: 1%">Ajouter une expérience</h2>
 <div style="margin-top: 2%; margin-left: 10%; margin-right: 10%">
+
+    <label for="username">username</label>
+    <input type="text" [(ngModel)]="username" class="form-control">
+
     <form [formGroup]="experiencesForm" class="formGroup">
+
         <label for="nom">Nom</label>
         <input type="text" formControlName="nom" class="form-control">
 
-        <label for="dateDebut">Date du début</label>
+        <label for="dateDebut">Date de début de séjour</label>
         <input type="date" formControlName="dateDebut" class="form-control">
 
-        <label for="dateFin">Date de fin</label>
-        <input type="date" formControlName="dateFin" class="form-control">
+        <label for="dateFin">Date de fin de séjour</label>
 
-        <label for="type">Type d'expérience</label>
+        <label for="type">Type de séjour</label>
         <input type="text" formControlName="type" class="form-control">
 
         <h3>Activités :</h3>
 
         <div *ngFor="let a of experiencesForm.value.activites; let i = index">
+            <label for="activiteNom{{i}}">Nom : </label>
+            <input type="text" name="activiteNom{{i}}" [value]="a.nom" class="form-control">
+
+            <label for="activiteCommentaire{{i}}">Commentaire :</label>
+            <textarea name="activiteCommentaire{{i}}" [value]="a.commentaire" class="form-control"></textarea>
+
             <div>
-                <label for="activiteNom{{i}}">Nom : </label>
-                <input type="text" name=activiteNom{{i}} [value]="a.nom" class="form-control">
-
-                <label for="activiteCommentaire{{i}}">Commentaire :</label>
-                <textarea name="activiteCommentaire{{i}}" [(ngModel)]="a.commentaire" class="form-control"></textarea>
-
                 <label for="activitePhotos{{i}}">Photos : </label>
                 <div *ngFor="let photo of a.photos; let j = index">
                     <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
                     <button type="button" (click)="supprimerPhoto(i, j)">Supprimer la photo</button>
                 </div>
-
-                <label for="activiteVideos{{i}}">Videos : </label>
-                <input type="text" name=activiteVideos{{i}} [value]="a.videos" class="form-control">
-
-                <label for="activiteDepense{{i}}">Dépense : </label>
-                <input type="text" name=activiteDepense{{i}} [value]="a.depense" class="form-control">
-                
-                <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
+                <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event)" multiple
+                    style="display: block;">
             </div>
-        </div>
 
+
+            <label for="activiteVideos{{i}}">Videos : </label>
+            <input type="text" name="activiteVideos{{i}}" [value]="a.videos" class="form-control">
+
+            <label for="activiteDepense{{i}}">Dépense : </label>
+            <input type="text" name="activiteDepense{{i}}" [value]="a.depense" class="form-control">
+
+            <label for="activiteType{{i}}">Type :</label>
+            <input type="text" name="activiteType{{i}}" [value]="a.type" class="form-control">
+
+            <div *ngIf="printActivity(a) === 'Restaurant'">
+                <label for="restaurantAdresse{{i}}">Adresse :</label>
+                <input type="text" name="restaurantAdresse{{i}}" [value]="a.adresse" class="form-control">
+            </div>
+
+            <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
+        </div>
     </form>
-    
+
     <form>
         <div *ngIf="showActiviteForm">
             <form class="formGroup">
-                <label for="activiteNom">Nom : </label>
-                <input type="text" name=activiteNom [(ngModel)]="activite.nom" class="form-control">
+                <div *ngIf="isRestaurantSelected">
+                    <label for="restaurantNom">Nom : </label>
+                    <input type="text" name=restaurantNom [(ngModel)]="restaurant.nom" class="form-control">
 
-                <label for="activiteCommentaire">Commentaire :</label>
-                <textarea name="activiteCommentaire" [(ngModel)]="activite.commentaire" class="form-control"></textarea>
+                    <label for="restaurantCommentaire">Commentaire :</label>
+                    <textarea name="restaurantCommentaire" [(ngModel)]="restaurant.commentaire"
+                        class="form-control"></textarea>
 
-                <label for="activitePhotos">Photos : </label>
-                <input type="file" name="activitePhotos" (change)="handlePhotoUpload($event)" multiple style="display: block;">
+                    <label for="restaurantPhotos">Photos : </label>
+                    <input type="file" name="restaurantPhotos" (change)="handlePhotoUpload($event)" multiple
+                        style="display: block;">
 
-                <label for="activiteVideos">Videos : </label>
-                <input type="text" name=activiteVideos [(ngModel)]="activite.videos" class="form-control">
+                    <label for="restaurantVideos">Videos : </label>
+                    <input type="text" name=restaurantVideos [(ngModel)]="restaurant.videos" class="form-control">
 
-                <label for="activiteDepense">Dépense : </label>
-                <input type="text" name=activiteDepense [(ngModel)]="activite.depense" class="form-control">
-                
-                <button type="submit" (click)="ajouterActivite()">Ajouter</button>
-                <button *ngIf="showActiviteForm" (click)="toggleActiviteForm()">Annuler</button>
+                    <label for="restaurantDepense">Dépense : </label>
+                    <input type="text" name=restaurantDepense [(ngModel)]="restaurant.depense" class="form-control">
+
+                    <label for="restaurantType">Type :</label>
+                    <input type="text" name="restaurantType" [(ngModel)]="restaurant.type" class="form-control">
+
+                    <label for="restaurantAdresse">Adresse :</label>
+                    <input type="text" name="restaurantAdresse" [(ngModel)]="restaurant.adresse" class="form-control">
+                </div>
+
+                <div *ngIf="isLieuSelected">
+                    <label for="lieuNom">Nom : </label>
+                    <input type="text" name=lieuNom [(ngModel)]="lieu.nom" class="form-control">
+
+                    <label for="lieuCommentaire">Commentaire :</label>
+                    <textarea name="lieuCommentaire" [(ngModel)]="lieu.commentaire" class="form-control"></textarea>
+
+                    <label for="lieuPhotos">Photos : </label>
+                    <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event)" multiple
+                        style="display: block;">
+
+                    <label for="lieuVideos">Videos : </label>
+                    <input type="text" name=lieuVideos [(ngModel)]="lieu.videos" class="form-control">
+
+                    <label for="lieuDepense">Dépense : </label>
+                    <input type="text" name=lieuDepense [(ngModel)]="lieu.depense" class="form-control">
+
+                    <label for="lieuType">Type :</label>
+                    <input type="text" name="lieuType" [(ngModel)]="lieu.type" class="form-control">
+                </div>
+
+                <div>
+                    <div>
+                        <input type="radio" formControlName="activityType" value="restaurant"
+                            [checked]="isRestaurantSelected" (change)="handleActivityTypeChange($event)">
+                        <label for="restaurant">Restaurant</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" formControlName="activityType" value="lieu" [checked]="isLieuSelected"
+                            (change)="handleActivityTypeChange($event)">
+                        <label for="lieu">Lieu</label>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" (click)="ajouterActivite()">Ajouter</button>
+                    <button *ngIf="showActiviteForm" (click)="toggleActiviteForm()">Annuler</button>
+                </div>
+
             </form>
         </div>
 
-        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm()" style="margin-top: 2%">Ajouter une activité</button>
-        
+        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm()" style="margin-top: 2%">Ajouter une
+            activité</button>
+
         <div style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;">
             <button type="submit" (click)="saveExperiences()">Ajouter expérience</button>
         </div>
-        
+
     </form>
 </div>

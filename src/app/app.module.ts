@@ -23,6 +23,9 @@ import { CreerVilleComponent } from './ville/creer-ville/creer-ville.component';
 import { VilleComponent } from './ville/ville.component';
 import { UpdateVilleComponent } from './ville/update-ville/update-ville.component';
 import { DetailPaysComponent } from './pays/detail-pays/detail-pays.component';
+import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisateur.component';
+import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
+import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { DetailPaysComponent } from './pays/detail-pays/detail-pays.component';
     VilleComponent,
     CreerVilleComponent,
     UpdateVilleComponent,
-    DetailPaysComponent
+    DetailPaysComponent,
+    UpdateUtilisateurComponent,
+    ModifierGuideVoyageComponent,
+    DetailsGuideComponent,
   ],
   imports: [
     BrowserModule,
