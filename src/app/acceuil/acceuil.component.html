@@ -1,4 +1,3 @@
-<script src="app/acceuil/acceuil.js"></script>
 
 <div id="entete">
     <h1 id="titre">Best Trip</h1>
@@ -10,23 +9,12 @@
             <input type="search" [(ngModel)]="destination" class="form-control rounded" placeholder="Destination" aria-label="destination" aria-describedby="search-addon" />
         
         
-            <input type="search" class="form-control rounded" placeholder="Au départ de" aria-label="depzrt" aria-describedby="search-addon" />
             
-            
-            <select>
-                <option value="Plage">Plage</option>
-                <option value="Montagne">Montagne</option>
-                <option value="Ski">Ski</option>
-                <option value="Randonnée">Randonnée</option>
-            </select>
             
 
             <button (click)="recherche()"><img id="iconeRecherche" src="https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-search-icon-image_1344447.jpg" alt="recherche"></button>
 
         </div>
-
-    <form [formGroup]="rechercheBarreForm">
-    </form>
     
 </div>
 

@@ -17,18 +17,11 @@ export class GuideVoyageService {
 
   constructor(private http: HttpClient) { }
 
-  //getListeGuideVoyage(): Observable<GuideVoyage[]> {
-    //return this.http.get<GuideVoyage[]>(this.apiURLListeGuideVoyage);
-  //}
 
-  ///////////////////////////////////////////////////////////////////////////
-
-  getListeGuideVoyage2(nom: string): Observable<GuideVoyage[]> {
+  getListeGuideVoyage(nom: string): Observable<GuideVoyage[]> {
     const url = `${this.apiURLListeGuideVoyage}/${nom}`;
     return this.http.get<GuideVoyage[]>(url);
   }
-
-  ///////////////////////////////////////////////////////////////////////
 
   saveGuideVoyage(guideVoyage: GuideVoyage): Observable<GuideVoyage> {
     console.log("guide:" + guideVoyage)

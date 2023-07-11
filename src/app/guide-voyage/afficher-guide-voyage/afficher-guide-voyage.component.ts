@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AfficherGuideVoyageComponent implements OnInit {
   guides: GuideVoyage[] = [];
 
-  nom: string = ""; //Ajout moi
+  nom: string = "";
 
   constructor(private guideVoyageService: GuideVoyageService, private router: Router, ar: ActivatedRoute) {
     this.nom =  ar.snapshot.params["destination"];
@@ -22,41 +22,22 @@ export class AfficherGuideVoyageComponent implements OnInit {
   
 
   ngOnInit(): void {
-    //this.getGuidesVoyage();
 
-    this.getGuidesVoyage2(this.nom); //ajout moi
+    this.getGuidesVoyage(this.nom);
   }
 
-  //getGuidesVoyage(): void {
-    //this.guideVoyageService.getListeGuideVoyage().subscribe((guides: GuideVoyage[]) => {
-      //this.guides = guides;
-    //});
-  //}
-
-  //////////////////////////////////////////////////////////////////////////////////////// Ajout moi
-
   
-  
-  getGuidesVoyage2(nom: string): void {
-    this.guideVoyageService.getListeGuideVoyage2(nom).subscribe((guides: GuideVoyage[]) => {
+  getGuidesVoyage(nom: string): void {
+    this.guideVoyageService.getListeGuideVoyage(nom).subscribe((guides: GuideVoyage[]) => {
       this.guides = guides;
     });
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////
-
 
   supprimerGuide(idGuide: number): void {
-    //this.guideVoyageService.deleteGuideVoyage(idGuide).subscribe(() => {
-      //this.getGuidesVoyage();
-    //});
-
-    //this.guideVoyageService.deleteGuideVoyage(idGuide).subscribe(() => {
-      //this.router.navigateByUrl("afficher-guide-voyage");
-    //});
 
     this.guideVoyageService.deleteGuideVoyage(idGuide).subscribe(() => {
-      this.getGuidesVoyage2("undefined");
+      this.getGuidesVoyage("undefined");
     });
     
   }

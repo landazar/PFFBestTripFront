@@ -8,20 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './acceuil.component.html',
   styleUrls: ['./acceuil.component.css']
 })
-export class AcceuilComponent implements OnInit {
+export class AcceuilComponent {
 
   rechercheBarreForm!:FormGroup
 
   constructor(private formBuilder:FormBuilder, private gs: GuideVoyageService, private router:Router) {}
 
-  ngOnInit(): void {
-    
-    this.rechercheBarreForm = this.formBuilder.group (
-      {
-      
-      }
-    );
-  }
+  
 
   destination: string = "";
 
