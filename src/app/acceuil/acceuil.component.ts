@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { GuideVoyageService } from '../Service/guide-voyage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acceuil',
@@ -10,21 +12,21 @@ export class AcceuilComponent implements OnInit {
 
   rechercheBarreForm!:FormGroup
 
-  constructor(private formBuilder:FormBuilder) {}
+  constructor(private formBuilder:FormBuilder, private gs: GuideVoyageService, private router:Router) {}
 
   ngOnInit(): void {
     
     this.rechercheBarreForm = this.formBuilder.group (
       {
-        destination:[null],
-        depart:[null],
-        type:[null]
+      
       }
     );
   }
 
+  destination: string = "";
+
   recherche() {
-    
+    this.router.navigateByUrl("afficher-guide-voyage/" + this.destination);
   }
 
 }
