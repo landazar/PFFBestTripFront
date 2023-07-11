@@ -10,18 +10,25 @@ export class NewsletterComponent {
 
   constructor(private us:UtilisateurService) {}
 
-  getAbonne() {
-    return this.us.getEmailByEstAbonne();
-  }
+  listeString!:string[];
 
   //Fonction a mettre dans le js
 sendMail() {
-  //Encoder l'url mailto
-  var url="mailto:" + this.getAbonne() //Ajouter les mails de tous les abonnés
+  this.us.getEmailByEstAbonne().subscribe(listeString => 
+    {
+      this.listeString=listeString;
+      console.log("Liste email :" + listeString);
+      var url="mailto:" + this.listeString //Ajouter les mails de tous les abonnés
       +"?subject=Newsletter BestTrip"
       +"&body=Voici le lien pour accéder à la Newsletter : http://localhost:4200/newsletter";
-  //Ouvrir client messagerie-->
- document.location=url;
+      //Ouvrir client messagerie-->
+      document.location=url;
+    })
+  //Encoder l'url mailto
+  //console.log(this.listeString);
+  
+  
+  
 }
 
 

@@ -37,6 +37,7 @@ export class UtilisateurService {
 
   getEmailByEstAbonne():Observable<string[]>
   {
+    this.http.get<string[]>("http://localhost:8080/getEmailByEstAbonne").subscribe(data => {console.log("data :" + data)});
     return this.http.get<string[]>("http://localhost:8080/getEmailByEstAbonne");
   }
 }
