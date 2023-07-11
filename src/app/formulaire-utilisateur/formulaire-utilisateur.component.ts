@@ -31,7 +31,7 @@ export class FormulaireUtilisateurComponent implements OnInit{
   saveUtilisateur()
   {
     this.us.ajoutUtilisateur(this.utilisateurForm.value).subscribe();
-    this.route.navigateByUrl("");
+    this.route.navigateByUrl("/");
   }
 
 
