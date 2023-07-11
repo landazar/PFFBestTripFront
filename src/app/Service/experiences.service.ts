@@ -16,7 +16,7 @@ export class ExperiencesService {
     return this.http.post<Experiences>("http://localhost:8080/saveExperiences", experiences, {params});
   }
 
-  listeExperiences():Observable<Experiences[]> {
+  listeExperiences() {
     return this.http.get<Experiences[]>("http://localhost:8080/listeExperiences");
   }
 

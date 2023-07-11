@@ -35,4 +35,9 @@ export class UtilisateurService {
     return this.http.put<boolean>("http://localhost:8080/modifierUtilisateur", utilisateur);
   }
 
+  getEmailByEstAbonne():Observable<string[]>
+  {
+    this.http.get<string[]>("http://localhost:8080/getEmailByEstAbonne").subscribe(data => {console.log("data :" + data)});
+    return this.http.get<string[]>("http://localhost:8080/getEmailByEstAbonne");
+  }
 }

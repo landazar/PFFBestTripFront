@@ -1,0 +1,26 @@
+.central {
+    display: flex;
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    width: 30%;
+    height: 100%;
+    margin: 1%;
+}
+
+.body {
+    background-color: grey;
+}
+
+.texte {
+    text-align: center;
+    margin-right: 10%;
+}
+
+.gauche {
+    margin-right: -25%;
+}
