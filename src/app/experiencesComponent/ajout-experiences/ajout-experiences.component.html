@@ -9,13 +9,12 @@
         <label for="nom">Nom</label>
         <input type="text" formControlName="nom" class="form-control">
 
-        <label for="dateDebut">Date du début</label>
+        <label for="dateDebut">Date de début de séjour</label>
         <input type="date" formControlName="dateDebut" class="form-control">
 
-        <label for="dateFin">Date de fin</label>
-        <input type="date" formControlName="dateFin" class="form-control">
+        <label for="dateFin">Date de fin de séjour</label>
 
-        <label for="type">Type d'expérience</label>
+        <label for="type">Type de séjour</label>
         <input type="text" formControlName="type" class="form-control">
 
         <h3>Activités :</h3>
@@ -23,22 +22,27 @@
         <div *ngFor="let a of experiencesForm.value.activites; let i = index">
             <label for="activiteNom{{i}}">Nom : </label>
             <input type="text" name="activiteNom{{i}}" [value]="a.nom" class="form-control">
-          
+
             <label for="activiteCommentaire{{i}}">Commentaire :</label>
             <textarea name="activiteCommentaire{{i}}" [value]="a.commentaire" class="form-control"></textarea>
-          
-            <label for="activitePhotos{{i}}">Photos : </label>
-            <div *ngFor="let photo of a.photos; let j = index">
-              <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
-              <button type="button" (click)="supprimerPhoto(i, j)">Supprimer la photo</button>
+
+            <div>
+                <label for="activitePhotos{{i}}">Photos : </label>
+                <div *ngFor="let photo of a.photos; let j = index">
+                    <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
+                    <button type="button" (click)="supprimerPhoto(i, j)">Supprimer la photo</button>
+                </div>
+                <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event)" multiple
+                    style="display: block;">
             </div>
-          
+
+
             <label for="activiteVideos{{i}}">Videos : </label>
             <input type="text" name="activiteVideos{{i}}" [value]="a.videos" class="form-control">
-          
+
             <label for="activiteDepense{{i}}">Dépense : </label>
             <input type="text" name="activiteDepense{{i}}" [value]="a.depense" class="form-control">
-            
+
             <label for="activiteType{{i}}">Type :</label>
             <input type="text" name="activiteType{{i}}" [value]="a.type" class="form-control">
 
@@ -46,9 +50,9 @@
                 <label for="restaurantAdresse{{i}}">Adresse :</label>
                 <input type="text" name="restaurantAdresse{{i}}" [value]="a.adresse" class="form-control">
             </div>
-        
+
             <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
-          </div>
+        </div>
     </form>
 
     <form>
@@ -74,7 +78,7 @@
 
                     <label for="restaurantType">Type :</label>
                     <input type="text" name="restaurantType" [(ngModel)]="restaurant.type" class="form-control">
-                    
+
                     <label for="restaurantAdresse">Adresse :</label>
                     <input type="text" name="restaurantAdresse" [(ngModel)]="restaurant.adresse" class="form-control">
                 </div>

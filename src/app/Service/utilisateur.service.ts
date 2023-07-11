@@ -34,4 +34,5 @@ export class UtilisateurService {
   {
     return this.http.put<boolean>("http://localhost:8080/modifierUtilisateur", utilisateur);
   }
+
 }

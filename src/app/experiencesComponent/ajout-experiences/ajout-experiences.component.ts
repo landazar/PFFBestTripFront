@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Activite } from 'src/app/Model/activite';
@@ -32,7 +32,7 @@ export class AjoutExperiencesComponent implements OnInit {
         type:[null],
         activites: [[]]
       }
-    )
+    );
   }
 
   username:string = "";
@@ -51,18 +51,20 @@ export class AjoutExperiencesComponent implements OnInit {
   }
 
   ajouterActivite() {
+    console.log("ajout d'une activité");
     if (this.isRestaurantSelected) {
       this.experiencesForm.value.activites.push(this.restaurant);
     } else {
       this.experiencesForm.value.activites.push(this.lieu);
     }
     this.toggleActiviteForm();
+    console.log(this.experiencesForm.value);
   }
 
   toggleActiviteForm() {
+    this.showActiviteForm = !this.showActiviteForm;
     this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
     this.lieu = new Lieu(0, '', '', [], '', 0, '');
-    this.showActiviteForm = !this.showActiviteForm;
     console.log(this.showActiviteForm);
   }
 
