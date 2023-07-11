@@ -19,6 +19,10 @@ import { CreerPaysComponent } from './pays/creer-pays/creer-pays.component';
 import { MenuComponent } from './menu/menu.component';
 import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
+import { CreerVilleComponent } from './ville/creer-ville/creer-ville.component';
+import { VilleComponent } from './ville/ville.component';
+import { UpdateVilleComponent } from './ville/update-ville/update-ville.component';
+import { DetailPaysComponent } from './pays/detail-pays/detail-pays.component';
 import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisateur.component';
 import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
 import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
@@ -40,6 +44,10 @@ import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guid
     MenuComponent,
     AjoutGuideVoyageComponent,
     AcceuilComponent,
+    VilleComponent,
+    CreerVilleComponent,
+    UpdateVilleComponent,
+    DetailPaysComponent,
     UpdateUtilisateurComponent,
     ModifierGuideVoyageComponent,
     DetailsGuideComponent,

@@ -1,4 +1,4 @@
-export abstract class Activite {
+export class Activite {
     id: number;
 	nom: string;
 	commentaire: string;
