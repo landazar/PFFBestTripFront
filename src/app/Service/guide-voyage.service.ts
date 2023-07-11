@@ -22,6 +22,7 @@ export class GuideVoyageService {
   }
 
   saveGuideVoyage(guideVoyage: GuideVoyage): Observable<GuideVoyage> {
+    console.log("guide:" + guideVoyage)
     return this.http.post<GuideVoyage>(this.apiURLSaveGuideVoyage, guideVoyage);
   }
 

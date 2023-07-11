@@ -1,1 +1,22 @@
-<p>pays works!</p>
+<table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">id Pays</th>
+        <th scope="col">Nom du pays</th>
+        <!-- <th>Liste des villes du Pays</th> -->
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pays of listePays | async">
+        <th scope="row">{{pays.id}}</th>
+        <td>{{pays.nom}}</td>
+        <!-- <td></td>    // -- Liste des ville du pays -->
+        <td>
+          <button type="button" class="btn btn-primary" (click)="getPaysById(pays.id)">Modifier</button>
+          <button type="button" class="btn btn-danger" (click)="supprimer(pays.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+

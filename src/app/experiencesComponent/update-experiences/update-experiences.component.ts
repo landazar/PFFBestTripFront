@@ -6,6 +6,9 @@ import { Experiences } from 'src/app/Model/experiences';
 import { Lieu } from 'src/app/Model/lieu';
 import { Restaurant } from 'src/app/Model/restaurant';
 import { ExperiencesService } from 'src/app/Service/experiences.service';
+import { AjoutExperiencesComponent } from '../ajout-experiences/ajout-experiences.component';
+import { UtilisateurService } from 'src/app/Service/utilisateur.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-update-experiences',
@@ -21,9 +24,15 @@ export class UpdateExperiencesComponent implements OnInit {
   isRestaurantSelected: boolean = false;
   isLieuSelected: boolean = false;
   idExperience!:number;
+  username!:string;
+  /*
+  activite: Activite = new Activite(0, '', '', [], '', 0);
+  showActiviteForm: boolean = false;
+  */
+  constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private es:ExperiencesService, private router:Router, private us:UtilisateurService) {
 
-  constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private es:ExperiencesService, private router:Router) {
     this.idExperience = ar.snapshot.params["idExperience"];
+    
     this.es.getExperiencesById(this.idExperience).subscribe(experiences => {
       console.log(experiences.activites);
       this.experiencesForm = this.formBuilder.group({
@@ -38,12 +47,19 @@ export class UpdateExperiencesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.es.getUsernameById(this.idExperience).subscribe(username => {
+      var u = JSON.stringify(username); 
+      this.username = JSON.parse(u);
+      console.log("affichage : " + u);
+    });
+    // this.username = this.es.getUsernameById(this.idExperience);
   }
 
+  
+
+
   updateExperiences() {
-    console.log(this.experiencesForm.value);
-    this.es.updateExperiences(this.experiencesForm.value).subscribe();
+    this.es.updateExperiences(this.experiencesForm?.value, this.username).subscribe();
     this.router.navigateByUrl("listeExperiences");
   }
 

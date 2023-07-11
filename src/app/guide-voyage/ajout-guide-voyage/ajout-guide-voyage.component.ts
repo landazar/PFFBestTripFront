@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Activite } from 'src/app/Model/activite';
+import { Lieu } from 'src/app/Model/lieu';
+import { Restaurant } from 'src/app/Model/restaurant';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 
 @Component({
@@ -12,8 +14,11 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 export class AjoutGuideVoyageComponent implements OnInit {
 
   guideForm!: FormGroup;
-  activite: Activite = new Activite(0, '', '', [], '', 0); 
+  restaurant: Restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
+  lieu: Lieu = new Lieu(0, '', '', [], '', 0, '');
   showActiviteForm: boolean = false;
+  isRestaurantSelected: boolean = false;
+  isLieuSelected: boolean = false;
 
   constructor(
     private guideVoyageService: GuideVoyageService,
@@ -31,23 +36,26 @@ export class AjoutGuideVoyageComponent implements OnInit {
   }
 
   saveGuideVoyage(): void {
-    const activitesArray = this.guideForm.get('activites')?.value as Activite[];
+    // const activitesArray = this.guideForm.get('activites')?.value as Activite[];
   
-    const saveActivitesPromises: Promise<any>[] = [];
+    // const saveActivitesPromises: Promise<any>[] = [];
   
     // Sauvegarder toutes les activités individuellement
-    activitesArray.forEach(activite => {
-      const saveActivitePromise = this.guideVoyageService.saveActivite(activite).toPromise();
-      saveActivitesPromises.push(saveActivitePromise);
-    });
+    // activitesArray.forEach(activite => {
+    //   const saveActivitePromise = this.guideVoyageService.saveActivite(activite).toPromise();
+    //   saveActivitesPromises.push(saveActivitePromise);
+    // });
   
+    console.log("test : " + this.guideForm.value)
+    this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe();
+
     // Attendre la sauvegarde de toutes les activités
-    Promise.all(saveActivitesPromises).then(() => {
-      // Une fois que toutes les activités sont sauvegardées, sauvegarder le guide de voyage
-      this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe(() => {
+    // Promise.all(saveActivitesPromises).then(() => {
+    //   // Une fois que toutes les activités sont sauvegardées, sauvegarder le guide de voyage
+    //   this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe(() => {
         this.router.navigateByUrl('afficher-guide-voyage');
-      });
-    });
+    //   });
+    // });
   }  
 
   supprimerActivite(i: number) {
@@ -57,13 +65,21 @@ export class AjoutGuideVoyageComponent implements OnInit {
   }
 
   ajouterActivite() {
-    this.guideForm.value.activites.push(this.activite);
+    console.log("ajout d'une activité");
+    if (this.isRestaurantSelected) {
+      this.guideForm.value.activites.push(this.restaurant);
+    } else {
+      this.guideForm.value.activites.push(this.lieu);
+    }
     this.toggleActiviteForm();
+    console.log(this.guideForm.value);
   }
 
   toggleActiviteForm() {
-    this.activite = new Activite(0, '', '', [], '', 0);
     this.showActiviteForm = !this.showActiviteForm;
+    this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
+    this.lieu = new Lieu(0, '', '', [], '', 0, '');
+    console.log(this.showActiviteForm);
   }
 
   handlePhotoUpload(event: any) {
@@ -76,7 +92,11 @@ export class AjoutGuideVoyageComponent implements OnInit {
       };
       reader.readAsDataURL(files[i]);
     }
-    this.activite.photos = photos;
+    if (this.isRestaurantSelected) {
+      this.restaurant.photos = photos;
+    } else {
+      this.lieu.photos = photos;
+    }
   }
 
   supprimerPhoto(i: number, j: number) {
@@ -85,4 +105,28 @@ export class AjoutGuideVoyageComponent implements OnInit {
     this.guideForm.get('activites')?.setValue(activitesArray);
     console.log(this.guideForm.value.activites);
   }
+
+  printActivity(activity: Activite): string {
+    if (activity instanceof Restaurant) {
+      return 'Restaurant';
+    }
+    if (activity instanceof Lieu) {
+      return 'Lieu';
+    }
+    return '';
+  }
+
+  handleActivityTypeChange(event: Event) {
+    const selectedActivityType = (event.target as HTMLInputElement).value;
+    this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
+    this.lieu = new Lieu(0, '', '', [], '', 0, '');
+    if (selectedActivityType === 'restaurant') {
+      this.isRestaurantSelected = true;
+      this.isLieuSelected = false;
+    } else {
+      this.isRestaurantSelected = false;
+      this.isLieuSelected = true;
+    }
+  }
+  
 }
