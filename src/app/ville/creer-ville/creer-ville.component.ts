@@ -24,8 +24,7 @@ export class CreerVilleComponent implements OnInit {
   }
 
   ajouterVille() {
-    console.log(this.villeForm.value);
     this.villeService.ajoutVille(this.villeForm.value).subscribe();
-    this.router.navigateByUrl('afficherVille');
+    this.router.navigateByUrl('listeVille');
   }
 }

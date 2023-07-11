@@ -24,11 +24,7 @@ export class PaysService {
   {
     return this.http.get<Pays[]>("http://localhost:8080/listePays");
   }
-  // findAllVillePays():Observable<Pays[]>
-  // {
-  //   return this.http.get<Pays[]>("http://localhost:8080/listeVillePays");
-  // }
-
+  
   getPaysById(id:number):Observable<Pays>
   {
     return this.http.get<Pays>("http://localhost:8080/getPays/" + id);
@@ -38,4 +34,10 @@ export class PaysService {
   {
     return this.http.put<boolean>("http://localhost:8080/modifierPays", pays);
   }
+
+
+   // findAllVillePays():Observable<Pays[]>
+  // {
+  //   return this.http.get<Pays[]>("http://localhost:8080/listeVillePays");
+  // }
 }
