@@ -3,6 +3,7 @@
       <tr>
         <th scope="col">id Ville</th>
         <th scope="col">Nom de la Ville</th>
+        <th scope="col">id du Pays de la Ville</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -10,6 +11,8 @@
       <tr *ngFor="let ville of listeVille | async">
         <th scope="row">{{ville.id}}</th>
         <td>{{ville.nom}}</td>
+        <td></td>
+ <!--       <td>{{ville.id_pays}}</td>  -->
         <td>
           <button type="button" class="btn btn-primary" (click)="getVilleById(ville.id)">Modifier</button>
           <button type="button" class="btn btn-danger" (click)="supprimer(ville.id)">Supprimer</button>
@@ -17,3 +20,4 @@
       </tr>
     </tbody>
   </table>
+  <p>{{listeVille}}</p>

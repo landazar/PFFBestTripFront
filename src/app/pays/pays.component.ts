@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Pays } from '../Model/pays.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { PaysService } from '../Service/pays.service';
+import { VilleService } from '../Service/ville.service';
+import { Ville } from '../Model/ville.model';
 
 @Component({
   selector: 'app-pays',
@@ -11,9 +13,10 @@ import { PaysService } from '../Service/pays.service';
 })
 export class PaysComponent implements OnInit {
 
-  constructor(private ps:PaysService, private route:Router) {}
+  constructor(private ps:PaysService,/* private vs:VilleService, */private route:Router) {}
 
   listePays!:Observable<Pays[]>;
+  // listeVillePays!:Observable<Ville[]>;
 
   ngOnInit(): void {
     this.listePays = this.ps.findAllPays();
@@ -22,12 +25,12 @@ export class PaysComponent implements OnInit {
   supprimer(id:number)
   {
     this.ps.supprimerPays(id).subscribe();
-    this.route.navigateByUrl("pays");
+    this.route.navigateByUrl("listePays");
   }
 
   getPaysById(id:number)
   {
-    this.route.navigateByUrl("updatePays/" + id);
+    this.route.navigateByUrl("modifierPays/" + id);
   }
 
 }

@@ -12,7 +12,7 @@ export class PaysService {
 
   ajoutPays(pays:Pays):Observable<Pays>
   {
-    return this.http.post<Pays>("http://localhost:8080/savePays", pays);
+    return this.http.post<Pays>("http://localhost:8080/creerPays", pays);
   }
 
   supprimerPays(id:number):Observable<boolean>
@@ -24,6 +24,10 @@ export class PaysService {
   {
     return this.http.get<Pays[]>("http://localhost:8080/listePays");
   }
+  // findAllVillePays():Observable<Pays[]>
+  // {
+  //   return this.http.get<Pays[]>("http://localhost:8080/listeVillePays");
+  // }
 
   getPaysById(id:number):Observable<Pays>
   {

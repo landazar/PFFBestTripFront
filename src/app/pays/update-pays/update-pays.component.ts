@@ -10,7 +10,7 @@ import { PaysService } from 'src/app/Service/pays.service';
   styleUrls: ['./update-pays.component.css']
 })
 export class UpdatePaysComponent implements OnInit {
-  paysForm!: FormGroup;
+  paysForm?: FormGroup;
   id!: number;
   pays!: Pays;
 
@@ -26,9 +26,10 @@ export class UpdatePaysComponent implements OnInit {
       });
     })
   }
+    
 
   updatePays() {
-    this.paysService.updatePays(this.paysForm.value).subscribe();
-    this.route.navigateByUrl("afficherPays");
+    this.paysService.updatePays(this.paysForm?.value).subscribe();
+    this.route.navigateByUrl("listePays");
   }
 }

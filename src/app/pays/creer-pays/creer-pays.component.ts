@@ -26,6 +26,6 @@ export class CreerPaysComponent implements OnInit {
   ajouterPays() {
     
     this.paysService.ajoutPays(this.paysForm.value).subscribe();
-    this.router.navigateByUrl('afficherPays');
+    this.router.navigateByUrl('listePays');
   }
 }
