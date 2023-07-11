@@ -13,9 +13,15 @@
         <input type="date" formControlName="dateDebut" class="form-control">
 
         <label for="dateFin">Date de fin de séjour</label>
+        <input type="date" formControlName="dateFin" class="form-control">
 
         <label for="type">Type de séjour</label>
-        <input type="text" formControlName="type" class="form-control">
+        <select formControlName="type">
+            <option value="Plage">Plage</option>
+            <option value="Montagne">Montagne</option>
+            <option value="Ski">Ski</option>
+            <option value="Randonnée">Randonnée</option>
+        </select>
 
         <h3>Activités :</h3>
 
