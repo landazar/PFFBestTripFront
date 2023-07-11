@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Pays } from 'src/app/Model/pays.model';
 import { PaysService } from 'src/app/Service/pays.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-creer-pays',
@@ -9,27 +10,22 @@ import { PaysService } from 'src/app/Service/pays.service';
   styleUrls: ['./creer-pays.component.css']
 })
 export class CreerPaysComponent implements OnInit {
-  paysForm: FormGroup;
-  pays: Pays = new Pays(0, '');
+  paysForm!: FormGroup;
 
-  constructor(private oeuvreService: PaysService, private formBuilder: FormBuilder) {
-    this.paysForm = this.formBuilder.group({
-      id: [''],
-      nom: [''],
-    });
-  }
+  constructor(private paysService: PaysService, private formBuilder: FormBuilder,private router: Router) {}
 
   ngOnInit(): void {
+
+    this.paysForm = this.formBuilder.group(
+      {
+        nom:[null]
+      }
+    )
   }
 
-  ajouterPays(pays: Pays) {
-    this.oeuvreService.ajoutPays(pays).subscribe(() => {
-      this.resetForm();
-    });
-  }
-
-  resetForm() {
-    this.paysForm.reset();
-    this.pays = new Pays(0, '');
+  ajouterPays() {
+    
+    this.paysService.ajoutPays(this.paysForm.value).subscribe();
+    this.router.navigateByUrl('listePays');
   }
 }

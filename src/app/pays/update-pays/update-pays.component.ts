@@ -10,27 +10,26 @@ import { PaysService } from 'src/app/Service/pays.service';
   styleUrls: ['./update-pays.component.css']
 })
 export class UpdatePaysComponent implements OnInit {
-  paysForm!: FormGroup;
-  idPays: number;
+  paysForm?: FormGroup;
+  id!: number;
   pays!: Pays;
 
   constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private paysService: PaysService, private route:Router) {
-    this.idPays = ar.snapshot.params["idPays"];
+    this.id = ar.snapshot.params["id"];
   }
 
   ngOnInit(): void {
-    this.paysService.getPaysById (this.idPays).subscribe(pays => {
-      this.pays = pays;
+    this.paysService.getPaysById (this.id).subscribe(pays => {
       this.paysForm = this.formBuilder.group({
-        idPays: [pays.id],
-        nom: [pays.nom],
+        id: [pays.id],
+        nom: [pays.nom]
       });
     })
   }
+    
 
-  updatePays(pays: Pays) {
-    this.paysService.updatePays(pays).subscribe(() => {
-      this.route.navigateByUrl("afficherPays");
-    });
+  updatePays() {
+    this.paysService.updatePays(this.paysForm?.value).subscribe();
+    this.route.navigateByUrl("listePays");
   }
 }

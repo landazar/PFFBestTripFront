@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Ville } from 'src/app/Model/ville.model';
 import { VilleService } from 'src/app/Service/ville.service';
 
@@ -9,27 +10,21 @@ import { VilleService } from 'src/app/Service/ville.service';
   styleUrls: ['./creer-ville.component.css']
 })
 export class CreerVilleComponent implements OnInit {
-  villeForm: FormGroup;
-  ville: Ville = new Ville(0, '');
+  villeForm!: FormGroup;
 
-  constructor(private oeuvreService: VilleService, private formBuilder: FormBuilder) {
-    this.villeForm = this.formBuilder.group({
-      id: [''],
-      nom: [''],
-    });
-  }
+  constructor(private villeService: VilleService, private formBuilder: FormBuilder,private router: Router) {}
 
   ngOnInit(): void {
+
+    this.villeForm = this.formBuilder.group(
+      {
+        nom:[null]
+      }
+    )
   }
 
-  ajouterVille(ville: Ville) {
-    this.oeuvreService.ajoutVille(ville).subscribe(() => {
-      this.resetForm();
-    });
-  }
-
-  resetForm() {
-    this.villeForm.reset();
-    this.ville = new Ville(0, '');
+  ajouterVille() {
+    this.villeService.ajoutVille(this.villeForm.value).subscribe();
+    this.router.navigateByUrl('listeVille');
   }
 }
