@@ -17,6 +17,7 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
 import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisateur.component';
 import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
 import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'details-guide-voyage/:idGuide',component: DetailsGuideComponent},
 
   {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
-  {path: "", component: AcceuilComponent}
+  {path: "", component: AcceuilComponent},
+  {path:"newsletter", component: NewsletterComponent}
 ];
 
 @NgModule({

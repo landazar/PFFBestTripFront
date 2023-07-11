@@ -12,7 +12,7 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 export class AjoutGuideVoyageComponent implements OnInit {
 
   guideForm!: FormGroup;
-  // activite: Activite = new Activite(0, '', '', [], '', 0); 
+  // activite: Activite = new Activite(0, '', '', [], '', 0);
   showActiviteForm: boolean = false;
 
   constructor(

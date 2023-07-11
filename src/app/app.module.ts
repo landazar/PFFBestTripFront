@@ -22,6 +22,7 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
 import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisateur.component';
 import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
 import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guid
     UpdateUtilisateurComponent,
     ModifierGuideVoyageComponent,
     DetailsGuideComponent,
+    NewsletterComponent,
   ],
   imports: [
     BrowserModule,
