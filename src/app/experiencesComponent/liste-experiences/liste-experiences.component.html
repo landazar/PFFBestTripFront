@@ -10,6 +10,7 @@
 
 
 <table class="table">
+<table class="table custom-table">
     <thead>
         <tr>
         <th scope="col">Identifiant</th>
@@ -20,15 +21,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let experience of listeExperiences">
+        <tr *ngFor="let experience of listeExperiences" (click)="detailsExperiences(experience.idExperience)" [ngClass]="experience.estApprouvee ? 'row-approuvee' : 'row-non-approuvee'">
         <td>{{experience.idExperience}}</td>
         <td>{{experience.nom}}</td>
         <td>{{experience.dateDebut}}</td>
         <td>{{experience.dateFin}}</td>
         <td>{{experience.type}}</td>
         <td>
-            <button (click)="deleteExperiences(experience.idExperience)">Supprimer</button>
-            <button (click)="updateExperiences(experience.idExperience)">Modifier</button>
+            <button *ngIf="!experience.estApprouvee" (click)="approuverExperiences(experience.idExperience); $event.stopPropagation()">Approuver</button>
+            <button (click)="updateExperiences(experience.idExperience); $event.stopPropagation()">Modifier</button>
+            <button (click)="deleteExperiences(experience.idExperience); $event.stopPropagation()">Supprimer</button>
         </td>
         </tr>
     </tbody>

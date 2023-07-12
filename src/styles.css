@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.custom-table tbody tr:hover {
+    background-color: lightblue !important;
+    cursor: pointer;
+}
+
+.row-approuvee {
+    background-color: lightgreen !important;
+}
+
+.row-non-approuvee {
+    background-color: lightcoral !important;
+}

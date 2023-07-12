@@ -48,6 +48,10 @@ export class GuideVoyageService {
     return this.http.get<GuideVoyage>(url);
   }
 
+  approuverGuide(idGuide:number) {
+    return this.http.get<boolean>("http://localhost:8080/approuverGuide/" + idGuide);
+  }
+    
   doesGuideExist(nom: string): Observable<boolean> {
     return this.http.get<boolean>("http://localhost:8080/doesGuideExist/" + nom);
   }

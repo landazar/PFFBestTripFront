@@ -13,11 +13,13 @@
     </thead>
     <tbody>
       <tr *ngFor="let guide of guides">
+      <!-- <tr *ngFor="let guide of guides" [ngClass]="guide.estApprouve ? 'row-approuvee' : 'row-non-approuvee'"> -->
         <td>{{ guide.idGuide }}</td>
         <td>{{ guide.nom }}</td>
         <td>{{ guide.dateCreation | date }}</td>
         <td>{{ guide.description }}</td>
         <td>
+          <!-- <button *ngIf="!guide.estApprouve" (click)="approuverGuide(guide.idGuide)">Approuver</button> -->
           <button (click)="supprimerGuide(guide.idGuide)">Supprimer</button>
           <button (click)="modifierGuide(guide.idGuide)">Modifier</button>
           <button (click)="detailsGuide(guide.idGuide)">Détails</button>

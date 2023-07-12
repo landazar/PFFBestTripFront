@@ -51,4 +51,15 @@ export class ListeExperiencesComponent implements OnInit {
   {
     this.router.navigateByUrl("updateExperiences/" + idExperience);
   }
+
+  detailsExperiences(idExperience: number): void {
+
+    this.router.navigateByUrl("getExperiences/"+idExperience);
+  }
+
+  approuverExperiences(idExperience:number) {
+    this.es.approuverExperiences(idExperience).subscribe(() => {
+      this.getAllExperiences(this.type);
+    })
+  }
 }

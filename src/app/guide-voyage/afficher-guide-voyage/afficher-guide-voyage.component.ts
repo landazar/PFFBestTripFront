@@ -66,6 +66,10 @@ export class AfficherGuideVoyageComponent implements OnInit {
     this.router.navigateByUrl("details-guide-voyage/"+idGuide);
   }
 
-  
+  approuverGuide(idGuide:number) {
+    this.guideVoyageService.approuverGuide(idGuide).subscribe(() => {
+      this.getGuidesVoyage(this.nom);
+    })
+  }
   
 }
