@@ -1,30 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { GuideVoyageService } from '../Service/guide-voyage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acceuil',
   templateUrl: './acceuil.component.html',
   styleUrls: ['./acceuil.component.css']
 })
-export class AcceuilComponent implements OnInit {
+export class AcceuilComponent {
 
   rechercheBarreForm!:FormGroup
 
-  constructor(private formBuilder:FormBuilder) {}
+  destination: string = "";
+  type: string = "";
 
-  ngOnInit(): void {
-    
-    this.rechercheBarreForm = this.formBuilder.group (
-      {
-        destination:[null],
-        depart:[null],
-        type:[null]
-      }
-    );
-  }
+  constructor(private formBuilder:FormBuilder, private gs: GuideVoyageService, private router:Router) {}
+
+  
+
+  
 
   recherche() {
-    
+    this.router.navigateByUrl("afficher-guide-voyage/" + this.destination);
+  }
+
+  plage() {
+    this.type = "Plage";
+  }
+
+  ski() {
+    this.type = "Ski"
+  }
+
+  randonnee() {
+    this.type = "Randonnée"
+  }
+
+  rechercheDestination() {
+    this.router.navigateByUrl("listeExperiences/" + this.type);
   }
 
 }

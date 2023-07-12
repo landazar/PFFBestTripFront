@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pays } from 'src/app/Model/pays.model';
 import { Ville } from 'src/app/Model/ville.model';
+import { PaysService } from 'src/app/Service/pays.service';
 import { VilleService } from 'src/app/Service/ville.service';
+import { Observable } from 'rxjs/internal/Observable';
 // import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms'
 
 @Component({
@@ -15,17 +18,30 @@ export class UpdateVilleComponent implements OnInit {
   id!: number;
   ville!: Ville;
 
-  constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private villeService: VilleService, private route:Router) {
+  listePays!:Observable<Pays[]>;
+  pays!:Pays;
+
+  constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private villeService: VilleService, private ps: PaysService, private route:Router) {
+    //On récupere l'id de la ville à modifier depuis l'url
     this.id = ar.snapshot.params["id"];
   }
 
+
+  // Méthode qui invoke les modification de la page
   ngOnInit(): void {
+    //On récupere la liste de tout les pays pour les afficher dans le select partie HTML
+    this.listePays = this.ps.findAllPays();
+
+
+    //On créer un villeForm
     this.villeService.getVilleById (this.id).subscribe(ville => {
       this.villeForm = this.formBuilder.group({
         id: [ville.id],
-        nom: [ville.nom]
-      });
-    })
+        nom: [ville.nom],
+        pays: [ville.pays]  
+      })
+    });
+    
   }
 
   updateVille() {

@@ -39,7 +39,10 @@ const routes: Routes = [
 
   {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
   {path: "", component: AcceuilComponent},
-  {path:"newsletter", component: NewsletterComponent}
+  {path:"newsletter", component: NewsletterComponent},
+
+  {path: "afficher-guide-voyage/:destination", component: AfficherGuideVoyageComponent},
+  {path: "listeExperiences/:type", component: ListeExperiencesComponent}
 ];
 
 @NgModule({
