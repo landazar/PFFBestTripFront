@@ -22,4 +22,8 @@ export class AcceuilComponent {
     this.router.navigateByUrl("afficher-guide-voyage/" + this.destination);
   }
 
+  recherchePlage() {
+    this.router.navigateByUrl("listeExperiences/plage");
+  }
+
 }
