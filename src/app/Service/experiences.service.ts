@@ -43,4 +43,8 @@ export class ExperiencesService {
   {
     return this.http.get("http://localhost:8080/getUsernameById/" + idExperience, {responseType:"text"});
   }
+
+  doesExperienceExist(type: string): Observable<boolean> {
+    return this.http.get<boolean>("http://localhost:8080/doesExperienceExist/" + type);
+  }
 }

@@ -15,7 +15,7 @@ export class AfficherGuideVoyageComponent implements OnInit {
   guides: GuideVoyage[] = [];
 
   nom: string = "";
-  param: boolean = true;
+  param: boolean = false;
 
   constructor(private guideVoyageService: GuideVoyageService, private router: Router, ar: ActivatedRoute, private formBuilder: FormBuilder) {
     this.nom =  ar.snapshot.params["destination"];
@@ -44,6 +44,7 @@ export class AfficherGuideVoyageComponent implements OnInit {
     this.guideVoyageService.doesGuideExist(nom).subscribe((result: boolean) => {
       this.param = result;
     });
+    console.log(this.param);
   }
 
 
