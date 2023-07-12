@@ -14,7 +14,6 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 export class AjoutGuideVoyageComponent implements OnInit {
 
   guideForm!: FormGroup;
-  // activite: Activite = new Activite(0, '', '', [], '', 0);
   restaurant: Restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
   lieu: Lieu = new Lieu(0, '', '', [], '', 0, '');
   showActiviteForm: boolean = false;
@@ -37,26 +36,11 @@ export class AjoutGuideVoyageComponent implements OnInit {
   }
 
   saveGuideVoyage(): void {
-    // const activitesArray = this.guideForm.get('activites')?.value as Activite[];
-  
-    // const saveActivitesPromises: Promise<any>[] = [];
-  
-    // Sauvegarder toutes les activités individuellement
-    // activitesArray.forEach(activite => {
-    //   const saveActivitePromise = this.guideVoyageService.saveActivite(activite).toPromise();
-    //   saveActivitesPromises.push(saveActivitePromise);
-    // });
-  
-    console.log("test : " + this.guideForm.value)
+
     this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe();
 
-    // Attendre la sauvegarde de toutes les activités
-    // Promise.all(saveActivitesPromises).then(() => {
-    //   // Une fois que toutes les activités sont sauvegardées, sauvegarder le guide de voyage
-    //   this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe(() => {
         this.router.navigateByUrl('afficher-guide-voyage');
-    //   });
-    // });
+
   }  
 
   supprimerActivite(i: number) {
