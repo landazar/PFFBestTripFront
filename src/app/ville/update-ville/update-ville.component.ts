@@ -18,13 +18,11 @@ export class UpdateVilleComponent implements OnInit {
   id!: number;
   ville!: Ville;
 
-  paysForm!:FormGroup;
-  idPays!:number;
   listePays!:Observable<Pays[]>;
   pays!:Pays;
 
   constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private villeService: VilleService, private ps: PaysService, private route:Router) {
-    //On récupere l'id de la ville à modifier
+    //On récupere l'id de la ville à modifier depuis l'url
     this.id = ar.snapshot.params["id"];
   }
 
@@ -33,7 +31,6 @@ export class UpdateVilleComponent implements OnInit {
   ngOnInit(): void {
     //On récupere la liste de tout les pays pour les afficher dans le select partie HTML
     this.listePays = this.ps.findAllPays();
-    // console.log(this.listePays.subscribe());
 
 
     //On créer un villeForm
@@ -41,21 +38,9 @@ export class UpdateVilleComponent implements OnInit {
       this.villeForm = this.formBuilder.group({
         id: [ville.id],
         nom: [ville.nom],
-        pays: this.ps.getPaysById(this.paysForm.value).subscribe(),
+        pays: [ville.pays]  
       })
     });
-
-   
-    // On creer paysForm
-      this.ps.getPaysById(this.paysForm.value).subscribe((pays) => {
-        this.paysForm = this.formBuilder.group({
-          idPays: [pays.id],
-        //  nomPays:[pays.nom]
-        });
-      });
-    
-
-    // this.ps.getPaysById(this.ville.pays.id).subscribe();
     
   }
 
