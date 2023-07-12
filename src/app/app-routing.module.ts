@@ -41,7 +41,8 @@ const routes: Routes = [
   {path: "", component: AcceuilComponent},
   {path:"newsletter", component: NewsletterComponent},
 
-  {path: "afficher-guide-voyage/:destination", component: AfficherGuideVoyageComponent}
+  {path: "afficher-guide-voyage/:destination", component: AfficherGuideVoyageComponent},
+  {path: "listeExperiences/:type", component: ListeExperiencesComponent}
 ];
 
 @NgModule({

@@ -13,24 +13,29 @@ export class ListeExperiencesComponent implements OnInit {
 
   listeExperiences!:Experiences[];
 
+  type: string = ""
+
   constructor(private es:ExperiencesService, private ar:ActivatedRoute, private router:Router) {
-    console.log("url : " + ar.snapshot.url)
+    this.type = ar.snapshot.params["type"];
   }
 
   ngOnInit(): void {
-    this.getAllExperiences();
+    this.getAllExperiences(this.type);
   }
 
-  getAllExperiences() {
-    this.es.listeExperiences().subscribe((listeExperiences: Experiences[]) => {
+  
+
+  getAllExperiences(type: string) {
+    this.es.listeExperiences(type).subscribe((listeExperiences: Experiences[]) => {
       this.listeExperiences = listeExperiences;
     });
   }
 
+
   deleteExperiences(idExperience:number)
   {
     this.es.deleteExperiences(idExperience).subscribe(() => {
-      this.getAllExperiences();
+      this.getAllExperiences("undefined");
     });
   }
 

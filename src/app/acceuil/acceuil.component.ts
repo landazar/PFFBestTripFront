@@ -12,18 +12,33 @@ export class AcceuilComponent {
 
   rechercheBarreForm!:FormGroup
 
+  destination: string = "";
+  type: string = "";
+
   constructor(private formBuilder:FormBuilder, private gs: GuideVoyageService, private router:Router) {}
 
   
 
-  destination: string = "";
+  
 
   recherche() {
     this.router.navigateByUrl("afficher-guide-voyage/" + this.destination);
   }
 
-  recherchePlage() {
-    this.router.navigateByUrl("listeExperiences/plage");
+  plage() {
+    this.type = "Plage";
+  }
+
+  ski() {
+    this.type = "Ski"
+  }
+
+  randonnee() {
+    this.type = "Randonnée"
+  }
+
+  rechercheDestination() {
+    this.router.navigateByUrl("listeExperiences/" + this.type);
   }
 
 }
