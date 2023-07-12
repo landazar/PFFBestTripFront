@@ -18,10 +18,13 @@ import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisat
 import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
 import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
+import { DetailsExperiencesComponent } from './experiencesComponent/details-experiences/details-experiences.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
   {path: "listeExperiences", component: ListeExperiencesComponent},
+  {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
+  {path: 'getExperiences/:idExperience',component: DetailsExperiencesComponent},
   {path: "listePays", component: PaysComponent},
   {path: "ajoutPays", component: CreerPaysComponent},
   {path: "modifierPays/:id", component: UpdatePaysComponent},
@@ -29,7 +32,6 @@ const routes: Routes = [
   {path: "ajoutVille", component: CreerVilleComponent},
   {path: "modifierVille/:id", component: UpdateVilleComponent},
   {path: 'afficher-guide-voyage', component: AfficherGuideVoyageComponent },
-  {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
   {path:"utilisateur", component:UtilisateurComponent},
   {path:"ajoutUtilisateur", component:FormulaireUtilisateurComponent},
   {path: "updateUtilisateur/:id", component: UpdateUtilisateurComponent},

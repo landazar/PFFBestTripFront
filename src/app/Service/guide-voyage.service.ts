@@ -46,4 +46,8 @@ export class GuideVoyageService {
     const url = `${this.apiURLgetGuideVoyageById}/${id}`;
     return this.http.get<GuideVoyage>(url);
   }
+
+  approuverGuide(idGuide:number) {
+    return this.http.get<boolean>("http://localhost:8080/approuverGuide/" + idGuide);
+  }
 }

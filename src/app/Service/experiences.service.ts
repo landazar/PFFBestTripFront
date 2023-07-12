@@ -43,4 +43,8 @@ export class ExperiencesService {
   {
     return this.http.get("http://localhost:8080/getUsernameById/" + idExperience, {responseType:"text"});
   }
+
+  approuverExperiences(idExperience:number) {
+    return this.http.get<boolean>("http://localhost:8080/approuverExperiences/" + idExperience);
+  }
 }
