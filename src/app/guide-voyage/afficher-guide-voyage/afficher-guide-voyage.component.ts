@@ -44,7 +44,6 @@ export class AfficherGuideVoyageComponent implements OnInit {
     this.guideVoyageService.doesGuideExist(nom).subscribe((result: boolean) => {
       this.param = result;
     });
-    console.log(this.param);
   }
 
 
