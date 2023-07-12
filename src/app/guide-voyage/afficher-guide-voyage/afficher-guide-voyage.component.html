@@ -1,3 +1,8 @@
+<label>Chercher un guide de voyage</label>
+<input type="text" [(ngModel)]="nom">
+<button (click)="getGuidesVoyage(nom); doesGuideExist(nom);">Recherche des expériences</button>
+
+
 <div>
   <h3>Liste des guides de voyage</h3>
 
