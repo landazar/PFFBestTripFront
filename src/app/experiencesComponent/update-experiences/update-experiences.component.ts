@@ -25,16 +25,17 @@ export class UpdateExperiencesComponent implements OnInit {
   isLieuSelected: boolean = false;
   idExperience!:number;
   username!:string;
-  /*
-  activite: Activite = new Activite(0, '', '', [], '', 0);
-  showActiviteForm: boolean = false;
-  */
-  constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private es:ExperiencesService, private router:Router, private us:UtilisateurService) {
 
+  constructor(private formBuilder:FormBuilder, private ar:ActivatedRoute, private es:ExperiencesService, private router:Router, private us:UtilisateurService) {
     this.idExperience = ar.snapshot.params["idExperience"];
-    
+  }
+
+  ngOnInit(): void {
+    this.es.getUsernameById(this.idExperience).subscribe(username => {
+      var u = JSON.stringify(username); 
+      this.username = JSON.parse(u);
+    });
     this.es.getExperiencesById(this.idExperience).subscribe(experiences => {
-      console.log(experiences.activites);
       this.experiencesForm = this.formBuilder.group({
           idExperience: [experiences.idExperience],
           nom: [experiences.nom],
@@ -44,21 +45,11 @@ export class UpdateExperiencesComponent implements OnInit {
           activites: [experiences.activites]
         })
     });
-  }
-
-  ngOnInit(): void {
-    this.es.getUsernameById(this.idExperience).subscribe(username => {
-      var u = JSON.stringify(username); 
-      this.username = JSON.parse(u);
-      console.log("affichage : " + u);
-    });
     // this.username = this.es.getUsernameById(this.idExperience);
   }
 
-  
-
-
   updateExperiences() {
+    console.log(this.experiencesForm.value);
     this.es.updateExperiences(this.experiencesForm?.value, this.username).subscribe();
     this.router.navigateByUrl("listeExperiences");
   }
@@ -67,46 +58,71 @@ export class UpdateExperiencesComponent implements OnInit {
     const activitesArray = this.experiencesForm.get('activites')?.value as Activite[];
     activitesArray.splice(i, 1);
     this.experiencesForm.get('activites')?.setValue(activitesArray);
-    console.log(this.experiencesForm.value.activites);
   }
 
   ajouterActivite() {
+    console.log("ajout d'une activité");
     if (this.isRestaurantSelected) {
       this.experiencesForm.value.activites.push(this.restaurant);
     } else {
       this.experiencesForm.value.activites.push(this.lieu);
     }
     this.toggleActiviteForm();
+    this.isRestaurantSelected = false;
+    this.isLieuSelected = false;
+    console.log(this.experiencesForm.value);
   }
 
   toggleActiviteForm() {
-    this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
-    this.lieu = new Lieu(0, '', '', [], '', 0, '');
     this.showActiviteForm = !this.showActiviteForm;
-    console.log(this.showActiviteForm);
+    this.isRestaurantSelected = false;
+    this.isLieuSelected = false;
   }
   
-  handlePhotoUpload(event: any) {
+  // FileReader.onload : asynchrone -> besoin d'utiliser promise
+  handlePhotoUpload(event: any, i: number) {
     const files = event.target.files;
-    const photos: any[] = [];
+    const photosPromises: Promise<string>[] = [];
     for (let i = 0; i < files.length; i++) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        photos.push(e.target.result);
-      };
-      reader.readAsDataURL(files[i]);
+      const file = files[i];
+      const promise = new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          resolve(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+      photosPromises.push(promise);
     }
-    if (this.isRestaurantSelected) {
-      this.restaurant.photos = photos;
-    } else {
-      this.lieu.photos = photos;
-    }
+  
+    Promise.all(photosPromises).then((photos) => {
+      const activitesArray = this.experiencesForm.get('activites')?.value as Activite[];
+      if (i != -1) {
+        activitesArray[i].photos.push(...photos);
+        this.experiencesForm.get('activites')?.patchValue(activitesArray);
+      } else {
+        if (this.isRestaurantSelected) {
+          this.restaurant.photos = this.restaurant.photos.concat(photos);
+        } else {
+          this.lieu.photos = this.lieu.photos.concat(photos);
+        }
+      }
+      event.target.value = null;
+    });
   }
 
   supprimerPhoto(i: number, j: number) {
-    const activitesArray = this.experiencesForm.get('activites')?.value as Activite[];
-    activitesArray[i].photos.splice(j, 1);
-    this.experiencesForm.get('activites')?.setValue(activitesArray);
+    if (i != -1) {
+      const activitesArray = this.experiencesForm.get('activites')?.value as Activite[];
+      activitesArray[i].photos.splice(j, 1);
+      this.experiencesForm.get('activites')?.setValue(activitesArray);
+    } else {
+      if (this.isRestaurantSelected) {
+        this.restaurant.photos.splice(j, 1);
+      } else {
+        this.lieu.photos.splice(j, 1);
+      }
+    }
   }
 
   handleActivityTypeChange(event: Event) {

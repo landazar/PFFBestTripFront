@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GuideVoyage } from 'src/app/Model/guide-voyage';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,23 +13,33 @@ import { Router } from '@angular/router';
 export class AfficherGuideVoyageComponent implements OnInit {
   guides: GuideVoyage[] = [];
 
-  constructor(private guideVoyageService: GuideVoyageService, private router: Router) {}
+  nom: string = "";
 
-
-  ngOnInit(): void {
-    this.getGuidesVoyage();
+  constructor(private guideVoyageService: GuideVoyageService, private router: Router, ar: ActivatedRoute) {
+    this.nom =  ar.snapshot.params["destination"];
   }
 
-  getGuidesVoyage(): void {
-    this.guideVoyageService.getListeGuideVoyage().subscribe((guides: GuideVoyage[]) => {
+  
+
+  ngOnInit(): void {
+
+    this.getGuidesVoyage(this.nom);
+  }
+
+  
+  getGuidesVoyage(nom: string): void {
+    this.guideVoyageService.getListeGuideVoyage(nom).subscribe((guides: GuideVoyage[]) => {
       this.guides = guides;
     });
   }
 
+
   supprimerGuide(idGuide: number): void {
+
     this.guideVoyageService.deleteGuideVoyage(idGuide).subscribe(() => {
-      this.getGuidesVoyage();
+      this.getGuidesVoyage("undefined");
     });
+    
   }
 
   modifierGuide(idGuide: number): void {
