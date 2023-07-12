@@ -14,6 +14,7 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 export class AjoutGuideVoyageComponent implements OnInit {
 
   guideForm!: FormGroup;
+  // activite: Activite = new Activite(0, '', '', [], '', 0);
   restaurant: Restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
   lieu: Lieu = new Lieu(0, '', '', [], '', 0, '');
   showActiviteForm: boolean = false;
