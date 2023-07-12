@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/internal/Observable';
+import { Pays } from 'src/app/Model/pays.model';
 import { Ville } from 'src/app/Model/ville.model';
+import { PaysService } from 'src/app/Service/pays.service';
 import { VilleService } from 'src/app/Service/ville.service';
 
 @Component({
@@ -11,14 +14,19 @@ import { VilleService } from 'src/app/Service/ville.service';
 })
 export class CreerVilleComponent implements OnInit {
   villeForm!: FormGroup;
+  listePays!:Observable<Pays[]>;
 
-  constructor(private villeService: VilleService, private formBuilder: FormBuilder,private router: Router) {}
+  constructor(private villeService: VilleService, private formBuilder: FormBuilder,private ps: PaysService, private router: Router) {}
 
   ngOnInit(): void {
 
+    //On récupere la liste de tout les pays pour les afficher dans le select partie HTML
+    this.listePays = this.ps.findAllPays();
+
     this.villeForm = this.formBuilder.group(
       {
-        nom:[null]
+        nom:[null],
+        pays: [null] 
       }
     )
   }
