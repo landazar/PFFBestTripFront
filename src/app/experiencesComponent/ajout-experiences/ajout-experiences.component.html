@@ -122,7 +122,6 @@
                     <label for="lieuCommentaire">Commentaire :</label>
                     <textarea name="lieuCommentaire" [(ngModel)]="lieu.commentaire" class="form-control"></textarea>
 
-
                     <div>
                         <div>
                             <label for="lieuPhotos">Photos:</label>
@@ -147,16 +146,16 @@
                 </div>
 
                 <div>
-                    <button *ngIf="showActiviteForm" type="submit" (click)="ajouterActivite($event)" style="margin-top: 1%">Ajouter</button>
+                    <button *ngIf="showActiviteForm" type="submit" (click)="ajouterActivite()" style="margin-top: 1%">Ajouter</button>
                     <!-- <button *ngIf="showActiviteForm" (click)="toggleActiviteForm($event)">Annuler</button> -->
                 </div>
 
 
             </form>
-            <button (click)="toggleActiviteForm($event)" style="margin-top: 1%">Annuler</button>
+            <button (click)="toggleActiviteForm()" style="margin-top: 1%">Annuler</button>
         </div>
 
-        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm($event)" style="margin-top: 2%">Ajouter une
+        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm()" style="margin-top: 2%">Ajouter une
             activité</button>
 
         <div style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;">

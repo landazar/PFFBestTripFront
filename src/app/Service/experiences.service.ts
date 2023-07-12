@@ -38,11 +38,6 @@ export class ExperiencesService {
 
   getUsernameById(idExperience:number):Observable<string>
   {
-    var u!:string;
-    console.log("debut requete")
-    this.http.get("http://localhost:8080/getUsernameById/" + idExperience, {responseType:"text"}).subscribe(data => {
-      console.log("data : " + data);
-    });
     return this.http.get("http://localhost:8080/getUsernameById/" + idExperience, {responseType:"text"});
   }
 }
