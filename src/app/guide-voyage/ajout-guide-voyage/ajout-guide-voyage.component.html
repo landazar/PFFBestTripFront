@@ -1,7 +1,25 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-6">
+
+      <p *ngIf="guideForm.value.listeU.length > 0"> Liste Utilisateurs</p>
+      <div *ngFor="let u of guideForm.value.listeU; let i = index">
+          <div class="mb-3" >
+            <label hidden for="utilisateur{{i}}" class="form-label">Username</label>
+            <input disabled type="text" class="form-control" name="utilisateur{{i}}" [value]="u.username">
+            <button (click)="supprimerUtilisateur(i)">Supprimer</button>
+          </div>
+      </div>
+      <div>
+        <form>
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" [(ngModel)]="username">
+          <button type="submit" (click)="ajouterUtilisateur()">Ajouter Utilisateur</button>
+        </form>
+      </div>
+
       <form [formGroup]="guideForm">
+
         <div class="mb-3">
           <label for="nom" class="form-label">Nom</label>
           <input type="text" class="form-control" formControlName="nom">
