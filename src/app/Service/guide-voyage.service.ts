@@ -15,6 +15,7 @@ export class GuideVoyageService {
   private apiURLDeleteGuideVoyage = 'http://localhost:8080/deleteGuideVoyage';
   private apiURLgetGuideVoyageById = 'http://localhost:8080/getGuideVoyageById';
   private apiURLsaveActivite = 'http://localhost:8080/activite/add';
+  private apiURLdoesGuideExist = 'http://localhost:8080/doesGuideExist';
 
   constructor(private http: HttpClient) { }
 
@@ -45,5 +46,9 @@ export class GuideVoyageService {
   getGuideVoyageById(id: number): Observable<GuideVoyage> {
     const url = `${this.apiURLgetGuideVoyageById}/${id}`;
     return this.http.get<GuideVoyage>(url);
+  }
+
+  doesGuideExist(nom: string): Observable<boolean> {
+    return this.http.get<boolean>("http://localhost:8080/doesGuideExist/" + nom);
   }
 }
