@@ -28,6 +28,8 @@ import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voya
 import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
 import { DetailsExperiencesComponent } from './experiencesComponent/details-experiences/details-experiences.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
+import { HeaderPagesComponent } from './header-pages/header-pages.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     ModifierGuideVoyageComponent,
     DetailsGuideComponent,
     NewsletterComponent,
+    HeaderPagesComponent,
+    FooterComponent,
     DetailsExperiencesComponent
 
   ],

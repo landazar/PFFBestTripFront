@@ -16,9 +16,11 @@ export class AfficherGuideVoyageComponent implements OnInit {
 
   nom: string = "";
   param: boolean = false;
+  notation: number = 0;
 
   constructor(private guideVoyageService: GuideVoyageService, private router: Router, ar: ActivatedRoute, private formBuilder: FormBuilder) {
     this.nom =  ar.snapshot.params["destination"];
+    this.notation = ar.snapshot.params["notation"];
   }
 
   
@@ -28,9 +30,6 @@ export class AfficherGuideVoyageComponent implements OnInit {
     this.getGuidesVoyage(this.nom);
 
     this.doesGuideExist(this.nom);
-
-    
-    
   }
 
   

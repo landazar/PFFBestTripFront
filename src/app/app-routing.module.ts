@@ -18,6 +18,7 @@ import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisat
 import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
 import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
+import { HeaderPagesComponent } from './header-pages/header-pages.component';
 import { DetailsExperiencesComponent } from './experiencesComponent/details-experiences/details-experiences.component';
 
 const routes: Routes = [
@@ -32,18 +33,21 @@ const routes: Routes = [
   {path: "ajoutVille", component: CreerVilleComponent},
   {path: "modifierVille/:id", component: UpdateVilleComponent},
   {path: 'afficher-guide-voyage', component: AfficherGuideVoyageComponent },
-  {path:"utilisateur", component:UtilisateurComponent},
-  {path:"ajoutUtilisateur", component:FormulaireUtilisateurComponent},
+  {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
+  {path: "utilisateur", component:UtilisateurComponent},
+  {path: "ajoutUtilisateur", component:FormulaireUtilisateurComponent},
   {path: "updateUtilisateur/:id", component: UpdateUtilisateurComponent},
-  { path: 'ajouter-guide-voyage', component: AjoutGuideVoyageComponent },
+  {path: 'ajouter-guide-voyage', component: AjoutGuideVoyageComponent },
   {path: 'modifier-guide-voyage/:idGuide',component: ModifierGuideVoyageComponent},
   {path: 'details-guide-voyage/:idGuide',component: DetailsGuideComponent},
 
   {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
   {path: "", component: AcceuilComponent},
-  {path:"newsletter", component: NewsletterComponent},
+  {path: "newsletter", component: NewsletterComponent},
 
   {path: "afficher-guide-voyage/:destination", component: AfficherGuideVoyageComponent},
+
+  {path: "heading", component:HeaderPagesComponent},
   {path: "listeExperiences/:type", component: ListeExperiencesComponent}
 ];
 
