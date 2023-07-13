@@ -1,1 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+.custom-table tr:hover {
+    --bs-table-bg: lightblue;
+    cursor: pointer;
+}

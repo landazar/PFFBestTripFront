@@ -30,9 +30,11 @@ export class AjoutExperiencesComponent implements OnInit {
         dateDebut:[null],
         dateFin:[null],
         type:[null],
+        estApprouvee:[false],
         activites: [[]]
       }
     );
+    console.log(this.experiencesForm.value);
   }
 
   username:string = "";
@@ -50,22 +52,21 @@ export class AjoutExperiencesComponent implements OnInit {
     this.experiencesForm.get('activites')?.setValue(activitesArray);
   }
 
-  ajouterActivite(event: Event) {
+  ajouterActivite() {
     console.log("ajout d'une activité");
     if (this.isRestaurantSelected) {
       this.experiencesForm.value.activites.push(this.restaurant);
     } else {
       this.experiencesForm.value.activites.push(this.lieu);
     }
-    this.toggleActiviteForm(event);
+    this.toggleActiviteForm();
     this.isRestaurantSelected = false;
     this.isLieuSelected = false;
-    console.log(this.experiencesForm.value);
+    console.log(this.experiencesForm.value.activites[0].nom);
   }
 
-  toggleActiviteForm(event: Event) {
+  toggleActiviteForm() {
     this.showActiviteForm = !this.showActiviteForm;
-    console.log(this.showActiviteForm);
     this.isRestaurantSelected = false;
     this.isLieuSelected = false;
   }
@@ -114,7 +115,6 @@ export class AjoutExperiencesComponent implements OnInit {
         this.lieu.photos.splice(j, 1);
       }
     }
-    
   }
 
   handleActivityTypeChange(event: Event) {
@@ -129,6 +129,7 @@ export class AjoutExperiencesComponent implements OnInit {
       this.isLieuSelected = true;
     }
   }
+  
   printActivity(activity: Activite): string {
     if (activity instanceof Restaurant) {
       return 'Restaurant';

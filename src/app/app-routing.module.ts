@@ -19,10 +19,13 @@ import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voya
 import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { HeaderPagesComponent } from './header-pages/header-pages.component';
+import { DetailsExperiencesComponent } from './experiencesComponent/details-experiences/details-experiences.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
   {path: "listeExperiences", component: ListeExperiencesComponent},
+  {path: "updateExperiences/:idExperience", component: UpdateExperiencesComponent},
+  {path: 'getExperiences/:idExperience',component: DetailsExperiencesComponent},
   {path: "listePays", component: PaysComponent},
   {path: "ajoutPays", component: CreerPaysComponent},
   {path: "modifierPays/:id", component: UpdatePaysComponent},
@@ -44,7 +47,8 @@ const routes: Routes = [
 
   {path: "afficher-guide-voyage/:destination", component: AfficherGuideVoyageComponent},
 
-  {path: "heading", component:HeaderPagesComponent}
+  {path: "heading", component:HeaderPagesComponent},
+  {path: "listeExperiences/:type", component: ListeExperiencesComponent}
 ];
 
 @NgModule({

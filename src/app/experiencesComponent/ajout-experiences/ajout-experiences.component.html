@@ -16,21 +16,24 @@
         <input type="date" formControlName="dateFin" class="form-control">
 
         <label for="type">Type de séjour</label>
-        <select formControlName="type">
+        <select class="form-select" formControlName="type">
             <option value="Plage">Plage</option>
             <option value="Montagne">Montagne</option>
             <option value="Ski">Ski</option>
             <option value="Randonnée">Randonnée</option>
+            <option value="Safari">Safari</option>
         </select>
+
+        <input hidden type="text" formControlName="estApprouvee" class="form-control">
 
         <h3>Activités :</h3>
 
         <div *ngFor="let a of experiencesForm.value.activites; let i = index">
             <label for="activiteNom{{i}}">Nom : </label>
-            <input type="text" name="activiteNom{{i}}" [value]="a.nom" class="form-control">
+            <input type="text" name="activiteNom{{i}}" [(ngModel)]="experiencesForm.value.activites[i].nom" [ngModelOptions]="{standalone: true}" class="form-control">
 
             <label for="activiteCommentaire{{i}}">Commentaire :</label>
-            <textarea name="activiteCommentaire{{i}}" [value]="a.commentaire" class="form-control"></textarea>
+            <textarea name="activiteCommentaire{{i}}" [(ngModel)]="experiencesForm.value.activites[i].commentaire" [ngModelOptions]="{standalone: true}" class="form-control"></textarea>
 
             <div>
                 <div>
@@ -47,17 +50,17 @@
 
 
             <label for="activiteVideos{{i}}">Videos : </label>
-            <input type="text" name="activiteVideos{{i}}" [value]="a.videos" class="form-control">
+            <input type="text" name="activiteVideos{{i}}" [(ngModel)]="experiencesForm.value.activites[i].videos" [ngModelOptions]="{standalone: true}" class="form-control">
 
             <label for="activiteDepense{{i}}">Dépense : </label>
-            <input type="text" name="activiteDepense{{i}}" [value]="a.depense" class="form-control">
+            <input type="text" name="activiteDepense{{i}}" [(ngModel)]="experiencesForm.value.activites[i].depense" [ngModelOptions]="{standalone: true}" class="form-control">
 
             <label for="activiteType{{i}}">Type :</label>
-            <input type="text" name="activiteType{{i}}" [value]="a.type" class="form-control">
+            <input type="text" name="activiteType{{i}}" [(ngModel)]="experiencesForm.value.activites[i].type" [ngModelOptions]="{standalone: true}" class="form-control">
 
             <div *ngIf="printActivity(a) === 'Restaurant'">
                 <label for="restaurantAdresse{{i}}">Adresse :</label>
-                <input type="text" name="restaurantAdresse{{i}}" [value]="a.adresse" class="form-control">
+                <input type="text" name="restaurantAdresse{{i}}" [(ngModel)]="experiencesForm.value.activites[i].adresse" [ngModelOptions]="{standalone: true}" class="form-control">
             </div>
 
             <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
@@ -122,7 +125,6 @@
                     <label for="lieuCommentaire">Commentaire :</label>
                     <textarea name="lieuCommentaire" [(ngModel)]="lieu.commentaire" class="form-control"></textarea>
 
-
                     <div>
                         <div>
                             <label for="lieuPhotos">Photos:</label>
@@ -147,16 +149,16 @@
                 </div>
 
                 <div>
-                    <button *ngIf="showActiviteForm" type="submit" (click)="ajouterActivite($event)" style="margin-top: 1%">Ajouter</button>
+                    <button *ngIf="showActiviteForm" type="submit" (click)="ajouterActivite()" style="margin-top: 1%">Ajouter</button>
                     <!-- <button *ngIf="showActiviteForm" (click)="toggleActiviteForm($event)">Annuler</button> -->
                 </div>
 
 
             </form>
-            <button (click)="toggleActiviteForm($event)" style="margin-top: 1%">Annuler</button>
+            <button (click)="toggleActiviteForm()" style="margin-top: 1%">Annuler</button>
         </div>
 
-        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm($event)" style="margin-top: 2%">Ajouter une
+        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm()" style="margin-top: 2%">Ajouter une
             activité</button>
 
         <div style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;">

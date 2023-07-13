@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GuideVoyage } from '../Model/guide-voyage';
 import { Activite } from '../Model/activite';
+import { Utilisateur } from '../Model/utilisateur.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,4 +46,20 @@ export class GuideVoyageService {
     const url = `${this.apiURLgetGuideVoyageById}/${id}`;
     return this.http.get<GuideVoyage>(url);
   }
+
+  approuverGuide(idGuide:number) {
+    return this.http.get<boolean>("http://localhost:8080/approuverGuide/" + idGuide);
+  }
+    
+  doesGuideExist(nom: string): Observable<boolean> {
+    return this.http.get<boolean>("http://localhost:8080/doesGuideExist/" + nom);
+  }
+
+
+  setNoteGuide(idGuide:number, notation:number) {
+    const id = new HttpParams().set('notation', idGuide);
+    const note = new HttpParams().set('notation', notation);
+    return this.http.put("http://localhost:8080/setNoteGuide?idGuide=" + idGuide + "&notation=" + notation, GuideVoyage);
+  }
+
 }

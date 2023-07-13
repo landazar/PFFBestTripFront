@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Utilisateur } from '../Model/utilisateur.model';
 import { Observable } from 'rxjs';
@@ -39,5 +39,11 @@ export class UtilisateurService {
   {
     this.http.get<string[]>("http://localhost:8080/getEmailByEstAbonne").subscribe(data => {console.log("data :" + data)});
     return this.http.get<string[]>("http://localhost:8080/getEmailByEstAbonne");
+  }
+
+  getUtilisateurByUsername(username:string):Observable<Utilisateur>
+  {
+    const params = new HttpParams().set('username', username);
+    return this.http.get<Utilisateur>("http://localhost:8080/getUtilisateurByUsername", {params})
   }
 }

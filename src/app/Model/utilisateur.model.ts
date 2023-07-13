@@ -8,6 +8,7 @@ export class Utilisateur {
     email:string;
     nom:string;
     prenom:string;
+    
 
     constructor(id:number, username:string, mdp:string, estAbonne:boolean, role:string, email:string, nom:string, prenom:string) 
     {

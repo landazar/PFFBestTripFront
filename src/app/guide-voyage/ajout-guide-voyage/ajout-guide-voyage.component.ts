@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { Activite } from 'src/app/Model/activite';
 import { Lieu } from 'src/app/Model/lieu';
 import { Restaurant } from 'src/app/Model/restaurant';
+import { Utilisateur } from 'src/app/Model/utilisateur.model';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
+import { UtilisateurService } from 'src/app/Service/utilisateur.service';
 
 @Component({
   selector: 'app-ajout-guide-voyage',
@@ -14,7 +16,6 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 export class AjoutGuideVoyageComponent implements OnInit {
 
   guideForm!: FormGroup;
-  // activite: Activite = new Activite(0, '', '', [], '', 0);
   restaurant: Restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
   lieu: Lieu = new Lieu(0, '', '', [], '', 0, '');
   showActiviteForm: boolean = false;
@@ -24,19 +25,44 @@ export class AjoutGuideVoyageComponent implements OnInit {
   constructor(
     private guideVoyageService: GuideVoyageService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private us:UtilisateurService
   ) {}
+
+
+  username!:string;
+  
 
   ngOnInit(): void {
     this.guideForm = this.formBuilder.group({
       nom: [null],
       dateCreation: [null],
       description: [null],
-      activites: [[]]
+      activites: [[]],
+      listeU:[[]]
+    });
+    
+  }
+
+  ajouterUtilisateur()
+  {
+    this.us.getUtilisateurByUsername(this.username).subscribe(data => {
+      console.log("data :" + data);
+      this.guideForm.value.listeU.push(data);
+      this.username="";
     });
   }
 
+  supprimerUtilisateur(i: number) {
+    const UtilisateurArray = this.guideForm.get('listeU')?.value as Utilisateur[];
+    UtilisateurArray.splice(i, 1);
+    this.guideForm.get('listeU')?.setValue(UtilisateurArray);
+  }
+
   saveGuideVoyage(): void {
+    
+    console.log(this.guideForm.value.listeU);
+    this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe();
     // const activitesArray = this.guideForm.get('activites')?.value as Activite[];
   
     // const saveActivitesPromises: Promise<any>[] = [];
@@ -47,14 +73,13 @@ export class AjoutGuideVoyageComponent implements OnInit {
     //   saveActivitesPromises.push(saveActivitePromise);
     // });
   
-    console.log("test : " + this.guideForm.value)
-    this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe();
+    
 
     // Attendre la sauvegarde de toutes les activités
     // Promise.all(saveActivitesPromises).then(() => {
     //   // Une fois que toutes les activités sont sauvegardées, sauvegarder le guide de voyage
     //   this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe(() => {
-        this.router.navigateByUrl('afficher-guide-voyage');
+    this.router.navigateByUrl('afficher-guide-voyage');
     //   });
     // });
   }  
