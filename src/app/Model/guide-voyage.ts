@@ -7,15 +7,15 @@ export class GuideVoyage {
     dateCreation: string;
     description: string;
     activites: Activite[];
-    listeU:Utilisateur[];
+    //listeU:Utilisateur[];
   
-    constructor(idGuide: number, nom: string, dateCreation: string, description: string, activites: Activite[], listeU:Utilisateur[]) {
+    constructor(idGuide: number, nom: string, dateCreation: string, description: string, activites: Activite[]) {
       this.idGuide = idGuide;
       this.nom = nom;
       this.dateCreation = dateCreation;
       this.description = description;
       this.activites = activites;
-      this.listeU=listeU;
+      //this.listeU=listeU;
     }
   }
   

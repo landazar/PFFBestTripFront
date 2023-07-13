@@ -38,12 +38,12 @@
 
         <h3>Activités :</h3>
 
-        <div *ngFor="let a of guideForm.value.activites; let i = index">
+        <div *ngFor="let a of guideForm.value.activites; let i = index" >
           <label for="activiteNom{{i}}">Nom : </label>
-          <input type="text" name="activiteNom{{i}}" [value]="a.nom" class="form-control">
+          <input type="text" name="activiteNom{{i}}" [(ngModel)]="a.nom" class="form-control"   [ngModelOptions]="{standalone: true}">
 
           <label for="activiteCommentaire{{i}}">Commentaire :</label>
-          <textarea name="activiteCommentaire{{i}}" [value]="a.commentaire" class="form-control"></textarea>
+          <textarea name="activiteCommentaire{{i}}" [(ngModel)]="a.commentaire" class="form-control"   [ngModelOptions]="{standalone: true}"></textarea>
 
           <div>
             <label for="activitePhotos{{i}}">Photos : </label>
@@ -55,14 +55,14 @@
           </div>
 
           <label for="activiteDepense{{i}}">Dépense : </label>
-          <input type="text" name="activiteDepense{{i}}" [value]="a.depense" class="form-control">
+          <input type="text" name="activiteDepense{{i}}" [(ngModel)]="a.depense" class="form-control"   [ngModelOptions]="{standalone: true}">
 
           <label for="activiteType{{i}}">Type :</label>
-          <input type="text" name="activiteType{{i}}" [value]="a.type" class="form-control">
+          <input type="text" name="activiteType{{i}}" [(ngModel)]="a.type" class="form-control"   [ngModelOptions]="{standalone: true}">
 
           <div *ngIf="printActivity(a) === 'Restaurant'">
             <label for="restaurantAdresse{{i}}">Adresse :</label>
-            <input type="text" name="restaurantAdresse{{i}}" [value]="a.adresse" class="form-control">
+            <input type="text" name="restaurantAdresse{{i}}" [(ngModel)]="a.adresse" class="form-control"   [ngModelOptions]="{standalone: true}">
           </div>
 
           <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
