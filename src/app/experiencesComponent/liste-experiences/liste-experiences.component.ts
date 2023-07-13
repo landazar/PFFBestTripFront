@@ -25,7 +25,7 @@ export class ListeExperiencesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllExperiences(this.type);
-    
+    this.doesExperienceExist(this.type);
   }
   
 
