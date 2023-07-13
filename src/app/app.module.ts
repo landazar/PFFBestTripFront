@@ -60,6 +60,7 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from 'src/app/Model/activite';
+import { Utilisateur } from 'src/app/Model/utilisateur.model';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
+import { UtilisateurService } from 'src/app/Service/utilisateur.service';
 
 @Component({
   selector: 'app-modifier-guide-voyage',
@@ -15,23 +17,45 @@ export class ModifierGuideVoyageComponent implements OnInit {
   activite: Activite = new Activite(0, '', '', [], '', 0);
   showActiviteForm: boolean = false;
   guideId!: number;
+  id!:number;
+  username:string="";
 
-//   constructor(
-//     private guideVoyageService: GuideVoyageService,
-//     private formBuilder: FormBuilder,
-//     private activatedRoute: ActivatedRoute,
-//     private router: Router
-//   ) {
-//     this.guideId = activatedRoute.snapshot.params['id'];
-//   }
+  constructor(
+    private guideVoyageService: GuideVoyageService,
+    private formBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private us:UtilisateurService
+  ) {
+    this.guideId = activatedRoute.snapshot.params['id'];
+  }
 
   ngOnInit(): void {
-    this.guideForm = new FormGroup({
-      nom: new FormControl(''),
-      dateCreation: new FormControl(''),
-      description: new FormControl(''),
-      activites: new FormControl([])
+    this.guideVoyageService.getGuideVoyageById(this.id).subscribe(data => {
+      this.guideForm = this.formBuilder.group({
+        nom: [data.nom],
+        dateCreation: [data.dateCreation],
+        description: [data.description],
+        activites: [data.activites],
+        listeU:[data.listeU]
+      })
     });
+  }
+
+  ajouterUtilisateur()
+  {
+    this.us.getUtilisateurByUsername(this.username).subscribe(data => {
+      console.log("data :" + data);
+      this.guideForm.value.listeU.push(data);
+      this.username="";
+    });
+  }
+
+  supprimerUtilisateur(i: number) {
+    const UtilisateurArray = this.guideForm.get('listeU')?.value as Utilisateur[];
+    UtilisateurArray.splice(i, 1);
+    this.guideForm.get('listeU')?.setValue(UtilisateurArray);
+  }
 
 //     this.guideVoyageService.getGuideVoyageById(this.guideId).subscribe(guideVoyage => {
 //       this.guideForm.patchValue({
@@ -94,5 +118,5 @@ export class ModifierGuideVoyageComponent implements OnInit {
 //     activites[activiteIndex].photos.splice(photoIndex, 1);
 //     this.guideForm.get('activites')?.setValue(activites);
 //   }
- }
+ 
 }
