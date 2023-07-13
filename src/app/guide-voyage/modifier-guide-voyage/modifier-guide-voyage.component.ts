@@ -6,6 +6,7 @@ import { Lieu } from 'src/app/Model/lieu';
 import { Restaurant } from 'src/app/Model/restaurant';
 import { Utilisateur } from 'src/app/Model/utilisateur.model';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
+import { UtilisateurService } from 'src/app/Service/utilisateur.service';
 
 @Component({
   selector: 'app-modifier-guide-voyage',
@@ -21,12 +22,14 @@ export class ModifierGuideVoyageComponent implements OnInit {
   isRestaurantSelected: boolean = false;
   isLieuSelected: boolean = false;
   guideId!: number; // Placeholder for the guide ID
+  username!:string;
 
   constructor(
     private guideVoyageService: GuideVoyageService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private us:UtilisateurService
   ) {
     this.guideId = route.snapshot.params["idGuide"];
 
@@ -40,9 +43,25 @@ export class ModifierGuideVoyageComponent implements OnInit {
           nom: [guideVoyage.nom],
           dateCreation: [guideVoyage.dateCreation],
           description: [guideVoyage.description],
-          activites: [guideVoyage.activites]
+          activites: [guideVoyage.activites],
+          listeU:[guideVoyage.listeU]
         }); console.log(this.guideForm.value)
       });
+  }
+
+  ajouterUtilisateur()
+  {
+    this.us.getUtilisateurByUsername(this.username).subscribe(data => {
+      console.log("data :" + data);
+      this.guideForm?.value.listeU.push(data);
+      this.username="";
+    });
+  }
+
+  supprimerUtilisateur(i: number) {
+    const UtilisateurArray = this.guideForm?.get('listeU')?.value as Utilisateur[];
+    UtilisateurArray.splice(i, 1);
+    this.guideForm?.get('listeU')?.setValue(UtilisateurArray);
   }
 
   updateGuideVoyage() {
