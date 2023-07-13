@@ -13,7 +13,8 @@ export class ListeExperiencesComponent implements OnInit {
 
   listeExperiences!:Experiences[];
 
-  type: string = ""
+  type: string = "";
+  param: boolean = false;
 
   constructor(private es:ExperiencesService, private ar:ActivatedRoute, private router:Router) {
     this.type = ar.snapshot.params["type"];
@@ -21,6 +22,7 @@ export class ListeExperiencesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllExperiences(this.type);
+    
   }
 
   
@@ -28,6 +30,12 @@ export class ListeExperiencesComponent implements OnInit {
   getAllExperiences(type: string) {
     this.es.listeExperiences(type).subscribe((listeExperiences: Experiences[]) => {
       this.listeExperiences = listeExperiences;
+    });
+  }
+
+  doesExperienceExist(type: string) {
+    this.es.doesExperienceExist(type).subscribe((result: boolean) => {
+      this.param = result;
     });
   }
 
@@ -42,5 +50,16 @@ export class ListeExperiencesComponent implements OnInit {
   updateExperiences(idExperience:number)
   {
     this.router.navigateByUrl("updateExperiences/" + idExperience);
+  }
+
+  detailsExperiences(idExperience: number): void {
+
+    this.router.navigateByUrl("getExperiences/"+idExperience);
+  }
+
+  approuverExperiences(idExperience:number) {
+    this.es.approuverExperiences(idExperience).subscribe(() => {
+      this.getAllExperiences(this.type);
+    })
   }
 }

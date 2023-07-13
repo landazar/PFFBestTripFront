@@ -30,6 +30,7 @@ export class AjoutExperiencesComponent implements OnInit {
         dateDebut:[null],
         dateFin:[null],
         type:[null],
+        estApprouvee:[false],
         activites: [[]]
       }
     );
