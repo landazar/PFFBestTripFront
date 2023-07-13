@@ -30,10 +30,10 @@
 
         <div *ngFor="let a of experiencesForm.value.activites; let i = index">
             <label for="activiteNom{{i}}">Nom : </label>
-            <input type="text" name="activiteNom{{i}}" [value]="a.nom" class="form-control">
+            <input type="text" name="activiteNom{{i}}" [(ngModel)]="experiencesForm.value.activites[i].nom" [ngModelOptions]="{standalone: true}" class="form-control">
 
             <label for="activiteCommentaire{{i}}">Commentaire :</label>
-            <textarea name="activiteCommentaire{{i}}" [value]="a.commentaire" class="form-control"></textarea>
+            <textarea name="activiteCommentaire{{i}}" [(ngModel)]="experiencesForm.value.activites[i].commentaire" [ngModelOptions]="{standalone: true}" class="form-control"></textarea>
 
             <div>
                 <div>
@@ -50,17 +50,17 @@
 
 
             <label for="activiteVideos{{i}}">Videos : </label>
-            <input type="text" name="activiteVideos{{i}}" [value]="a.videos" class="form-control">
+            <input type="text" name="activiteVideos{{i}}" [(ngModel)]="experiencesForm.value.activites[i].videos" [ngModelOptions]="{standalone: true}" class="form-control">
 
             <label for="activiteDepense{{i}}">Dépense : </label>
-            <input type="text" name="activiteDepense{{i}}" [value]="a.depense" class="form-control">
+            <input type="text" name="activiteDepense{{i}}" [(ngModel)]="experiencesForm.value.activites[i].depense" [ngModelOptions]="{standalone: true}" class="form-control">
 
             <label for="activiteType{{i}}">Type :</label>
-            <input type="text" name="activiteType{{i}}" [value]="a.type" class="form-control">
+            <input type="text" name="activiteType{{i}}" [(ngModel)]="experiencesForm.value.activites[i].type" [ngModelOptions]="{standalone: true}" class="form-control">
 
             <div *ngIf="printActivity(a) === 'Restaurant'">
                 <label for="restaurantAdresse{{i}}">Adresse :</label>
-                <input type="text" name="restaurantAdresse{{i}}" [value]="a.adresse" class="form-control">
+                <input type="text" name="restaurantAdresse{{i}}" [(ngModel)]="experiencesForm.value.activites[i].adresse" [ngModelOptions]="{standalone: true}" class="form-control">
             </div>
 
             <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
