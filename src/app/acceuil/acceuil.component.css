@@ -1,10 +1,14 @@
 
 #titre {
     text-align: center;
-    padding: 1%;
+    padding: 0.5%;
     font-family: 'Courier New', Courier, monospace;
     font-style: oblique;
+    color: wheat;
+    margin-top: 1%;
     font-size: 400%;
+    background: rgba(0, 0, 0, .5);
+    
 }
 
 #rechercheBarre {
@@ -24,6 +28,7 @@
 #plagePhoto {
     background-image: url(https://static.vecteezy.com/ti/photos-gratuite/p2/15190626-vue-panoramique-d-un-coucher-de-soleil-jaune-sur-l-une-des-plus-belles-plages-de-la-cote-d-azur-sud-de-la-france-coucher-du-soleil-photo.jpg);
     background-position-y: 65%;
+    cursor: pointer;
 }
 
 #iconeRecherche {
@@ -67,6 +72,7 @@
     -o-transition: transform .4s;
     -webkit-transition: transform .4s;
     transition: transform .4s;
+    cursor: pointer;
 }
 
 .slider>div {
