@@ -16,7 +16,8 @@ export class ListeExperiencesComponent implements OnInit {
   listeExperiencesNonApprouvees!:Experiences[];
   currentExperiencesList: Experiences[] = [];
 
-  type: string = ""
+  type: string = "";
+  param: boolean = false;
 
   constructor(private es:ExperiencesService, private ar:ActivatedRoute, private router:Router) {
     this.type = ar.snapshot.params["type"];
@@ -24,6 +25,7 @@ export class ListeExperiencesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllExperiences(this.type);
+    
   }
   
 
@@ -43,6 +45,12 @@ export class ListeExperiencesComponent implements OnInit {
         ? this.listeExperiencesNonApprouvees
         : this.listeExperiencesApprouvees;
   }
+  doesExperienceExist(type: string) {
+    this.es.doesExperienceExist(type).subscribe((result: boolean) => {
+      this.param = result;
+    });
+  }
+
 
   deleteExperiences(idExperience:number)
   {

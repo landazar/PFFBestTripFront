@@ -2,6 +2,18 @@
     {{ currentExperiencesList === listeExperiencesApprouvees ? 'Voir expériences non approuvées' : 'Voir expériences
     approuvées' }}
 </button>
+<select class="form-select" [(ngModel)]="type">
+    <option value="Plage">Plage</option>
+    <option value="Montagne">Montagne</option>
+    <option value="Ski">Ski</option>
+    <option value="Randonnée">Randonnée</option>
+    <option value="Safari">Safari</option>
+</select>
+<button (click)="getAllExperiences(type); doesExperienceExist(type);">Recherche des expériences</button>
+
+
+
+<table class="table">
 <table class="table custom-table">
     <thead>
         <tr>
@@ -30,3 +42,15 @@
         </tr>
     </tbody>
 </table>
+
+
+
+<div *ngIf=param>
+    Aucune expérience ne correspond à cette recherche.
+  
+    Soyez le premier à donner votre avis !
+  
+    <a href="saveExperiences"><button>Créer expérience</button></a> 
+  </div>
+
+
