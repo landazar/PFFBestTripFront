@@ -36,6 +36,7 @@ export class UpdateExperiencesComponent implements OnInit {
       this.username = JSON.parse(u);
     });
     this.es.getExperiencesById(this.idExperience).subscribe(experiences => {
+      console.log(experiences);
       this.experiencesForm = this.formBuilder.group({
           idExperience: [experiences.idExperience],
           nom: [experiences.nom],

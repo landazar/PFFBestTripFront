@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import html2canvas from 'html2canvas';
-import jspdf from 'jspdf';
 import jsPDF from 'jspdf';
 import { GuideVoyage } from 'src/app/Model/guide-voyage';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
@@ -16,10 +15,15 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 export class DetailsGuideComponent implements OnInit{
   guide!: GuideVoyage;
 
+  notation: number = 0;
+
+  idGuide: number = 0;
+
   constructor(
     private route: ActivatedRoute,
-    private guideVoyageService: GuideVoyageService
-  ) { }
+    private guideVoyageService: GuideVoyageService,
+    private router: Router
+  ) {this.idGuide = route.snapshot.params["idGuide"]}
 
   
   @ViewChild('pdfContent', {static:true}) pdfContent!:ElementRef;
@@ -28,6 +32,7 @@ export class DetailsGuideComponent implements OnInit{
 
   ngOnInit(): void {
     this.getGuideVoyage();
+    
   }
 
   getGuideVoyage(): void {
@@ -67,4 +72,10 @@ export class DetailsGuideComponent implements OnInit{
     });
   }
 
+  getNbrEtoile() {
+    console.log(this.notation);
+    console.log("id : " + this.idGuide);
+    this.guideVoyageService.setNoteGuide(this.idGuide, this.notation).subscribe();
+    this.router.navigateByUrl("afficher-guide-voyage");
+  }
 }

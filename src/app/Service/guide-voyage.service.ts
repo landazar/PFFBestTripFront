@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GuideVoyage } from '../Model/guide-voyage';
 import { Activite } from '../Model/activite';
@@ -15,7 +15,6 @@ export class GuideVoyageService {
   private apiURLDeleteGuideVoyage = 'http://localhost:8080/deleteGuideVoyage';
   private apiURLgetGuideVoyageById = 'http://localhost:8080/getGuideVoyageById';
   private apiURLsaveActivite = 'http://localhost:8080/activite/add';
-  private apiURLdoesGuideExist = 'http://localhost:8080/doesGuideExist';
 
   constructor(private http: HttpClient) { }
 
@@ -55,4 +54,12 @@ export class GuideVoyageService {
   doesGuideExist(nom: string): Observable<boolean> {
     return this.http.get<boolean>("http://localhost:8080/doesGuideExist/" + nom);
   }
+
+
+  setNoteGuide(idGuide:number, notation:number) {
+    const id = new HttpParams().set('notation', idGuide);
+    const note = new HttpParams().set('notation', notation);
+    return this.http.put("http://localhost:8080/setNoteGuide?idGuide=" + idGuide + "&notation=" + notation, GuideVoyage);
+  }
+
 }

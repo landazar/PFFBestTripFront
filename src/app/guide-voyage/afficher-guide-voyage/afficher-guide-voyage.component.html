@@ -13,6 +13,7 @@
         <th>Nom</th>
         <th>Date de création</th>
         <th>Description</th>
+        <th>Note</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -23,6 +24,7 @@
         <td>{{ guide.nom }}</td>
         <td>{{ guide.dateCreation | date }}</td>
         <td>{{ guide.description }}</td>
+        <td>{{ guide.note }}/5</td>
         <td>
           <!-- <button *ngIf="!guide.estApprouve" (click)="approuverGuide(guide.idGuide)">Approuver</button> -->
           <button (click)="supprimerGuide(guide.idGuide)">Supprimer</button>

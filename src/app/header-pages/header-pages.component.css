@@ -1,0 +1,40 @@
+#heading{
+    height: 30vh;
+    width: 100%;
+    min-height: 10vh;
+    /* min-height: 100px; */
+    display: flex;
+    flex-direction: column;
+    background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+    vertical-align: middle;
+}
+
+.center{
+    margin: auto;
+    display: inline-block;
+}
+h1,h2,h3,h4{
+    margin: auto;
+    font-family: 'ABeeZee', sans-serif;
+    font-size: bold;
+    color: rgb(251, 253, 255);
+
+    text-shadow: 0px 1px 5px rgba(43, 43, 43, 0.1),
+        0px 1px 5px rgba(43, 43, 43, 0.150),
+        0px -1px 5px rgb(43, 43, 43, 0.100),
+     0px -1px 5px rgb(43, 43, 43, 0.050);
+}
+
+.subtitle{
+    margin: auto;
+    font-family: 'Caveat', cursive;;
+    text-align: center;
+    font-size: bold;
+    color: rgb(21, 22, 24);
+
+    text-shadow: 0px 1px 5px rgba(63, 63, 63, 0.1),
+                 0px 1px 5px rgba(63, 63, 63, 0.150),
+                 0px -1px 5px rgb(63, 63, 63, 0.100),
+                 0px -1px 5px rgb(63, 63, 63, 0.050);
+}
+
