@@ -3,13 +3,13 @@
   <div class="row justify-content-center">
     <div class="col-lg-6">
 
-      <p *ngIf="guideForm.value.listeU.length > 0"> Liste Utilisateurs</p>
+      <p *ngIf="guideForm.value.listeU.length > 0">Liste Utilisateurs</p>
       <div *ngFor="let u of guideForm.value.listeU; let i = index">
-          <div class="mb-3" >
-            <label hidden for="utilisateur{{i}}" class="form-label">Username</label>
-            <input disabled type="text" class="form-control" name="utilisateur{{i}}" [value]="u.username">
-            <button (click)="supprimerUtilisateur(i)">Supprimer</button>
-          </div>
+        <div class="mb-3">
+          <label hidden for="utilisateur{{i}}" class="form-label">Username</label>
+          <input disabled type="text" class="form-control" name="utilisateur{{i}}" [value]="u.username">
+          <button (click)="supprimerUtilisateur(i)">Supprimer</button>
+        </div>
       </div>
       <div>
         <form>
@@ -36,18 +36,19 @@
           <textarea class="form-control" formControlName="description" rows="4"></textarea>
         </div>
 
-
         <h3>Activités :</h3>
 
-        <div *ngFor="let a of guideForm.value.activites; let i = index" >
-          <label for="activiteNom{{i}}">Nom : </label>
-          <input type="text" name="activiteNom{{i}}" [(ngModel)]="a.nom" class="form-control"   [ngModelOptions]="{standalone: true}">
+        <div *ngFor="let a of guideForm.value.activites; let i = index">
+          <label for="activiteNom{{i}}">Nom :</label>
+          <input type="text" name="activiteNom{{i}}" [(ngModel)]="a.nom" class="form-control"
+            [ngModelOptions]="{ standalone: true }">
 
           <label for="activiteCommentaire{{i}}">Commentaire :</label>
-          <textarea name="activiteCommentaire{{i}}" [(ngModel)]="a.commentaire" class="form-control"   [ngModelOptions]="{standalone: true}"></textarea>
+          <textarea name="activiteCommentaire{{i}}" [(ngModel)]="a.commentaire" class="form-control"
+            [ngModelOptions]="{ standalone: true }"></textarea>
 
           <div>
-            <label for="activitePhotos{{i}}">Photos : </label>
+            <label for="activitePhotos{{i}}">Photos :</label>
             <div *ngFor="let photo of a.photos; let j = index">
               <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
               <button type="button" (click)="supprimerPhoto(i, j)">Supprimer la photo</button>
@@ -55,15 +56,18 @@
             <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event)" multiple style="display: block;">
           </div>
 
-          <label for="activiteDepense{{i}}">Dépense : </label>
-          <input type="text" name="activiteDepense{{i}}" [(ngModel)]="a.depense" class="form-control"   [ngModelOptions]="{standalone: true}">
+          <label for="activiteDepense{{i}}">Dépense :</label>
+          <input type="text" name="activiteDepense{{i}}" [(ngModel)]="a.depense" class="form-control"
+            [ngModelOptions]="{ standalone: true }">
 
           <label for="activiteType{{i}}">Type :</label>
-          <input type="text" name="activiteType{{i}}" [(ngModel)]="a.type" class="form-control"   [ngModelOptions]="{standalone: true}">
+          <input type="text" name="activiteType{{i}}" [(ngModel)]="a.type" class="form-control"
+            [ngModelOptions]="{ standalone: true }">
 
           <div *ngIf="printActivity(a) === 'Restaurant'">
             <label for="restaurantAdresse{{i}}">Adresse :</label>
-            <input type="text" name="restaurantAdresse{{i}}" [(ngModel)]="a.adresse" class="form-control"   [ngModelOptions]="{standalone: true}">
+            <input type="text" name="restaurantAdresse{{i}}" [(ngModel)]="a.adresse" class="form-control"
+              [ngModelOptions]="{ standalone: true }">
           </div>
 
           <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
@@ -87,43 +91,51 @@
               </div>
             </div>
             <div *ngIf="isRestaurantSelected">
-              <label for="restaurantNom">Nom : </label>
-              <input type="text" name=restaurantNom [(ngModel)]="restaurant.nom" class="form-control">
+              <label for="restaurantNom">Nom :</label>
+              <input type="text" name="restaurantNom" [(ngModel)]="restaurant.nom" class="form-control"
+                [ngModelOptions]="{ standalone: true }">
 
               <label for="restaurantCommentaire">Commentaire :</label>
-              <textarea name="restaurantCommentaire" [(ngModel)]="restaurant.commentaire"
-                class="form-control"></textarea>
+              <textarea name="restaurantCommentaire" [(ngModel)]="restaurant.commentaire" class="form-control"
+                [ngModelOptions]="{ standalone: true }"></textarea>
 
-              <label for="restaurantPhotos">Photos : </label>
+              <label for="restaurantPhotos">Photos :</label>
               <input type="file" name="restaurantPhotos" (change)="handlePhotoUpload($event)" multiple
                 style="display: block;">
 
-              <label for="restaurantDepense">Dépense : </label>
-              <input type="text" name=restaurantDepense [(ngModel)]="restaurant.depense" class="form-control">
+              <label for="restaurantDepense">Dépense :</label>
+              <input type="text" name="restaurantDepense" [(ngModel)]="restaurant.depense" class="form-control"
+                [ngModelOptions]="{ standalone: true }">
 
               <label for="restaurantType">Type :</label>
-              <input type="text" name="restaurantType" [(ngModel)]="restaurant.type" class="form-control">
+              <input type="text" name="restaurantType" [(ngModel)]="restaurant.type" class="form-control"
+                [ngModelOptions]="{ standalone: true }">
 
               <label for="restaurantAdresse">Adresse :</label>
-              <input type="text" name="restaurantAdresse" [(ngModel)]="restaurant.adresse" class="form-control">
+              <input type="text" name="restaurantAdresse" [(ngModel)]="restaurant.adresse" class="form-control"
+                [ngModelOptions]="{ standalone: true }">
             </div>
 
             <div *ngIf="isLieuSelected">
-              <label for="lieuNom">Nom : </label>
-              <input type="text" name=lieuNom [(ngModel)]="lieu.nom" class="form-control">
+              <label for="lieuNom">Nom :</label>
+              <input type="text" name="lieuNom" [(ngModel)]="lieu.nom" class="form-control"
+                [ngModelOptions]="{ standalone: true }">
 
               <label for="lieuCommentaire">Commentaire :</label>
-              <textarea name="lieuCommentaire" [(ngModel)]="lieu.commentaire" class="form-control"></textarea>
+              <textarea name="lieuCommentaire" [(ngModel)]="lieu.commentaire" class="form-control"
+                [ngModelOptions]="{ standalone: true }"></textarea>
 
-              <label for="lieuPhotos">Photos : </label>
+              <label for="lieuPhotos">Photos :</label>
               <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event)" multiple
                 style="display: block;">
 
-              <label for="lieuDepense">Dépense : </label>
-              <input type="text" name=lieuDepense [(ngModel)]="lieu.depense" class="form-control">
+              <label for="lieuDepense">Dépense :</label>
+              <input type="text" name="lieuDepense" [(ngModel)]="lieu.depense" class="form-control"
+                [ngModelOptions]="{ standalone: true }">
 
               <label for="lieuType">Type :</label>
-              <input type="text" name="lieuType" [(ngModel)]="lieu.type" class="form-control">
+              <input type="text" name="lieuType" [(ngModel)]="lieu.type" class="form-control"
+                [ngModelOptions]="{ standalone: true }">
             </div>
 
             <div>
@@ -134,15 +146,13 @@
           </form>
         </div>
 
-        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm()" style="margin-top: 2%">Ajouter une
-          activité</button>
+        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm()" style="margin-top: 2%">Ajouter une activité</button>
 
         <div style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;">
           <button type="submit" class="btn btn-primary" (click)="saveGuideVoyage()">Ajouter guide de voyage</button>
         </div>
 
       </form>
-
 
     </div>
   </div>
