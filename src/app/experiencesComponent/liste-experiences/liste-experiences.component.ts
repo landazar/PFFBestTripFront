@@ -12,6 +12,9 @@ import { ExperiencesService } from 'src/app/Service/experiences.service';
 export class ListeExperiencesComponent implements OnInit {
 
   listeExperiences!:Experiences[];
+  listeExperiencesApprouvees!:Experiences[];
+  listeExperiencesNonApprouvees!:Experiences[];
+  currentExperiencesList: Experiences[] = [];
 
   type: string = ""
 
@@ -22,15 +25,24 @@ export class ListeExperiencesComponent implements OnInit {
   ngOnInit(): void {
     this.getAllExperiences(this.type);
   }
-
   
 
   getAllExperiences(type: string) {
     this.es.listeExperiences(type).subscribe((listeExperiences: Experiences[]) => {
       this.listeExperiences = listeExperiences;
+      this.listeExperiencesApprouvees = listeExperiences.filter((value) => value.estApprouvee);
+      this.listeExperiencesNonApprouvees = listeExperiences.filter((value) => !value.estApprouvee);
+      this.currentExperiencesList = this.listeExperiencesApprouvees;
     });
   }
+  
 
+  toggleExperiencesList() {
+    this.currentExperiencesList =
+      this.currentExperiencesList === this.listeExperiencesApprouvees
+        ? this.listeExperiencesNonApprouvees
+        : this.listeExperiencesApprouvees;
+  }
 
   deleteExperiences(idExperience:number)
   {
