@@ -63,25 +63,9 @@ export class AjoutGuideVoyageComponent implements OnInit {
     
     console.log(this.guideForm.value.listeU);
     this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe();
-    // const activitesArray = this.guideForm.get('activites')?.value as Activite[];
-  
-    // const saveActivitesPromises: Promise<any>[] = [];
-  
-    // Sauvegarder toutes les activités individuellement
-    // activitesArray.forEach(activite => {
-    //   const saveActivitePromise = this.guideVoyageService.saveActivite(activite).toPromise();
-    //   saveActivitesPromises.push(saveActivitePromise);
-    // });
-  
-    
 
-    // Attendre la sauvegarde de toutes les activités
-    // Promise.all(saveActivitesPromises).then(() => {
-    //   // Une fois que toutes les activités sont sauvegardées, sauvegarder le guide de voyage
-    //   this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe(() => {
     this.router.navigateByUrl('afficher-guide-voyage');
-    //   });
-    // });
+
   }  
 
   supprimerActivite(i: number) {
