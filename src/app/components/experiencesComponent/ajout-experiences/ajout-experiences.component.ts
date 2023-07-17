@@ -22,6 +22,9 @@ export class AjoutExperiencesComponent implements OnInit {
 
   constructor(private es:ExperiencesService, private formBuilder:FormBuilder, private router:Router) {}
 
+  /**
+   * Au moment de l'initialisation, on initialise le formulaire à des valeurs "nulles" pour qu'il puisse être complété par l'utilisateur
+   */
   ngOnInit(): void {
 
     this.experiencesForm = this.formBuilder.group(
@@ -39,6 +42,9 @@ export class AjoutExperiencesComponent implements OnInit {
 
   username:string = "";
 
+  /**
+   * Fonction pour créer une expérience en passant par le service ExperiencesService
+   */
   saveExperiences()
   {
     console.log(this.experiencesForm.value);
@@ -46,12 +52,19 @@ export class AjoutExperiencesComponent implements OnInit {
     this.router.navigateByUrl("listeExperiences");
   }
 
+  /**
+   * Fonction pour supprimer une activité de la liste des activités de l'expérience
+   * @param i : index de l'activité à supprimer dans la liste
+   */
   supprimerActivite(i: number) {
     const activitesArray = this.experiencesForm.get('activites')?.value as Activite[];
     activitesArray.splice(i, 1);
     this.experiencesForm.get('activites')?.setValue(activitesArray);
   }
 
+  /**
+   * Fonction pour ajouter une activité au tableaux des activités de l'expérience
+   */
   ajouterActivite() {
     console.log("ajout d'une activité");
     if (this.isRestaurantSelected) {
@@ -64,13 +77,21 @@ export class AjoutExperiencesComponent implements OnInit {
     this.isLieuSelected = false;
   }
 
+  /**
+   * Fonction qui permet d'afficher ou non le formulaire pour ajouter une activité
+   */
   toggleActiviteForm() {
     this.showActiviteForm = !this.showActiviteForm;
     this.isRestaurantSelected = false;
     this.isLieuSelected = false;
   }
 
-  // FileReader.onload : asynchrone -> besoin d'utiliser promise
+  /**
+   * Fonction qui s'occupe de gérer l'upload des photos et de garder la liste photos d'une activité à jour
+   * @param event : événement qui permet de détecter le moment où l'utilisateur upload des photos
+   * @param i : paramètre qui permet de vérifier si les photos ont été upload dans la boucle ngFor où dans le formulaire pour ajouter une activité
+   * Remarque : FileReader.onload : asynchrone -> besoin d'utiliser promise
+   */
   handlePhotoUpload(event: any, i: number) {
     const files = event.target.files;
     const photosPromises: Promise<string>[] = [];
@@ -102,6 +123,11 @@ export class AjoutExperiencesComponent implements OnInit {
     });
   }
 
+  /**
+   * Fonction qui permet de supprimer une photo de la liste des photos d'une activité
+   * @param i : paramètre qui permet de vérifier si les photos ont été upload dans la boucle ngFor où dans le formulaire pour ajouter une activité
+   * @param j : paramètre qui permet de savoir quelle photo doit être supprimée
+   */
   supprimerPhoto(i: number, j: number) {
     if (i != -1) {
       const activitesArray = this.experiencesForm.get('activites')?.value as Activite[];
@@ -116,6 +142,10 @@ export class AjoutExperiencesComponent implements OnInit {
     }
   }
 
+  /**
+   * Fonction qui permet de gérer le changement d'activité (passage de restaurant à lieu et vice versa)
+   * @param event : événement qui permet de détecter le moment où l'utilisateur change de type d'activité
+   */
   handleActivityTypeChange(event: Event) {
     const selectedActivityType = (event.target as HTMLInputElement).value;
     this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
@@ -129,11 +159,16 @@ export class AjoutExperiencesComponent implements OnInit {
     }
   }
   
-  printActivity(activity: Activite): string {
-    if (activity instanceof Restaurant) {
+  /**
+   * Fonction qui affiche le type de l'activité
+   * @param activite : une activité
+   * @returns 'Restaurant' ou 'Lieu' ou '' selon le type de l'activité
+   */
+  printActivity(activite: Activite): string {
+    if (activite instanceof Restaurant) {
       return 'Restaurant';
     }
-    if (activity instanceof Lieu) {
+    if (activite instanceof Lieu) {
       return 'Lieu';
     }
     return '';

@@ -30,6 +30,9 @@ export class UpdateExperiencesComponent implements OnInit {
     this.idExperience = ar.snapshot.params["idExperience"];
   }
 
+  /**
+   * Au moment de l'initialisation, on récupère et préremplit le formulaire de l'expérience
+   */
   ngOnInit(): void {
     this.es.getUsernameById(this.idExperience).subscribe(username => {
       var u = JSON.stringify(username); 
@@ -49,18 +52,28 @@ export class UpdateExperiencesComponent implements OnInit {
     // this.username = this.es.getUsernameById(this.idExperience);
   }
 
+  /**
+   * Fonction pour modifier une expérience en passant par le service ExperiencesService
+   */
   updateExperiences() {
     console.log(this.experiencesForm.value);
     this.es.updateExperiences(this.experiencesForm?.value, this.username).subscribe();
     this.router.navigateByUrl("listeExperiences");
   }
 
+  /**
+   * Fonction pour supprimer une activité de la liste des activités de l'expérience
+   * @param i : index de l'activité à supprimer dans la liste
+   */
   supprimerActivite(i: number) {
     const activitesArray = this.experiencesForm.get('activites')?.value as Activite[];
     activitesArray.splice(i, 1);
     this.experiencesForm.get('activites')?.setValue(activitesArray);
   }
 
+  /**
+   * Fonction pour ajouter une activité au tableaux des activités de l'expérience
+   */
   ajouterActivite() {
     console.log("ajout d'une activité");
     if (this.isRestaurantSelected) {
@@ -74,13 +87,21 @@ export class UpdateExperiencesComponent implements OnInit {
     console.log(this.experiencesForm.value);
   }
 
+  /**
+   * Fonction qui permet d'afficher ou non le formulaire pour ajouter une activité
+   */
   toggleActiviteForm() {
     this.showActiviteForm = !this.showActiviteForm;
     this.isRestaurantSelected = false;
     this.isLieuSelected = false;
   }
   
-  // FileReader.onload : asynchrone -> besoin d'utiliser promise
+  /**
+   * Fonction qui s'occupe de gérer l'upload des photos et de garder la liste photos d'une activité à jour
+   * @param event : événement qui permet de détecter le moment où l'utilisateur upload des photos
+   * @param i : paramètre qui permet de vérifier si les photos ont été upload dans la boucle ngFor où dans le formulaire pour ajouter une activité
+   * Remarque : FileReader.onload : asynchrone -> besoin d'utiliser promise
+   */
   handlePhotoUpload(event: any, i: number) {
     const files = event.target.files;
     const photosPromises: Promise<string>[] = [];
@@ -112,6 +133,11 @@ export class UpdateExperiencesComponent implements OnInit {
     });
   }
 
+  /**
+   * Fonction qui permet de supprimer une photo de la liste des photos d'une activité
+   * @param i : paramètre qui permet de vérifier si les photos ont été upload dans la boucle ngFor où dans le formulaire pour ajouter une activité
+   * @param j : paramètre qui permet de savoir quelle photo doit être supprimée
+   */
   supprimerPhoto(i: number, j: number) {
     if (i != -1) {
       const activitesArray = this.experiencesForm.get('activites')?.value as Activite[];
@@ -126,6 +152,10 @@ export class UpdateExperiencesComponent implements OnInit {
     }
   }
 
+  /**
+   * Fonction qui permet de gérer le changement d'activité (passage de restaurant à lieu et vice versa)
+   * @param event : événement qui permet de détecter le moment où l'utilisateur change de type d'activité
+   */
   handleActivityTypeChange(event: Event) {
     const selectedActivityType = (event.target as HTMLInputElement).value;
     this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
@@ -139,6 +169,11 @@ export class UpdateExperiencesComponent implements OnInit {
     }
   }
 
+  /**
+   * Fonction qui affiche le type de l'activité
+   * @param activite : une activité
+   * @returns 'Restaurant' ou 'Lieu' ou '' selon le type de l'activité
+   */
   printActivity(activity: Activite): string {
     if (activity instanceof Restaurant) {
       return 'Restaurant';
