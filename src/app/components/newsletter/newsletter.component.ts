@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UtilisateurService } from '../Service/utilisateur.service';
+import { UtilisateurService } from 'src/app/Service/utilisateur.service';
 
 @Component({
   selector: 'app-newsletter',

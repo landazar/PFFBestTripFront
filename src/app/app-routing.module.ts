@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AjoutExperiencesComponent } from './experiencesComponent/ajout-experiences/ajout-experiences.component';
-import { ListeExperiencesComponent } from './experiencesComponent/liste-experiences/liste-experiences.component';
-import { PaysComponent } from './pays/pays.component';
-import { CreerPaysComponent } from './pays/creer-pays/creer-pays.component';
-import { UpdatePaysComponent } from './pays/update-pays/update-pays.component';
-import { VilleComponent } from './ville/ville.component';
-import { CreerVilleComponent } from './ville/creer-ville/creer-ville.component';
-import { UpdateVilleComponent } from './ville/update-ville/update-ville.component';
-import { AfficherGuideVoyageComponent } from './guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
-import { UpdateExperiencesComponent } from './experiencesComponent/update-experiences/update-experiences.component';
-import { UtilisateurComponent } from './utilisateur/utilisateur.component';
-import { FormulaireUtilisateurComponent } from './formulaire-utilisateur/formulaire-utilisateur.component';
-import { AjoutGuideVoyageComponent } from './guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
-import { AcceuilComponent } from './acceuil/acceuil.component';
-import { UpdateUtilisateurComponent } from './update-utilisateur/update-utilisateur.component';
-import { ModifierGuideVoyageComponent } from './guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
-import { DetailsGuideComponent } from './guide-voyage/details-guide/details-guide.component';
-import { NewsletterComponent } from './newsletter/newsletter.component';
-import { HeaderPagesComponent } from './header-pages/header-pages.component';
-import { DetailsExperiencesComponent } from './experiencesComponent/details-experiences/details-experiences.component';
+import { AjoutExperiencesComponent } from './components/experiencesComponent/ajout-experiences/ajout-experiences.component';
+import { ListeExperiencesComponent } from './components/experiencesComponent/liste-experiences/liste-experiences.component';
+import { PaysComponent } from './components/pays/pays.component';
+import { CreerPaysComponent } from './components/pays/creer-pays/creer-pays.component';
+import { UpdatePaysComponent } from './components/pays/update-pays/update-pays.component';
+import { VilleComponent } from './components/ville/ville.component';
+import { CreerVilleComponent } from './components/ville/creer-ville/creer-ville.component';
+import { UpdateVilleComponent } from './components/ville/update-ville/update-ville.component';
+import { AfficherGuideVoyageComponent } from './components/guide-voyage/afficher-guide-voyage/afficher-guide-voyage.component';
+import { UpdateExperiencesComponent } from './components/experiencesComponent/update-experiences/update-experiences.component';
+import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
+import { FormulaireUtilisateurComponent } from './components/formulaire-utilisateur/formulaire-utilisateur.component';
+import { AjoutGuideVoyageComponent } from './components/guide-voyage/ajout-guide-voyage/ajout-guide-voyage.component';
+import { AcceuilComponent } from './components/acceuil/acceuil.component';
+import { UpdateUtilisateurComponent } from './components/update-utilisateur/update-utilisateur.component';
+import { ModifierGuideVoyageComponent } from './components/guide-voyage/modifier-guide-voyage/modifier-guide-voyage.component';
+import { DetailsGuideComponent } from './components/guide-voyage/details-guide/details-guide.component';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
+import { HeaderPagesComponent } from './components/header-pages/header-pages.component';
+import { DetailsExperiencesComponent } from './components/experiencesComponent/details-experiences/details-experiences.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
