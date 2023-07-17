@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <table class="table">
+  <table class="table custom-table">
     <thead>
       <tr>
         <th>Numéro</th>
@@ -34,7 +34,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let guide of guides" (click)="detailsGuide(guide.idGuide)">
+      <tr *ngFor="let guide of currentGuidesList" (click)="detailsGuide(guide.idGuide)">
         <td>{{ guide.idGuide }}</td>
         <td>{{ guide.nom }}</td>
         <td>{{ guide.dateCreation | date }}</td>
@@ -45,7 +45,6 @@
             (click)="approuverGuide(guide.idGuide); $event.stopPropagation()">Approuver</button>
           <button (click)="supprimerGuide(guide.idGuide); $event.stopPropagation()">Supprimer</button>
           <button (click)="modifierGuide(guide.idGuide); $event.stopPropagation()">Modifier</button>
-          <button (click)="detailsGuide(guide.idGuide); $event.stopPropagation()">Détails</button>
         </td>
       </tr>
     </tbody>

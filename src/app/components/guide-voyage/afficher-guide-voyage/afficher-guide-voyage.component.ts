@@ -50,6 +50,9 @@ export class AfficherGuideVoyageComponent implements OnInit {
       this.listeGuidesApprouvees = guides.filter((value) => value.estApprouve);
       this.listeGuidesNonApprouvees = guides.filter((value) => !value.estApprouve);
       this.currentGuidesList = this.listeGuidesApprouvees;
+      console.log(this.listeGuidesApprouvees);
+      console.log(this.listeGuidesNonApprouvees);
+      console.log(this.currentGuidesList);
     });
   }
 
