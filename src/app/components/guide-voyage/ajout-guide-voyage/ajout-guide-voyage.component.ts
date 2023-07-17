@@ -26,117 +26,48 @@ export class AjoutGuideVoyageComponent implements OnInit {
     private guideVoyageService: GuideVoyageService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private us:UtilisateurService
+    private us: UtilisateurService
   ) {}
 
-
-  username!:string;
-  
+  username!: string;
 
   ngOnInit(): void {
+    // Initialisation du formulaire
     this.guideForm = this.formBuilder.group({
       nom: [null],
       dateCreation: [null],
       description: [null],
       activites: [[]],
-      listeU:[[]]
+      listeU: [[]]
     });
-    
   }
 
-  ajouterUtilisateur()
-  {
+  // Ajoute un utilisateur à la liste des utilisateurs du guide de voyage
+  ajouterUtilisateur(): void {
     this.us.getUtilisateurByUsername(this.username).subscribe(data => {
-      console.log("data :" + data);
       this.guideForm.value.listeU.push(data);
-      this.username="";
+      this.username = "";
     });
   }
 
-  supprimerUtilisateur(i: number) {
+  // Supprime un utilisateur de la liste des utilisateurs du guide de voyage
+  supprimerUtilisateur(i: number): void {
     const UtilisateurArray = this.guideForm.get('listeU')?.value as Utilisateur[];
-    UtilisateurArray.splice(i, 1);
+    UtilisateurArray.splice(i, 1); // Supprime l'utilisateur à l'index i de la liste
     this.guideForm.get('listeU')?.setValue(UtilisateurArray);
   }
 
+  // Sauvegarde le guide de voyage
   saveGuideVoyage(): void {
-    
-    console.log(this.guideForm.value.listeU);
     this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe();
-
     this.router.navigateByUrl('afficher-guide-voyage');
+  }
 
-  }  
-
-  supprimerActivite(i: number) {
-    const activitesArray = this.guideForm.get('activites')?.value as Activite[];
-    activitesArray.splice(i, 1);
+  // Supprime une activité du guide de voyage
+  supprimerActivite(i: number): void {
+    // Récupère la liste des activités du formulaire
+    const activitesArray = this.guideForm.get('activites')?.value as Activite[];// Récupère les activités du formulaire en tant que tableau d'objets de type 'Activite[]'
+    activitesArray.splice(i, 1); // Supprime l'activité à l'index i de la liste
     this.guideForm.get('activites')?.setValue(activitesArray);
   }
-
-  ajouterActivite() {
-    console.log("ajout d'une activité");
-    if (this.isRestaurantSelected) {
-      this.guideForm.value.activites.push(this.restaurant);
-    } else {
-      this.guideForm.value.activites.push(this.lieu);
-    }
-    this.toggleActiviteForm();
-    console.log(this.guideForm.value);
-  }
-
-  toggleActiviteForm() {
-    this.showActiviteForm = !this.showActiviteForm;
-    this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
-    this.lieu = new Lieu(0, '', '', [], '', 0, '');
-    console.log(this.showActiviteForm);
-  }
-
-  handlePhotoUpload(event: any) {
-    const files = event.target.files;
-    const photos: any[] = [];
-    for (let i = 0; i < files.length; i++) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        photos.push(e.target.result);
-      };
-      reader.readAsDataURL(files[i]);
-    }
-    if (this.isRestaurantSelected) {
-      this.restaurant.photos = photos;
-    } else {
-      this.lieu.photos = photos;
-    }
-  }
-
-  supprimerPhoto(i: number, j: number) {
-    const activitesArray = this.guideForm.get('activites')?.value as Activite[];
-    activitesArray[i].photos.splice(j, 1);
-    this.guideForm.get('activites')?.setValue(activitesArray);
-    console.log(this.guideForm.value.activites);
-  }
-
-  printActivity(activity: Activite): string {
-    if (activity instanceof Restaurant) {
-      return 'Restaurant';
-    }
-    if (activity instanceof Lieu) {
-      return 'Lieu';
-    }
-    return '';
-  }
-
-  handleActivityTypeChange(event: Event) {
-    const selectedActivityType = (event.target as HTMLInputElement).value;
-    this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
-    this.lieu = new Lieu(0, '', '', [], '', 0, '');
-    if (selectedActivityType === 'restaurant') {
-      this.isRestaurantSelected = true;
-      this.isLieuSelected = false;
-    } else {
-      this.isRestaurantSelected = false;
-      this.isLieuSelected = true;
-    }
-  }
-  
 }
