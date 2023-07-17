@@ -1,4 +1,4 @@
-<app-header-pages></app-header-pages>
+<app-header-pages [pageTitle]="'Créer un guide de voyage'"></app-header-pages>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-6">
@@ -15,7 +15,7 @@
         <form>
           <label for="username" class="form-label">Username</label>
           <input type="text" class="form-control" name="username" [(ngModel)]="username">
-          <button type="submit" (click)="ajouterUtilisateur()">Ajouter Utilisateur</button>
+          <button type="submit" class="btn btn-outline-secondary" (click)="ajouterUtilisateur()">Ajouter Utilisateur</button>
         </form>
       </div>
 
@@ -36,9 +36,11 @@
           <textarea class="form-control" formControlName="description" rows="4"></textarea>
         </div>
 
+        <input hidden type="text" formControlName="estApprouve" class="form-control">
+
         <h3>Activités :</h3>
 
-        <div *ngFor="let a of guideForm.value.activites; let i = index">
+        <div *ngFor="let a of guideForm.value.activites; let i = index" class="activite">
           <label for="activiteNom{{i}}">Nom :</label>
           <input type="text" name="activiteNom{{i}}" [(ngModel)]="a.nom" class="form-control"
             [ngModelOptions]="{ standalone: true }">
@@ -47,14 +49,20 @@
           <textarea name="activiteCommentaire{{i}}" [(ngModel)]="a.commentaire" class="form-control"
             [ngModelOptions]="{ standalone: true }"></textarea>
 
+          
+
           <div>
-            <label for="activitePhotos{{i}}">Photos :</label>
-            <div *ngFor="let photo of a.photos; let j = index">
-              <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
-              <button type="button" (click)="supprimerPhoto(i, j)">Supprimer la photo</button>
+            <div>
+                <label for="activitePhotos{{i}}">Photos : </label>
             </div>
-            <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event)" multiple style="display: block;">
-          </div>
+            <div *ngFor="let photo of a.photos; let j = index">
+                <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
+                <button type="button"class="btn btn-outline-dark" (click)="supprimerPhoto(i, j)">Supprimer la photo</button>
+            </div>
+            <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event, i)" multiple class="file-input"
+                id="fileInput">
+            <label for="fileInput" class="file-label">Ajouter des photos</label>
+        </div>
 
           <label for="activiteDepense{{i}}">Dépense :</label>
           <input type="text" name="activiteDepense{{i}}" [(ngModel)]="a.depense" class="form-control"
@@ -70,12 +78,12 @@
               [ngModelOptions]="{ standalone: true }">
           </div>
 
-          <button type="button" (click)="supprimerActivite(i)">Supprimer l'activité</button>
+          <button type="button" class="btn btn-danger" (click)="supprimerActivite(i)">Supprimer l'activité</button>
         </div>
       </form>
 
       <form>
-        <div *ngIf="showActiviteForm">
+        <div *ngIf="showActiviteForm" class="activite">
           <form class="formGroup">
             <div>
               <div>
@@ -99,9 +107,18 @@
               <textarea name="restaurantCommentaire" [(ngModel)]="restaurant.commentaire" class="form-control"
                 [ngModelOptions]="{ standalone: true }"></textarea>
 
-              <label for="restaurantPhotos">Photos :</label>
-              <input type="file" name="restaurantPhotos" (change)="handlePhotoUpload($event)" multiple
-                style="display: block;">
+                <div>
+                  <div>
+                      <label for="restaurantPhotos">Photos:</label>
+                  </div>
+                  <div *ngFor="let photo of restaurant.photos; let j = index">
+                      <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
+                      <button type="button" class="btn btn-outline-dark" (click)="supprimerPhoto(-1, j)">Supprimer la photo</button>
+                  </div>
+                  <input type="file" name="restaurantPhotos" (change)="handlePhotoUpload($event, -1)" multiple
+                      class="file-input" id="restaurantFileInput">
+                  <label for="restaurantFileInput" class="file-label">Ajouter des photos</label>
+              </div>
 
               <label for="restaurantDepense">Dépense :</label>
               <input type="text" name="restaurantDepense" [(ngModel)]="restaurant.depense" class="form-control"
@@ -125,9 +142,18 @@
               <textarea name="lieuCommentaire" [(ngModel)]="lieu.commentaire" class="form-control"
                 [ngModelOptions]="{ standalone: true }"></textarea>
 
-              <label for="lieuPhotos">Photos :</label>
-              <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event)" multiple
-                style="display: block;">
+                <div>
+                  <div>
+                      <label for="lieuPhotos">Photos:</label>
+                  </div>
+                  <div *ngFor="let photo of lieu.photos; let j = index">
+                      <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
+                      <button type="button" class="btn btn-outline-dark" (click)="supprimerPhoto(-1, j)">Supprimer la photo</button>
+                  </div>
+                  <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event, -1)" multiple
+                      class="file-input" id="lieuFileInput">
+                  <label for="lieuFileInput" class="file-label">Ajouter des photos</label>
+              </div>
 
               <label for="lieuDepense">Dépense :</label>
               <input type="text" name="lieuDepense" [(ngModel)]="lieu.depense" class="form-control"
@@ -138,15 +164,19 @@
                 [ngModelOptions]="{ standalone: true }">
             </div>
 
+
             <div>
-              <button type="submit" (click)="ajouterActivite()">Ajouter</button>
-              <button *ngIf="showActiviteForm" (click)="toggleActiviteForm()">Annuler</button>
-            </div>
+              <button *ngIf="showActiviteForm" type="submit" class="btn btn-outline-success"
+                  (click)="ajouterActivite()" style="margin-top: 1%">Ajouter</button>
+
+              <button (click)="toggleActiviteForm()" class="btn btn-outline-danger"
+                  style="margin-top: 1%">Annuler</button>
+          </div>
 
           </form>
         </div>
 
-        <button *ngIf="!showActiviteForm" (click)="toggleActiviteForm()" style="margin-top: 2%">Ajouter une activité</button>
+        <button *ngIf="!showActiviteForm" class="btn btn-success" (click)="toggleActiviteForm()" style="margin-top: 2%">Ajouter une activité</button>
 
         <div style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;">
           <button type="submit" class="btn btn-outline-primary" (click)="saveGuideVoyage()">Ajouter guide de voyage</button>

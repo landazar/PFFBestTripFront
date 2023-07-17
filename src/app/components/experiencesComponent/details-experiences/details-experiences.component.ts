@@ -16,10 +16,16 @@ export class DetailsExperiencesComponent implements OnInit {
     private experiencesService: ExperiencesService
   ) { }
 
+  /**
+   * Lors de l'initialisation, récupère l'expérience dont l'identifiant a été passé dans l'url de la page
+   */
   ngOnInit(): void {
     this.getExperiences();
   }
 
+  /**
+   * Fonction qui récupère l'expérience dont l'identifiant a été passé dans l'url de la page
+   */
   getExperiences(): void {
     this.route.paramMap.subscribe(params => {
       const idExperience = +params.get('idExperience')!;

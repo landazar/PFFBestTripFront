@@ -38,6 +38,7 @@ export class AjoutGuideVoyageComponent implements OnInit {
       dateCreation: [null],
       description: [null],
       activites: [[]],
+      estApprouve: [false],
       listeU: [[]]
     });
   }
@@ -97,7 +98,7 @@ export class AjoutGuideVoyageComponent implements OnInit {
     this.lieu = new Lieu(0, '', '', [], '', 0, '');
     console.log(this.showActiviteForm);
   }
-
+  /*
   handlePhotoUpload(event: any) {
     // Gérer le téléchargement de photos pour une activité
     const files = event.target.files;
@@ -115,13 +116,61 @@ export class AjoutGuideVoyageComponent implements OnInit {
       this.lieu.photos = photos;
     }
   }
+  */
 
+  handlePhotoUpload(event: any, i: number) {
+    const files = event.target.files;
+    const photosPromises: Promise<string>[] = [];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const promise = new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          resolve(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+      photosPromises.push(promise);
+    }
+  
+    Promise.all(photosPromises).then((photos) => {
+      const activitesArray = this.guideForm.get('activites')?.value as Activite[];
+      if (i != -1) {
+        activitesArray[i].photos.push(...photos);
+        this.guideForm.get('activites')?.patchValue(activitesArray);
+      } else {
+        if (this.isRestaurantSelected) {
+          this.restaurant.photos = this.restaurant.photos.concat(photos);
+        } else {
+          this.lieu.photos = this.lieu.photos.concat(photos);
+        }
+      }
+      event.target.value = null;
+    });
+  }
+
+  /*
   supprimerPhoto(i: number, j: number) {
     // Supprimer une photo d'une activité spécifique dans le formulaire
     const activitesArray = this.guideForm.get('activites')?.value as Activite[];
     activitesArray[i].photos.splice(j, 1);
     this.guideForm.get('activites')?.setValue(activitesArray);
     console.log(this.guideForm.value.activites);
+  }
+  */
+
+  supprimerPhoto(i: number, j: number) {
+    if (i != -1) {
+      const activitesArray = this.guideForm.get('activites')?.value as Activite[];
+      activitesArray[i].photos.splice(j, 1);
+      this.guideForm.get('activites')?.setValue(activitesArray);
+    } else {
+      if (this.isRestaurantSelected) {
+        this.restaurant.photos.splice(j, 1);
+      } else {
+        this.lieu.photos.splice(j, 1);
+      }
+    }
   }
 
   printActivity(activity: Activite): string {
