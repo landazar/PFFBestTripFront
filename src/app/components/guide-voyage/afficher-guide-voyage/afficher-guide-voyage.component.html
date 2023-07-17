@@ -1,13 +1,13 @@
 <app-header-pages [pageTitle]="'Liste des guides de voyages'"></app-header-pages>
 <label>Chercher un guide de voyage</label>
 <input type="text" [(ngModel)]="nom">
-<button (click)="getGuidesVoyage(nom); doesGuideExist(nom);">Recherche des expériences</button>
+<button class="btn btn-outline-secondary" (click)="getGuidesVoyage(nom); doesGuideExist(nom);">Recherche des expériences</button>
 
 <h3>Liste des guides de voyage</h3>
 <div style="display: grid; gap: 5%;">
-  <div style="display: grid; gap: 10%">
+  <div style="display: grid; gap: 5%">
     <div>
-      <button (click)="toggleGuidesList()">
+      <button class="btn btn-outline-info" (click)="toggleGuidesList()">
         {{
         currentGuidesList === listeGuidesApprouvees
         ? "Voir guides non approuves"
@@ -19,7 +19,7 @@
     <div style="display: flex;">
       <label>Chercher un guide de voyage</label>
       <input type="text" [(ngModel)]="nom" style="margin-left: 1%; margin-right: 1%;" />
-      <button (click)="getGuidesVoyage(nom); doesGuideExist(nom)">
+      <button class="btn btn-outline-secondary" (click)="getGuidesVoyage(nom); doesGuideExist(nom)">
         Recherche des guides
       </button>
     </div>
@@ -44,10 +44,10 @@
         <td>{{ guide.description }}</td>
         <td>{{ guide.note }}/5</td>
         <td>
-          <button *ngIf="!guide.estApprouve"
+          <button *ngIf="!guide.estApprouve" class="btn btn-success"
             (click)="approuverGuide(guide.idGuide); $event.stopPropagation()">Approuver</button>
-          <button (click)="supprimerGuide(guide.idGuide); $event.stopPropagation()">Supprimer</button>
-          <button (click)="modifierGuide(guide.idGuide); $event.stopPropagation()">Modifier</button>
+          <button class="btn btn-warning" (click)="supprimerGuide(guide.idGuide); $event.stopPropagation()">Supprimer</button>
+          <button class="btn btn-danger" (click)="modifierGuide(guide.idGuide); $event.stopPropagation()">Modifier</button>
         </td>
       </tr>
     </tbody>

@@ -1,9 +1,9 @@
 <app-header-pages [pageTitle]="'Liste des expériences'"></app-header-pages>
 <h3>Liste des expériences</h3>
 <div style="display: grid; gap: 5%;">
-    <div style="display: grid; gap: 10%;">
+    <div style="display: grid; gap: 5%;">
         <div>
-            <button (click)="toggleExperiencesList()">
+            <button class="btn btn-outline-info" (click)="toggleExperiencesList()">
                 {{ currentExperiencesList === listeExperiencesApprouvees ? 'Voir expériences non approuvées' : 'Voir
                 expériences
                 approuvées' }}
@@ -18,7 +18,7 @@
                 <option value="Randonnée">Randonnée</option>
                 <option value="Safari">Safari</option>
             </select>
-            <button (click)="getAllExperiences(type); doesExperienceExist(type);">Recherche des expériences</button>
+            <button class="btn btn-outline-secondary" (click)="getAllExperiences(type); doesExperienceExist(type);">Recherche des expériences</button>
         </div>
     </div>
     
@@ -40,10 +40,10 @@
                 <td>{{experience.dateFin}}</td>
                 <td>{{experience.type}}</td>
                 <td>
-                    <button *ngIf="!experience.estApprouvee"
+                    <button *ngIf="!experience.estApprouvee" class="btn btn-success"
                         (click)="approuverExperiences(experience.idExperience); $event.stopPropagation()">Approuver</button>
-                    <button (click)="updateExperiences(experience.idExperience); $event.stopPropagation()">Modifier</button>
-                    <button
+                    <button class="btn btn-warning" (click)="updateExperiences(experience.idExperience); $event.stopPropagation()">Modifier</button>
+                    <button class="btn btn-danger"
                         (click)="deleteExperiences(experience.idExperience); $event.stopPropagation()">Supprimer</button>
                 </td>
             </tr>
