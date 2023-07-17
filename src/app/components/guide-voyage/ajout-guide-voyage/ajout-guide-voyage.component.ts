@@ -26,55 +26,60 @@ export class AjoutGuideVoyageComponent implements OnInit {
     private guideVoyageService: GuideVoyageService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private us:UtilisateurService
+    private us: UtilisateurService
   ) {}
 
-
-  username!:string;
-  
+  username!: string;
 
   ngOnInit(): void {
+    // Initialiser le formulaire de guide de voyage
     this.guideForm = this.formBuilder.group({
       nom: [null],
       dateCreation: [null],
       description: [null],
       activites: [[]],
-      listeU:[[]]
+      listeU: [[]]
     });
-    
   }
 
-  ajouterUtilisateur()
-  {
+  ajouterUtilisateur() {
+    // Récupérer l'utilisateur par nom d'utilisateur et l'ajouter à la liste des utilisateurs
     this.us.getUtilisateurByUsername(this.username).subscribe(data => {
       console.log("data :" + data);
       this.guideForm.value.listeU.push(data);
-      this.username="";
+      this.username = "";
     });
   }
 
   supprimerUtilisateur(i: number) {
+    // Supprimer un utilisateur de la liste des utilisateurs
     const UtilisateurArray = this.guideForm.get('listeU')?.value as Utilisateur[];
     UtilisateurArray.splice(i, 1);
     this.guideForm.get('listeU')?.setValue(UtilisateurArray);
   }
 
   saveGuideVoyage(): void {
-    
+    // Sauvegarder le guide de voyage en appelant le service approprié
     console.log(this.guideForm.value.listeU);
     this.guideVoyageService.saveGuideVoyage(this.guideForm.value).subscribe();
-
     this.router.navigateByUrl('afficher-guide-voyage');
-
   }  
 
-  supprimerActivite(i: number) {
+  // Supprimer une activité du formulaire
+  supprimerActivite(i: number) { 
+    // Récupérer le tableau des activités du formulaire
     const activitesArray = this.guideForm.get('activites')?.value as Activite[];
+  
+    // Supprimer l'activité à l'index spécifié du tableau
     activitesArray.splice(i, 1);
+  
+    // Mettre à jour la valeur du formulaire avec le tableau modifié
     this.guideForm.get('activites')?.setValue(activitesArray);
   }
+  
 
   ajouterActivite() {
+    // Ajouter une activité au formulaire en fonction du type sélectionné (restaurant ou lieu)
     console.log("ajout d'une activité");
     if (this.isRestaurantSelected) {
       this.guideForm.value.activites.push(this.restaurant);
@@ -86,6 +91,7 @@ export class AjoutGuideVoyageComponent implements OnInit {
   }
 
   toggleActiviteForm() {
+    // Afficher ou masquer le formulaire d'activité
     this.showActiviteForm = !this.showActiviteForm;
     this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
     this.lieu = new Lieu(0, '', '', [], '', 0, '');
@@ -93,6 +99,7 @@ export class AjoutGuideVoyageComponent implements OnInit {
   }
 
   handlePhotoUpload(event: any) {
+    // Gérer le téléchargement de photos pour une activité
     const files = event.target.files;
     const photos: any[] = [];
     for (let i = 0; i < files.length; i++) {
@@ -110,6 +117,7 @@ export class AjoutGuideVoyageComponent implements OnInit {
   }
 
   supprimerPhoto(i: number, j: number) {
+    // Supprimer une photo d'une activité spécifique dans le formulaire
     const activitesArray = this.guideForm.get('activites')?.value as Activite[];
     activitesArray[i].photos.splice(j, 1);
     this.guideForm.get('activites')?.setValue(activitesArray);
@@ -117,6 +125,7 @@ export class AjoutGuideVoyageComponent implements OnInit {
   }
 
   printActivity(activity: Activite): string {
+    // Afficher le type d'activité (restaurant ou lieu)
     if (activity instanceof Restaurant) {
       return 'Restaurant';
     }
@@ -127,6 +136,7 @@ export class AjoutGuideVoyageComponent implements OnInit {
   }
 
   handleActivityTypeChange(event: Event) {
+    // Gérer le changement de type d'activité sélectionné (restaurant ou lieu)
     const selectedActivityType = (event.target as HTMLInputElement).value;
     this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
     this.lieu = new Lieu(0, '', '', [], '', 0, '');
@@ -138,5 +148,4 @@ export class AjoutGuideVoyageComponent implements OnInit {
       this.isLieuSelected = true;
     }
   }
-  
 }
