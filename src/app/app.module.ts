@@ -32,6 +32,7 @@ import { HeaderPagesComponent } from './components/header-pages/header-pages.com
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutUsComponent } from './components/footerPages/about-us/about-us.component';
 import { ContactComponent } from './components/footerPages/contact/contact.component';
+import { HelpComponent } from './components/footerPages/help/help.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ContactComponent } from './components/footerPages/contact/contact.compo
     FooterComponent,
     DetailsExperiencesComponent,
     AboutUsComponent,
-    ContactComponent
+    ContactComponent,
+    HelpComponent
 
   ],
   imports: [
