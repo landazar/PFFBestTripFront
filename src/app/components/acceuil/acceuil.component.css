@@ -5,7 +5,7 @@
     font-family: 'Courier New', Courier, monospace;
     font-style: oblique;
     color: wheat;
-    margin-top: 1%;
+    /* margin-top: 1%; */
     font-size: 400%;
     background: rgba(0, 0, 0, .5);
     
@@ -22,6 +22,8 @@
     background-image: url(https://www.les-covoyageurs.com/ressources/images-lieux/photo-lieu-624-1.jpg);
     background-position: 80%;
     /* border: 2px solid black; */
+    width: 100%;
+    margin: 0;
 
 }
 
