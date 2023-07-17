@@ -1,60 +1,67 @@
 <app-header-pages [pageTitle]="'Liste des expériences'"></app-header-pages>
-<h3>Liste des expériences</h3>
-<div style="display: grid; gap: 5%;">
+<div class="container">
+    <h3>Liste des expériences</h3>
     <div style="display: grid; gap: 5%;">
+        <div style="display: grid; gap: 5%;">
+            <div style="display: flex;">
+                <label>Chercher une expérience par type :</label>
+                <select class="form-select" style="width:auto; margin-left: 1%; margin-right: 1%;" [(ngModel)]="type">
+                    <option value="Plage">Plage</option>
+                    <option value="Montagne">Montagne</option>
+                    <option value="Ski">Ski</option>
+                    <option value="Randonnée">Randonnée</option>
+                    <option value="Safari">Safari</option>
+                </select>
+                <button class="btn btn-outline-secondary"
+                    (click)="getAllExperiences(type); doesExperienceExist(type);">Recherche des expériences</button>
+            </div>
+        </div>
+
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th scope="col">Identifiant</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Date de début de séjour</th>
+                    <th scope="col">Date de fin de séjour</th>
+                    <th scope="col">Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let experience of currentExperiencesList"
+                    (click)="detailsExperiences(experience.idExperience)">
+                    <td>{{experience.idExperience}}</td>
+                    <td>{{experience.nom}}</td>
+                    <td>{{experience.dateDebut}}</td>
+                    <td>{{experience.dateFin}}</td>
+                    <td>{{experience.type}}</td>
+                    <td>
+                        <button *ngIf="!experience.estApprouvee" class="btn btn-success"
+                            (click)="approuverExperiences(experience.idExperience); $event.stopPropagation()">Approuver</button>
+                        <button class="btn btn-warning"
+                            (click)="updateExperiences(experience.idExperience); $event.stopPropagation()">Modifier</button>
+                        <button class="btn btn-danger"
+                            (click)="deleteExperiences(experience.idExperience); $event.stopPropagation()">Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf=!param>
+            Aucune expérience ne correspond à cette recherche.
+
+            Soyez le premier à donner votre avis !
+
+            <a href="saveExperiences"><button>Créer expérience</button></a>
+        </div>
+
         <div>
-            <button class="btn btn-outline-info" (click)="toggleExperiencesList()">
+            <button class="btn btn-outline-primary" (click)="toggleExperiencesList()">
                 {{ currentExperiencesList === listeExperiencesApprouvees ? 'Voir expériences non approuvées' : 'Voir
                 expériences
                 approuvées' }}
             </button>
         </div>
-        <div style="display: flex;">
-            <label>Chercher une expérience par type :</label>
-            <select class="form-select" style="width:auto; margin-left: 1%; margin-right: 1%;" [(ngModel)]="type">
-                <option value="Plage">Plage</option>
-                <option value="Montagne">Montagne</option>
-                <option value="Ski">Ski</option>
-                <option value="Randonnée">Randonnée</option>
-                <option value="Safari">Safari</option>
-            </select>
-            <button class="btn btn-outline-secondary" (click)="getAllExperiences(type); doesExperienceExist(type);">Recherche des expériences</button>
-        </div>
-    </div>
-    
-    <table class="table custom-table">
-        <thead>
-            <tr>
-                <th scope="col">Identifiant</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Date de début de séjour</th>
-                <th scope="col">Date de fin de séjour</th>
-                <th scope="col">Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let experience of currentExperiencesList" (click)="detailsExperiences(experience.idExperience)">
-                <td>{{experience.idExperience}}</td>
-                <td>{{experience.nom}}</td>
-                <td>{{experience.dateDebut}}</td>
-                <td>{{experience.dateFin}}</td>
-                <td>{{experience.type}}</td>
-                <td>
-                    <button *ngIf="!experience.estApprouvee" class="btn btn-success"
-                        (click)="approuverExperiences(experience.idExperience); $event.stopPropagation()">Approuver</button>
-                    <button class="btn btn-warning" (click)="updateExperiences(experience.idExperience); $event.stopPropagation()">Modifier</button>
-                    <button class="btn btn-danger"
-                        (click)="deleteExperiences(experience.idExperience); $event.stopPropagation()">Supprimer</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <div *ngIf=!param>
-        Aucune expérience ne correspond à cette recherche.
-    
-        Soyez le premier à donner votre avis !
-    
-        <a href="saveExperiences"><button>Créer expérience</button></a>
     </div>
 </div>

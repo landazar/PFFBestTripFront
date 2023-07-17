@@ -42,7 +42,11 @@
                     </div>
                     <div *ngFor="let photo of a.photos; let j = index">
                         <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
-                        <button type="button" class="btn btn-outline-dark" (click)="supprimerPhoto(i, j)">Supprimer la photo</button>
+                        <button type="button" class="btn btn-outline-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" (click)="supprimerPhoto(i, j)" width="32" height="32" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                            </svg>
+                          </button>
                     </div>
                     <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event, i)" multiple class="file-input"
                         id="fileInput">
@@ -84,7 +88,11 @@
                             </div>
                             <div *ngFor="let photo of restaurant.photos; let j = index">
                                 <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
-                                <button type="button" class="btn btn-outline-dark" (click)="supprimerPhoto(-1, j)">Supprimer la photo</button>
+                                <button type="button" class="btn btn-outline-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" (click)="supprimerPhoto(-1, j)" width="32" height="32" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                    </svg>
+                                  </button>
                             </div>
                             <input type="file" name="restaurantPhotos" (change)="handlePhotoUpload($event, -1)" multiple
                                 class="file-input" id="restaurantFileInput">
@@ -117,7 +125,11 @@
                             </div>
                             <div *ngFor="let photo of lieu.photos; let j = index">
                                 <img [src]="photo" alt="Photo {{j+1}}" width="200" height="150">
-                                <button type="button" class="btn btn-outline-dark" (click)="supprimerPhoto(-1, j)">Supprimer la photo</button>
+                                <button type="button" class="btn btn-outline-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" (click)="supprimerPhoto(-1, j)" width="32" height="32" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                    </svg>
+                                  </button>
                             </div>
                             <input type="file" name="lieuPhotos" (change)="handlePhotoUpload($event, -1)" multiple
                                 class="file-input" id="lieuFileInput">
@@ -163,7 +175,7 @@
                 activité</button>
 
             <div style="margin-top: 2%; margin-bottom: 2%; display: flex; justify-content: center;">
-                <button type="submit" class="btn btn-outline-primary" (click)="updateExperiences()">Modifier</button>
+                <button type="submit" class="btn btn-primary" (click)="updateExperiences()">Modifier</button>
             </div>
 
         </form>

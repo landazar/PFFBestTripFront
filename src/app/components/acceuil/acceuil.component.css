@@ -17,11 +17,11 @@
 }
 
 #entete {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 200px;
     background-image: url(https://www.les-covoyageurs.com/ressources/images-lieux/photo-lieu-624-1.jpg);
     background-position: 80%;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 
 }
 
