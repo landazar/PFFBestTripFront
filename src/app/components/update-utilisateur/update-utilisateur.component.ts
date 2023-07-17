@@ -17,6 +17,7 @@ export class UpdateUtilisateurComponent implements OnInit{
     this.id = ar.snapshot.params["id"];
   }
 
+  //Fonction pour charger le formulaire avec les valeurs déjà rempli de l'utilisateur à modifier
   ngOnInit(): void {
     this.us.getUtilisateurById(this.id).subscribe(data => {
       this.utilisateurForm=this.formBuilder.group(
@@ -34,6 +35,7 @@ export class UpdateUtilisateurComponent implements OnInit{
     })
   }
 
+  // Fonction pour modifier un utilisateur avec les nouvelles valeurs saisis dans le formulaire en faisant appel au service utilisateur, puis redirection sur la liste des utilisateurs
   updateUtilisateur()
   {
     this.us.updateUtilisateur(this.utilisateurForm?.value).subscribe();

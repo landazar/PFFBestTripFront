@@ -21,6 +21,7 @@ export class VilleComponent implements OnInit {
   nomPays!:string;
   id!:number;
 
+  // Fonction pour charger la liste des pays et ville correspondant au pays en faisant appel au service ville et pays
   ngOnInit(): void {
     this.listeVille = this.vs.findAllVille();
     this.listePays = this.ps.findAllPays();
@@ -30,16 +31,17 @@ export class VilleComponent implements OnInit {
     
   }
 
+  //Fonction pour supprimer une ville avec son id en faisant appel au service ville, puis on retourne sur la même page 
   supprimer(id:number)
   {
     this.vs.supprimerVille(id).subscribe();
     this.route.navigateByUrl("listeVille");
   }
 
-  AfficherNomPays(id:number){
-    this.pays = this.ps.getPaysById(id);
-  }
 
+  
+
+  // Fonction pour récupérer une ville à partir de son id, on redirige ensuite sur modifier ville
   getVilleById(id:number)
   {
     this.route.navigateByUrl("modifierVille/" + id);

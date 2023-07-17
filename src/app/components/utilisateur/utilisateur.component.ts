@@ -15,16 +15,19 @@ export class UtilisateurComponent implements OnInit{
 
   listeUtilisateur!:Observable<Utilisateur[]>;
 
+  // Fonction pour charger la liste des utilisateurs en faisant appel au service utilisateur
   ngOnInit(): void {
     this.listeUtilisateur = this.us.listeUtilisateur();
   }
 
+  //Fonction pour supprimer un utilisateur avec son id en faisant appel au service utilisateur, puis on retourne sur la même page 
   supprimer(id:number)
   {
     this.us.supprimerUtilisateur(id).subscribe();
     this.route.navigateByUrl("Utilisateur");
   }
 
+  // Fonction pour récupérer un utilisateur à partir de son id, on redirige ensuite sur update utilisateur
   getUtilisateurById(id:number)
   {
     this.route.navigateByUrl("updateUtilisateur/" + id);

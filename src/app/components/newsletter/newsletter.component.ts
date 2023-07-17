@@ -12,7 +12,7 @@ export class NewsletterComponent {
 
   listeString!:string[];
 
-  //Fonction a mettre dans le js
+  //Fonction pour ouvrir la boite mail et envoyer le mail de la newsletter
 sendMail() {
   this.us.getEmailByEstAbonne().subscribe(listeString => 
     {

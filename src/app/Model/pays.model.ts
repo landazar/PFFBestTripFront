@@ -1,5 +1,5 @@
 import { Ville } from "./ville.model";
-
+// Classe pays avec les attributs de la classe
 export class Pays {
 
     id: number;
