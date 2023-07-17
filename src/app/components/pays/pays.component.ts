@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pays } from '../Model/pays.model';
+import { Pays } from 'src/app/Model/pays.model';
 import { Observable } from 'rxjs/internal/Observable';
-import { PaysService } from '../Service/pays.service';
-import { VilleService } from '../Service/ville.service';
-import { Ville } from '../Model/ville.model';
+import { PaysService } from 'src/app/Service/pays.service';
+import { VilleService } from 'src/app/Service/ville.service';
+import { Ville } from 'src/app/Model/ville.model';
 
 @Component({
   selector: 'app-pays',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { GuideVoyageService } from '../Service/guide-voyage.service';
+import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 import { Router } from '@angular/router';
-import { ExperiencesService } from '../Service/experiences.service';
+import { ExperiencesService } from 'src/app/Service/experiences.service';
 
 @Component({
   selector: 'app-acceuil',
