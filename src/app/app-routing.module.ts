@@ -22,6 +22,7 @@ import { HeaderPagesComponent } from './components/header-pages/header-pages.com
 import { DetailsExperiencesComponent } from './components/experiencesComponent/details-experiences/details-experiences.component';
 import { AboutUsComponent } from './components/footerPages/about-us/about-us.component';
 import { ContactComponent } from './components/footerPages/contact/contact.component';
+import { HelpComponent } from './components/footerPages/help/help.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
@@ -53,7 +54,8 @@ const routes: Routes = [
   {path: "listeExperiences/:type", component: ListeExperiencesComponent},
 
   {path: "aboutUs", component: AboutUsComponent},
-  {path: "contact", component: ContactComponent}
+  {path: "contact", component: ContactComponent},
+  {path: "help", component: HelpComponent}
 ];
 
 @NgModule({
