@@ -1,0 +1,32 @@
+<app-header-pages></app-header-pages>
+<table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">id Utilisateur</th>
+        <th scope="col">Username</th>
+        <th scope="col">Mot de pase</th>
+        <th scope="col">Abonné</th>
+        <th scope="col">Role</th>
+        <th scope="col">email</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ut of listeUtilisateur | async">
+        <th scope="row">{{ut.id}}</th>
+        <td>{{ut.username}}</td>
+        <td>{{ut.mdp}}</td>
+        <td>{{ut.estAbonne}}</td>
+        <td>{{ut.role}}</td>
+        <td>{{ut.email}}</td>
+        <td>{{ut.nom}}</td>
+        <td>{{ut.prenom}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary" (click)="getUtilisateurById(ut.id)">Modifier</button>
+          <button type="button" class="btn btn-outline-danger" (click)="supprimer(ut.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

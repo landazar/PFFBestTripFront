@@ -1,0 +1,30 @@
+<app-header-pages></app-header-pages>
+<div class="container">
+<table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">id Ville</th>
+        <th scope="col">Nom de la Ville</th>
+        <th scope="col">Pays</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ville of listeVille | async">
+        <th scope="row">{{ville.id}}</th>
+        <td>{{ville.nom}}</td>
+        <td > 
+        <p *ngIf="ville.pays; then vrai;else faux"></p>
+        <ng-template #vrai>{{ville.pays.nom}}</ng-template> 
+        <ng-template #faux>N/A</ng-template> 
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="getVilleById(ville.id)">Modifier</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="supprimer(ville.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a routerLink="/ajoutVille"><button type="button" class="btn btn-outline-primary btn-sm">Ajouter une ville</button></a>
+</div>
+  <router-outlet></router-outlet>

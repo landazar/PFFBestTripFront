@@ -1,0 +1,81 @@
+<!-- <app-header-pages></app-header-pages> -->
+<app-menu></app-menu>
+
+<div id="cadre">
+    <div id="entete">
+        <h1 id="titre">Best Trip</h1>
+
+        
+
+            <div id="rechercheBarre">
+
+                <input type="search" [(ngModel)]="destination" class="form-control rounded" placeholder="Destination" aria-label="destination" aria-describedby="search-addon" id="barreRechercheDestination"/>
+            
+            
+                
+                
+
+                <button (click)="recherche()" id="bouttonRecherche"><img id="iconeRecherche" src="https://static.vecteezy.com/ti/vecteur-libre/p1/9244338-icone-de-contour-d-avion-gratuit-vectoriel.jpg" alt="recherche"></button>
+                
+            </div>
+        
+    </div>
+
+    <br>
+    <br>
+
+    <h4 id="phrase">Guides et conseils sur de nombreuses destinations</h4>
+
+    <br>
+    <br>
+
+
+
+    <div class="slider" id="slider1" (click)="plage(); rechercheDestination();">
+
+        <div id="plagePhoto"></div>
+
+        
+        
+        <span class="titleBar">
+            <h1>Vacances au soleil</h1>
+        </span>
+
+
+    </div>
+
+
+
+    <br>
+
+
+    <div class="row2Wrap">
+        
+        
+        <div class="slider" id="slider2" (click)="ski(); rechercheDestination();">
+            
+            <div style="background-image:url(https://fac.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2FFAC.2Fvar.2Ffemmeactuelle.2Fstorage.2Fimages.2Fvoyage.2Fbons-plans-vacances.2Fvacances-au-ski-4-idees-pour-reduire-budget-46647.2F14839352-1-fre-FR.2Fvacances-au-ski-4-idees-pour-reduire-son-budget.2Ejpg/1200x900/quality/80/crop-from/center/vacances-au-ski-5-idees-pour-reduire-son-budget.jpeg)">
+            
+            <span>
+                <h1>Vacances à la neige</h1>
+            </span>
+
+            </div>
+
+        </div>
+        
+
+        <div class="slider" id="slider3" (click)="randonnee(); rechercheDestination();">
+            <div style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/30256/jungle.jpg)">
+                <span>
+                    <h2>Randonnées</h2>
+                </span>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
+
+

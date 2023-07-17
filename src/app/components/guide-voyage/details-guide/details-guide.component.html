@@ -1,0 +1,60 @@
+<app-header-pages></app-header-pages>
+<div id="pdfContent" class="pdfContent">
+  <div class="container">
+    <div class="card mt-4">
+      <div class="card-header">
+        <h4>Détails du guide de voyage :</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Nom :</strong> {{ guide?.nom }}</p>
+            <p><strong>Date de création :</strong> {{ guide?.dateCreation }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Description :</strong></p>
+            <p>{{ guide?.description }}</p>
+          </div>
+        </div>
+        <div class="mt-4">
+          <h5>Activités :</h5>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let activite of guide?.activites">
+              <div class="activity-details">
+                <h6>{{ activite.nom }}</h6>
+                <p><strong>Commentaire :</strong> {{ activite.commentaire }}</p>
+                <p><strong>Prix :</strong> {{ activite.depense }}</p>
+                <img *ngFor="let photo of activite.photos" [src]="photo" alt="Activité Image" class="activity-image">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-header">
+      <h4>Noter le guide de voyage :</h4>
+
+      <div class="q1">
+    
+        <input type="radio" name="q1" value="5" id="5" [(ngModel)]="notation"><label for="5">☆</label>
+        <input type="radio" name="q1" value="4" id="4" [(ngModel)]="notation"><label for="4">☆</label>
+        <input type="radio" name="q1" value="3" id="3" [(ngModel)]="notation"><label for="3">☆</label>
+        <input type="radio" name="q1" value="2" id="2" [(ngModel)]="notation"><label for="2">☆</label>
+        <input type="radio" name="q1" value="1" id="1" [(ngModel)]="notation"><label for="1">☆</label>
+
+      </div>
+
+    </div>
+
+    <button (click)="getNbrEtoile()">Valider</button>
+  </div>
+</div>
+
+<button (click)="generatePDF()" class="btn btn-primary">Generer le guide en PDF</button>

@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container">
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarExample01"
+        aria-controls="navbarExample01"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <li class="nav-item active">
+            <a class="nav-link" routerLink="/">Acceuil</a>
+            </li>
+
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Expériences voyageurs
+            </a>
+            <ul class="dropdown-menu">
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/saveExperiences">Ajouter une expérience</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/listeExperiences">Afficher les expériences</a>
+                </li>
+            </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Guide voyage
+            </a>
+            <ul class="dropdown-menu">
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/ajouter-guide-voyage">Ajouter un guide</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/afficher-guide-voyage">Afficher les guides</a>
+                </li>
+            </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Utilisateurs
+            </a>
+            <ul class="dropdown-menu">
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/ajoutUtilisateur">Créer un compte</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/utilisateur">Afficher utilisateurs</a>
+                </li>
+            </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pays et villes
+            </a>
+            <ul class="dropdown-menu">
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/listePays">Pays</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/listeVille">Ville</a>
+                </li>
+            </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ???
+            </a>
+            <ul class="dropdown-menu">
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/">Ajouter ???</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/">Afficher ???</a>
+                </li>
+            </ul>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/newsletter">Newsletter</a>
+            </li>
+
+        </ul>
+        </div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

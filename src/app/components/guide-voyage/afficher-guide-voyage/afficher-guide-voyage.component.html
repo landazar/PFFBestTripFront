@@ -1,0 +1,52 @@
+<app-header-pages></app-header-pages>
+<label>Chercher un guide de voyage</label>
+<input type="text" [(ngModel)]="nom">
+<button (click)="getGuidesVoyage(nom); doesGuideExist(nom);">Recherche des expériences</button>
+
+
+<div>
+  <h3>Liste des guides de voyage</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Numéro</th>
+        <th>Nom</th>
+        <th>Date de création</th>
+        <th>Description</th>
+        <th>Note</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guide of guides">
+      <!-- <tr *ngFor="let guide of guides" [ngClass]="guide.estApprouve ? 'row-approuvee' : 'row-non-approuvee'"> -->
+        <td>{{ guide.idGuide }}</td>
+        <td>{{ guide.nom }}</td>
+        <td>{{ guide.dateCreation | date }}</td>
+        <td>{{ guide.description }}</td>
+        <td>{{ guide.note }}/5</td>
+        <td>
+          <!-- <button *ngIf="!guide.estApprouve" (click)="approuverGuide(guide.idGuide)">Approuver</button> -->
+          <button (click)="supprimerGuide(guide.idGuide)">Supprimer</button>
+          <button (click)="modifierGuide(guide.idGuide)">Modifier</button>
+          <button (click)="detailsGuide(guide.idGuide)">Détails</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+<div *ngIf=!param>
+  Aucun guide ne correspond à cette recherche.
+
+  Soyez le premier à donner votre avis !
+
+  <a href="ajouter-guide-voyage"><button>Créer guide</button></a> 
+</div>
+
+  
