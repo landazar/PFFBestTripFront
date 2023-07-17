@@ -3,11 +3,29 @@
 <input type="text" [(ngModel)]="nom">
 <button (click)="getGuidesVoyage(nom); doesGuideExist(nom);">Recherche des expériences</button>
 
+<h3>Liste des guides de voyage</h3>
+<div style="display: grid; gap: 5%;">
+  <div style="display: grid; gap: 10%">
+    <div>
+      <button (click)="toggleGuidesList()">
+        {{
+        currentGuidesList === listeGuidesApprouvees
+        ? "Voir guides non approuves"
+        : "Voir guides
+        approuvés"
+        }}
+      </button>
+    </div>
+    <div style="display: flex;">
+      <label>Chercher un guide de voyage</label>
+      <input type="text" [(ngModel)]="nom" style="margin-left: 1%; margin-right: 1%;" />
+      <button (click)="getGuidesVoyage(nom); doesGuideExist(nom)">
+        Recherche des guides
+      </button>
+    </div>
+  </div>
 
-<div>
-  <h3>Liste des guides de voyage</h3>
-
-  <table class="table">
+  <table class="table custom-table">
     <thead>
       <tr>
         <th>Numéro</th>
@@ -19,34 +37,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let guide of guides">
-      <!-- <tr *ngFor="let guide of guides" [ngClass]="guide.estApprouve ? 'row-approuvee' : 'row-non-approuvee'"> -->
+      <tr *ngFor="let guide of currentGuidesList" (click)="detailsGuide(guide.idGuide)">
         <td>{{ guide.idGuide }}</td>
         <td>{{ guide.nom }}</td>
         <td>{{ guide.dateCreation | date }}</td>
         <td>{{ guide.description }}</td>
         <td>{{ guide.note }}/5</td>
         <td>
-          <!-- <button *ngIf="!guide.estApprouve" (click)="approuverGuide(guide.idGuide)">Approuver</button> -->
-          <button (click)="supprimerGuide(guide.idGuide)">Supprimer</button>
-          <button (click)="modifierGuide(guide.idGuide)">Modifier</button>
-          <button (click)="detailsGuide(guide.idGuide)">Détails</button>
+          <button *ngIf="!guide.estApprouve"
+            (click)="approuverGuide(guide.idGuide); $event.stopPropagation()">Approuver</button>
+          <button (click)="supprimerGuide(guide.idGuide); $event.stopPropagation()">Supprimer</button>
+          <button (click)="modifierGuide(guide.idGuide); $event.stopPropagation()">Modifier</button>
         </td>
       </tr>
     </tbody>
   </table>
-</div>
 
-
-
-
-
-<div *ngIf=!param>
-  Aucun guide ne correspond à cette recherche.
-
-  Soyez le premier à donner votre avis !
-
-  <a href="ajouter-guide-voyage"><button>Créer guide</button></a> 
-</div>
-
+  <div *ngIf="!param">
+    Aucun guide ne correspond à cette recherche. Soyez le premier à donner votre
+    avis !
   
+    <a href="ajouter-guide-voyage"><button>Créer guide</button></a>
+  </div>
+</div>
