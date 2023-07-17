@@ -1,0 +1,20 @@
+body{
+	
+	background-color: #eee;
+}
+
+.taille {
+	height: 450px;
+}
+
+
+#titre {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.onglet {
+    color: black;
+}
+

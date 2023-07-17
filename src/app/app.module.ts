@@ -30,6 +30,8 @@ import { DetailsExperiencesComponent } from './components/experiencesComponent/d
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { HeaderPagesComponent } from './components/header-pages/header-pages.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AboutUsComponent } from './components/footerPages/about-us/about-us.component';
+import { ContactComponent } from './components/footerPages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { FooterComponent } from './components/footer/footer.component';
     NewsletterComponent,
     HeaderPagesComponent,
     FooterComponent,
-    DetailsExperiencesComponent
+    DetailsExperiencesComponent,
+    AboutUsComponent,
+    ContactComponent
 
   ],
   imports: [
