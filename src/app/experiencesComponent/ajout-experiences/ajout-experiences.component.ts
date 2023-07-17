@@ -62,7 +62,6 @@ export class AjoutExperiencesComponent implements OnInit {
     this.toggleActiviteForm();
     this.isRestaurantSelected = false;
     this.isLieuSelected = false;
-    console.log(this.experiencesForm.value.activites[0].nom);
   }
 
   toggleActiviteForm() {
