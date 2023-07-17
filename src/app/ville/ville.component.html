@@ -1,3 +1,5 @@
+<app-header-pages></app-header-pages>
+<div class="container">
 <table class="table align-middle">
     <thead>
       <tr>
@@ -17,12 +19,12 @@
         <ng-template #faux>N/A</ng-template> 
         </td>
         <td>
-          <button type="button" class="btn btn-primary" (click)="getVilleById(ville.id)">Modifier</button>
-          <button type="button" class="btn btn-danger" (click)="supprimer(ville.id)">Supprimer</button>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="getVilleById(ville.id)">Modifier</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="supprimer(ville.id)">Supprimer</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <a routerLink="/ajoutVille"><button type="button" class="btn btn-primary">Ajouter une ville</button></a>
-
+  <a routerLink="/ajoutVille"><button type="button" class="btn btn-outline-primary btn-sm">Ajouter une ville</button></a>
+</div>
   <router-outlet></router-outlet>

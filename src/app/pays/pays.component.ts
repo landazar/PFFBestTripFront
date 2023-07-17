@@ -13,10 +13,11 @@ import { Ville } from '../Model/ville.model';
 })
 export class PaysComponent implements OnInit {
 
-  constructor(private ps:PaysService,/* private vs:VilleService, */private route:Router) {}
+  constructor(private ps:PaysService, private route:Router) {}
 
+  titrePages="Listes des pays";
   listePays!:Observable<Pays[]>;
-  // listeVillePays!:Observable<Ville[]>;
+
 
   ngOnInit(): void {
     this.listePays = this.ps.findAllPays();
