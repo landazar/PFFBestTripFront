@@ -13,7 +13,7 @@ export class CreerPaysComponent implements OnInit {
   paysForm!: FormGroup;
 
   constructor(private paysService: PaysService, private formBuilder: FormBuilder,private router: Router) {}
-
+ // Mise en place du formulaire reactif
   ngOnInit(): void {
 
     this.paysForm = this.formBuilder.group(
@@ -22,7 +22,7 @@ export class CreerPaysComponent implements OnInit {
       }
     )
   }
-
+//Fonction pour save un pays dans la bdd en faisant appel au service pays
   ajouterPays() {
     
     this.paysService.ajoutPays(this.paysForm.value).subscribe();

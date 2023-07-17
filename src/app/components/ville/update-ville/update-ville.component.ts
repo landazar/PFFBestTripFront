@@ -44,6 +44,7 @@ export class UpdateVilleComponent implements OnInit {
     
   }
 
+  //Fonction pour modifier une ville dans la bdd en faisant appel au service ville, on redirige ensuite sur la liste des villes
   updateVille() {
     this.villeService.updateVille(this.villeForm.value).subscribe();
     this.route.navigateByUrl("listeVille");

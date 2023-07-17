@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 })
 export class FormulaireUtilisateurComponent implements OnInit{
 
+  
   constructor(private formBuilder:FormBuilder, private us:UtilisateurService, private route:Router) {}
 
   utilisateurForm!:FormGroup;
 
+  // Mise en place du formulaire reactif
   ngOnInit(): void {
     this.utilisateurForm = this.formBuilder.group(
       {
@@ -28,6 +30,7 @@ export class FormulaireUtilisateurComponent implements OnInit{
     )
   }
 
+  //Fonction pour save un utilisateur dans la bdd en faisant appel au service utilisateur
   saveUtilisateur()
   {
     this.us.ajoutUtilisateur(this.utilisateurForm.value).subscribe();

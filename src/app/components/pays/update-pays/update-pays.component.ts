@@ -18,6 +18,7 @@ export class UpdatePaysComponent implements OnInit {
     this.id = ar.snapshot.params["id"];
   }
 
+  //Fonction pour charger le formulaire avec les valeurs déjà rempli du pays à modifier
   ngOnInit(): void {
     this.paysService.getPaysById (this.id).subscribe(pays => {
       this.paysForm = this.formBuilder.group({
@@ -27,6 +28,7 @@ export class UpdatePaysComponent implements OnInit {
     })
   }
     
+  // Fonction pour modifier un pays avec les nouvelles valeurs saisis dans le formulaire en faisant appel au service pays, puis redirection sur la liste des pays
 
   updatePays() {
     this.paysService.updatePays(this.paysForm?.value).subscribe();
