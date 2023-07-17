@@ -1,3 +1,4 @@
+// Classe utilisateur avec les attributs de la classe
 export class Utilisateur {
 
     id:number;

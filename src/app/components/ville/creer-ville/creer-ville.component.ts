@@ -18,6 +18,7 @@ export class CreerVilleComponent implements OnInit {
 
   constructor(private villeService: VilleService, private formBuilder: FormBuilder,private ps: PaysService, private router: Router) {}
 
+  //Fonction pour mettre en place le formulaire réactif 
   ngOnInit(): void {
 
     //On récupere la liste de tout les pays pour les afficher dans le select partie HTML
@@ -31,6 +32,7 @@ export class CreerVilleComponent implements OnInit {
     )
   }
 
+  //Fonction pour save une ville dans la bdd en faisant appel au service ville
   ajouterVille() {
     this.villeService.ajoutVille(this.villeForm.value).subscribe();
     this.router.navigateByUrl('listeVille');
