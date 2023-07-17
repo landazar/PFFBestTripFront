@@ -20,6 +20,8 @@ import { DetailsGuideComponent } from './components/guide-voyage/details-guide/d
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { HeaderPagesComponent } from './components/header-pages/header-pages.component';
 import { DetailsExperiencesComponent } from './components/experiencesComponent/details-experiences/details-experiences.component';
+import { AboutUsComponent } from './components/footerPages/about-us/about-us.component';
+import { ContactComponent } from './components/footerPages/contact/contact.component';
 
 const routes: Routes = [
   {path: "saveExperiences", component: AjoutExperiencesComponent},
@@ -48,7 +50,10 @@ const routes: Routes = [
   {path: "afficher-guide-voyage/:destination", component: AfficherGuideVoyageComponent},
 
   {path: "heading", component:HeaderPagesComponent},
-  {path: "listeExperiences/:type", component: ListeExperiencesComponent}
+  {path: "listeExperiences/:type", component: ListeExperiencesComponent},
+
+  {path: "aboutUs", component: AboutUsComponent},
+  {path: "contact", component: ContactComponent}
 ];
 
 @NgModule({
