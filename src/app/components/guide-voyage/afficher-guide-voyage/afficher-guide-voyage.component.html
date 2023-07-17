@@ -1,4 +1,7 @@
-<app-header-pages></app-header-pages>
+<app-header-pages [pageTitle]="'Liste des guides de voyages'"></app-header-pages>
+<label>Chercher un guide de voyage</label>
+<input type="text" [(ngModel)]="nom">
+<button (click)="getGuidesVoyage(nom); doesGuideExist(nom);">Recherche des expériences</button>
 
 <h3>Liste des guides de voyage</h3>
 <div style="display: grid; gap: 5%;">
