@@ -38,6 +38,7 @@ export class AjoutGuideVoyageComponent implements OnInit {
       dateCreation: [null],
       description: [null],
       activites: [[]],
+      estApprouve: [false],
       listeU: [[]]
     });
   }

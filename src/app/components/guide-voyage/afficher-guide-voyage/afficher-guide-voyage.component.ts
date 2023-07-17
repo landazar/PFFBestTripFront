@@ -12,6 +12,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AfficherGuideVoyageComponent implements OnInit {
   guides: GuideVoyage[] = [];
+  listeGuidesApprouvees!:GuideVoyage[];
+  listeGuidesNonApprouvees!:GuideVoyage[];
+  currentGuidesList: GuideVoyage[] = [];
 
   nom: string = "";
   param: boolean = false;
@@ -44,7 +47,20 @@ export class AfficherGuideVoyageComponent implements OnInit {
   getGuidesVoyage(nom: string): void {
     this.guideVoyageService.getListeGuideVoyage(nom).subscribe((guides: GuideVoyage[]) => {
       this.guides = guides;
+      this.listeGuidesApprouvees = guides.filter((value) => value.estApprouve);
+      this.listeGuidesNonApprouvees = guides.filter((value) => !value.estApprouve);
+      this.currentGuidesList = this.listeGuidesApprouvees;
     });
+  }
+
+  /**
+   * Fonction qui permet de basculer entre les guides approuvés et les expériences non approuvés
+   */
+  toggleGuidesList() {
+    this.currentGuidesList =
+      this.currentGuidesList === this.listeGuidesApprouvees
+        ? this.listeGuidesNonApprouvees
+        : this.listeGuidesApprouvees;
   }
 
   /**

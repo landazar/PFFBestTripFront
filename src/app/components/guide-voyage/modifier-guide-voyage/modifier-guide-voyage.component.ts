@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from 'src/app/Model/activite';
+import { GuideVoyage } from 'src/app/Model/guide-voyage';
 import { Lieu } from 'src/app/Model/lieu';
 import { Restaurant } from 'src/app/Model/restaurant';
 import { Utilisateur } from 'src/app/Model/utilisateur.model';
@@ -15,6 +16,7 @@ import { UtilisateurService } from 'src/app/Service/utilisateur.service';
 })
 export class ModifierGuideVoyageComponent implements OnInit {
 
+  guideInitial!: GuideVoyage;
   guideForm?: FormGroup;
   restaurant: Restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
   lieu: Lieu = new Lieu(0, '', '', [], '', 0, '');
@@ -45,9 +47,11 @@ export class ModifierGuideVoyageComponent implements OnInit {
         nom: [guideVoyage.nom],
         dateCreation: [guideVoyage.dateCreation],
         description: [guideVoyage.description],
+        estApprouve: [guideVoyage.estApprouve],
         activites: [guideVoyage.activites],
         listeU:[guideVoyage.listeU]
       });
+      this.guideInitial = guideVoyage;
       console.log(this.guideForm.value)
     });
   }
@@ -77,6 +81,11 @@ export class ModifierGuideVoyageComponent implements OnInit {
     activitesArray.forEach(element => {
       console.log("act nom=" + element.nom);
     });
+    if (this.guideForm?.value != this.guideInitial) {
+      if (this.guideForm) {
+        this.guideForm.value.estApprouve = false;
+      }
+    }
     this.guideVoyageService.modifierGuideVoyage(this.guideForm?.value).subscribe();
     this.router.navigateByUrl("afficher-guide-voyage");
   }

@@ -17,6 +17,7 @@ import { Observable } from 'rxjs';
 })
 export class UpdateExperiencesComponent implements OnInit {
 
+  experiencesInitiales!: Experiences;
   experiencesForm!:FormGroup;
   restaurant: Restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
   lieu: Lieu = new Lieu(0, '', '', [], '', 0, '');
@@ -39,15 +40,16 @@ export class UpdateExperiencesComponent implements OnInit {
       this.username = JSON.parse(u);
     });
     this.es.getExperiencesById(this.idExperience).subscribe(experiences => {
-      console.log(experiences);
       this.experiencesForm = this.formBuilder.group({
           idExperience: [experiences.idExperience],
           nom: [experiences.nom],
           dateDebut: [experiences.dateDebut],
           dateFin: [experiences.dateFin],
           type: [experiences.type],
+          estApprouvee: [experiences.estApprouvee],
           activites: [experiences.activites]
         })
+      this.experiencesInitiales = experiences;
     });
     // this.username = this.es.getUsernameById(this.idExperience);
   }
@@ -56,7 +58,9 @@ export class UpdateExperiencesComponent implements OnInit {
    * Fonction pour modifier une expérience en passant par le service ExperiencesService
    */
   updateExperiences() {
-    console.log(this.experiencesForm.value);
+    if (this.experiencesForm.value != this.experiencesInitiales) {
+      this.experiencesForm.value.estApprouvee = false;
+    }
     this.es.updateExperiences(this.experiencesForm?.value, this.username).subscribe();
     this.router.navigateByUrl("listeExperiences");
   }
