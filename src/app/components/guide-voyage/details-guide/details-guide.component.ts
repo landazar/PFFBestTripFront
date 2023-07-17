@@ -5,14 +5,12 @@ import jsPDF from 'jspdf';
 import { GuideVoyage } from 'src/app/Model/guide-voyage';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 
-
-
 @Component({
   selector: 'app-details-guide-voyage',
   templateUrl: './details-guide.component.html',
   styleUrls: ['./details-guide.component.css']
 })
-export class DetailsGuideComponent implements OnInit{
+export class DetailsGuideComponent implements OnInit {
   guide!: GuideVoyage;
 
   notation: number = 0;
@@ -23,18 +21,18 @@ export class DetailsGuideComponent implements OnInit{
     private route: ActivatedRoute,
     private guideVoyageService: GuideVoyageService,
     private router: Router
-  ) {this.idGuide = route.snapshot.params["idGuide"]}
+  ) {
+    this.idGuide = route.snapshot.params["idGuide"]//récupère la valeur du paramètre idGuide 
+    //de l'URL actuelle et l'assigne à la variable idGuide de la classe.
+  }
 
-  
-  @ViewChild('pdfContent', {static:true}) pdfContent!:ElementRef;
-
-  
+  @ViewChild('pdfContent', { static: true }) pdfContent!: ElementRef;
 
   ngOnInit(): void {
     this.getGuideVoyage();
-    
   }
 
+  // Récupère le guide de voyage en fonction de son ID
   getGuideVoyage(): void {
     this.route.paramMap.subscribe(params => {
       const idGuide = +params.get('idGuide')!;
@@ -44,8 +42,7 @@ export class DetailsGuideComponent implements OnInit{
     });
   }
 
-  
-
+  // Génère un fichier PDF à partir du contenu HTML
   generatePDF() {
     const div = document.getElementById('pdfContent');
     const options = {
@@ -54,11 +51,10 @@ export class DetailsGuideComponent implements OnInit{
     };
 
     html2canvas(div!, options).then((canvas) => {
-
       var img = canvas.toDataURL("image/PNG");
       var doc = new jsPDF('l', 'mm', 'a4', true);
 
-      // Add image Canvas to PDF
+      // Ajoute l'image au document PDF
       const bufferX = 5;
       const bufferY = 5;
       const imgProps = (<any>doc).getImageProperties(img);
@@ -68,10 +64,11 @@ export class DetailsGuideComponent implements OnInit{
 
       return doc;
     }).then((doc) => {
-      doc.save('guide.pdf');  
+      doc.save('guide.pdf');
     });
   }
 
+  // Récupère le nombre d'étoiles sélectionné et enregistre la note du guide de voyage
   getNbrEtoile() {
     console.log(this.notation);
     console.log("id : " + this.idGuide);
