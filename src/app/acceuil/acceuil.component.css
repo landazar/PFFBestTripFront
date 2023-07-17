@@ -1,28 +1,59 @@
 
 #titre {
     text-align: center;
-    padding: 1%;
+    padding: 0.5%;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: oblique;
+    color: wheat;
+    margin-top: 1%;
+    font-size: 400%;
+    background: rgba(0, 0, 0, .5);
+    
 }
 
 #rechercheBarre {
     display: flex;
-    
+    justify-content: center;
 }
 
 #entete {
     border: 1px solid black;
     height: 200px;
-    
+    background-image: url(https://www.les-covoyageurs.com/ressources/images-lieux/photo-lieu-624-1.jpg);
+    background-position: 80%;
+    border: 2px solid black;
+
+}
+
+#plagePhoto {
+    background-image: url(https://static.vecteezy.com/ti/photos-gratuite/p2/15190626-vue-panoramique-d-un-coucher-de-soleil-jaune-sur-l-une-des-plus-belles-plages-de-la-cote-d-azur-sud-de-la-france-coucher-du-soleil-photo.jpg);
+    background-position-y: 65%;
+    cursor: pointer;
 }
 
 #iconeRecherche {
     height: 40px;
 }
 
+#bouttonRecherche {
+    background-color: white;
+}
 
+#barreRechercheDestination {
+    width: 40%;
+}
 
+#cadre {
+    margin: 2%;
+}
 
-
+#phrase {
+    text-align: center;
+    padding: 1%;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: oblique;
+    font-size: 200%;
+}
 
 
 
@@ -31,7 +62,7 @@
     background-position: center center;
     display: block;
     width: 100%;
-    height: 500px;
+    height: 400px;
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
@@ -41,6 +72,7 @@
     -o-transition: transform .4s;
     -webkit-transition: transform .4s;
     transition: transform .4s;
+    cursor: pointer;
 }
 
 .slider>div {

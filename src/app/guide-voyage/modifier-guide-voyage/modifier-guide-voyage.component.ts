@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from 'src/app/Model/activite';
+import { Lieu } from 'src/app/Model/lieu';
+import { Restaurant } from 'src/app/Model/restaurant';
+import { Utilisateur } from 'src/app/Model/utilisateur.model';
 import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
+import { UtilisateurService } from 'src/app/Service/utilisateur.service';
 
 @Component({
   selector: 'app-modifier-guide-voyage',
@@ -11,88 +15,158 @@ import { GuideVoyageService } from 'src/app/Service/guide-voyage.service';
 })
 export class ModifierGuideVoyageComponent implements OnInit {
 
-  guideForm!: FormGroup;
-  activite: Activite = new Activite(0, '', '', [], '', 0);
+  guideForm?: FormGroup;
+  restaurant: Restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
+  lieu: Lieu = new Lieu(0, '', '', [], '', 0, '');
   showActiviteForm: boolean = false;
-  guideId!: number;
+  isRestaurantSelected: boolean = false;
+  isLieuSelected: boolean = false;
+  guideId!: number; // Placeholder for the guide ID
+  username!:string;
 
-//   constructor(
-//     private guideVoyageService: GuideVoyageService,
-//     private formBuilder: FormBuilder,
-//     private activatedRoute: ActivatedRoute,
-//     private router: Router
-//   ) {
-//     this.guideId = activatedRoute.snapshot.params['id'];
-//   }
+  constructor(
+    private guideVoyageService: GuideVoyageService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private us:UtilisateurService
+  ) {
+    this.guideId = route.snapshot.params["idGuide"];
+
+  }
 
   ngOnInit(): void {
-    this.guideForm = new FormGroup({
-      nom: new FormControl(''),
-      dateCreation: new FormControl(''),
-      description: new FormControl(''),
-      activites: new FormControl([])
+      this.guideVoyageService.getGuideVoyageById(this.guideId).subscribe((guideVoyage: any) => {
+        console.log(guideVoyage.nom)
+        this.guideForm = this.formBuilder.group({
+          idGuide: [guideVoyage.idGuide],
+          nom: [guideVoyage.nom],
+          dateCreation: [guideVoyage.dateCreation],
+          description: [guideVoyage.description],
+          activites: [guideVoyage.activites],
+          listeU:[guideVoyage.listeU]
+        }); console.log(this.guideForm.value)
+      });
+  }
+
+  ajouterUtilisateur()
+  {
+    this.us.getUtilisateurByUsername(this.username).subscribe(data => {
+      console.log("data :" + data);
+      this.guideForm?.value.listeU.push(data);
+      this.username="";
     });
+  }
 
-//     this.guideVoyageService.getGuideVoyageById(this.guideId).subscribe(guideVoyage => {
-//       this.guideForm.patchValue({
-//         nom: guideVoyage.nom,
-//         dateCreation: guideVoyage.dateCreation,
-//         description: guideVoyage.description,
-//         activites: guideVoyage.activites
-//       });
-//     });
-//   }
+  supprimerUtilisateur(i: number) {
+    const UtilisateurArray = this.guideForm?.get('listeU')?.value as Utilisateur[];
+    UtilisateurArray.splice(i, 1);
+    this.guideForm?.get('listeU')?.setValue(UtilisateurArray);
+  }
 
-//   saveGuideVoyage(): void {
-//     if (this.guideForm.invalid) {
-//       return;
-//     }
+  updateGuideVoyage() {
+    console.log(this.guideForm?.value.nom);
+    console.log(this.guideForm?.value);
+    const activitesArray = this.guideForm?.get('activites')?.value as Activite[];
+    console.log("taille act=" + activitesArray.length);
+    activitesArray.forEach(element => {
+      console.log("act nom=" + element.nom);
+    });
+    this.guideVoyageService.modifierGuideVoyage(this.guideForm?.value).subscribe();
+    this.router.navigateByUrl("afficher-guide-voyage");
+  }
 
-//     const guideVoyage = {
-//       id: this.guideId,
-//       ...this.guideForm.value
-//     };
+  supprimerActivite(i: number) {
+    const activitesArray = this.guideForm?.get('activites')?.value as Activite[];
+    activitesArray.splice(i, 1);
+    this.guideForm?.get('activites')?.setValue(activitesArray);
+  }
 
-//     this.guideVoyageService.modifierGuideVoyage(guideVoyage).subscribe(() => {
-//       this.router.navigateByUrl('/afficher-guide-voyage');
-//     });
-//   }
+  ajouterActivite() {
+    console.log("ajout d'une activité");
+    if (this.isRestaurantSelected) {
+      this.guideForm?.value.activites.push(this.restaurant);
+    } else {
+      this.guideForm?.value.activites.push(this.lieu);
+    }
+    this.toggleActiviteForm();
+    this.isRestaurantSelected = false;
+    this.isLieuSelected = false;
+    console.log(this.guideForm?.value);
+  }
 
-//   supprimerActivite(index: number): void {
-//     const activites = this.guideForm.get('activites')?.value as Activite[];
-//     activites.splice(index, 1);
-//     this.guideForm.get('activites')?.setValue(activites);
-//   }
 
-//   ajouterActivite(): void {
-//     const activites = this.guideForm.get('activites')?.value as Activite[];
-//    // activites.push(this.activite);
-//     this.guideForm.get('activites')?.setValue(activites);
-//     this.toggleActiviteForm();
-//   }
+  toggleActiviteForm() {
+    this.showActiviteForm = !this.showActiviteForm;
+    this.isRestaurantSelected = false;
+    this.isLieuSelected = false;
+  }
+  
 
-//   toggleActiviteForm(): void {
-//    // this.activite = new Activite(0, '', '', [], '', 0);
-//     this.showActiviteForm = !this.showActiviteForm;
-//   }
+  handlePhotoUpload(event: any, i: number) {
+    const files = event.target.files;
+    const photosPromises: Promise<string>[] = [];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const promise = new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          resolve(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+      photosPromises.push(promise);
+    }
+  
+    Promise.all(photosPromises).then((photos) => {
+      const activitesArray = this.guideForm?.get('activites')?.value as Activite[];
+      if (i != -1) {
+        activitesArray[i].photos.push(...photos);
+        this.guideForm?.get('activites')?.patchValue(activitesArray);
+      } else {
+        if (this.isRestaurantSelected) {
+          this.restaurant.photos = this.restaurant.photos.concat(photos);
+        } else {
+          this.lieu.photos = this.lieu.photos.concat(photos);
+        }
+      }
+      event.target.value = null;
+    });
+  }
 
-//   handlePhotoUpload(event: any): void {
-//     const files = event.target.files;
-//     const photos: any[] = [];
-//     for (let i = 0; i < files.length; i++) {
-//       const reader = new FileReader();
-//       reader.onload = (e: any) => {
-//         photos.push(e.target.result);
-//       };
-//       reader.readAsDataURL(files[i]);
-//     }
-//    // this.activite.photos = photos;
-//   }
+  supprimerPhoto(i: number, j: number) {
+    if (i != -1) {
+      const activitesArray = this.guideForm?.get('activites')?.value as Activite[];
+      activitesArray[i].photos.splice(j, 1);
+      this.guideForm?.get('activites')?.setValue(activitesArray);
+    } else {
+      if (this.isRestaurantSelected) {
+        this.restaurant.photos.splice(j, 1);
+      } else {
+        this.lieu.photos.splice(j, 1);
+      }
+    }
+  }
+  printActivity(activity: Activite): string {
+    if (activity instanceof Restaurant) {
+      return 'Restaurant';
+    }
+    if (activity instanceof Lieu) {
+      return 'Lieu';
+    }
+    return '';
+  }
 
-//   supprimerPhoto(activiteIndex: number, photoIndex: number): void {
-//     const activites = this.guideForm.get('activites')?.value as Activite[];
-//     activites[activiteIndex].photos.splice(photoIndex, 1);
-//     this.guideForm.get('activites')?.setValue(activites);
-//   }
- }
+  handleActivityTypeChange(event: Event) {
+    const selectedActivityType = (event.target as HTMLInputElement).value;
+    this.restaurant = new Restaurant(0, '', '', [], '', 0, '', '');
+    this.lieu = new Lieu(0, '', '', [], '', 0, '');
+    if (selectedActivityType === 'restaurant') {
+      this.isRestaurantSelected = true;
+      this.isLieuSelected = false;
+    } else {
+      this.isRestaurantSelected = false;
+      this.isLieuSelected = true;
+    }
+  }
 }

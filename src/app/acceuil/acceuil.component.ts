@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { GuideVoyageService } from '../Service/guide-voyage.service';
 import { Router } from '@angular/router';
+import { ExperiencesService } from '../Service/experiences.service';
 
 @Component({
   selector: 'app-acceuil',
@@ -15,7 +16,7 @@ export class AcceuilComponent {
   destination: string = "";
   type: string = "";
 
-  constructor(private formBuilder:FormBuilder, private gs: GuideVoyageService, private router:Router) {}
+  constructor(private formBuilder:FormBuilder, private gs: GuideVoyageService, private router:Router, private es: ExperiencesService) {}
 
   
 
